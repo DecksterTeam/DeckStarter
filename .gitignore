@@ -1,0 +1,11 @@
+.DS_Store
+.c9
+node_modules
+.tmp
+build
+.gradle
+log*
+.classpath
+.project
+.settings
+bin
