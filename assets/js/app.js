@@ -18,8 +18,8 @@ define([
             // $body.append(header.$el);
 
             var navbarView = new NavbarView();
-            // var navbar = navbarView.render();
-            // $body.append(navbar.$el);
+            var navbar = navbarView.render();
+            $body.append(navbar.$el);
 
             // var sidebarLeftView = new SidebarLeftView();
             // var sidebarLeft = sidebarLeftView.render();

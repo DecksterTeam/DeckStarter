@@ -1,19 +1,22 @@
 define([
     'jquery',
+    'underscore',
+    'backbone',
     'text!navbar/navbar.hbs',
     'handlebars',
     'bootstrap'
-], function ($, NavbarHBS, Handlebars) {
+], function ($, _, Backbone, NavbarHBS, Handlebars) {
 
     'use strict';
-
-    return {
+    var HeaderView = Backbone.View.extend({
         render: function() {
             var navbarViewTemplate = Handlebars.compile(NavbarHBS);
             var navbarViewHTML = navbarViewTemplate();
-            // this.$el.html(navbarViewHTML);
+            this.$el.html(navbarViewHTML);
             
-            // return this;
+            return this;
         }
-    };
+    });
+
+    return HeaderView;
 });
