@@ -9,3 +9,4 @@ log*
 .project
 .settings
 bin
+npm-debug.log
