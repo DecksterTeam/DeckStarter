@@ -13,23 +13,23 @@ define([
         initialize: function () {
             var $body = $('body');
 
-            // var headerView = new HeaderView();
+            // var headerView = HeaderView;
             // var header = headerView.render();
             // $body.append(header.$el);
 
-            var navbarView = new NavbarView();
-            // var navbar = navbarView.render();
-            // $body.append(navbar.$el);
+            var navbarView = NavbarView;
+            var navbar = navbarView.render();
+            $body.append(navbar.$el);
 
-            // var sidebarLeftView = new SidebarLeftView();
-            // var sidebarLeft = sidebarLeftView.render();
-            // $body.append(sidebarLeft.$el);
+            var sidebarLeftView = SidebarLeftView;
+            var sidebarLeft = sidebarLeftView.render();
+            $body.append(sidebarLeft.$el);
 
-            // var middleContainerView = new MiddleContainerView();
-            // var middleContainer = middleContainerView.render();
-            // $body.append(middleContainer.$el);
+            var middleContainerView = MiddleContainerView;
+            var middleContainer = middleContainerView.render();
+            $body.append(middleContainer.$el);
 
-            // var footerView = new FooterView();
+            // var footerView = FooterView;
             // var footer = footerView.render();
             // $body.append(footer.$el);
         }

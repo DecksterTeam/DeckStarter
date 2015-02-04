@@ -11,9 +11,9 @@ define([
         render: function() {
             var navbarViewTemplate = Handlebars.compile(NavbarHBS);
             var navbarViewHTML = navbarViewTemplate();
-            // this.$el.html(navbarViewHTML);
+            this.$el = $(navbarViewHTML);
             
-            // return this;
+            return this;
         }
     };
 });
