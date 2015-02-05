@@ -113,27 +113,12 @@ body {
 .sidebar {
   display: none;
 }
-@media (min-width: 750px) {
-  .sidebar {
-    position: fixed;
-    width: 250px;
-    top: 50px;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
-    display: block;
-    overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-    background-color: #f5f5f5;
-    border-right: 1px solid #ddd;
-  }
-}
 
 /* 
  * Sidebar navigation
  */
 .nav-sidebar {
-  width: 250px;
+  width: 180px;
 }
 .nav-sidebar > li > a {
   padding-right: 20px;
@@ -181,12 +166,13 @@ body {
   display: inline-block;
 }
 .tile-container {
-    margin-right: auto;
-    margin-left: auto;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 /**
  * Responsive Style Overrides
+ * Note - the width calc depends on the sidebar width.
  */
 @media (max-width: 499px) {
   .middle-container {
@@ -206,42 +192,55 @@ body {
       width: 500px;
   }
 }
-@media (min-width: 750px) {
+@media (min-width: 768px) {
   .middle-container {
-    margin-left: 250px;
-    width: calc(100% - 250px);
+    margin-left: 180px;
+    width: calc(100% - 180px);
   }
   .tile-container {
     width: 500px;
   }
-}
-@media (min-width: 1000px) {
-  .tile-container {
-      width: 750px;
+  .sidebar {
+    position: fixed;
+    width: 180px;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-right: 1px solid #ddd;
   }
 }
-@media (min-width: 1250px) {
+@media (min-width: 930px) {
   .tile-container {
-      width: 1000px;
+    width: 750px;
   }
 }
-@media (min-width: 1500px) {
+@media (min-width: 1180px) {
   .tile-container {
-      width: 1250px;
+    width: 1000px;
   }
 }
-@media (min-width: 1750px) {
+@media (min-width: 1430px) {
   .tile-container {
-      width: 1500px;
+    width: 1250px;
   }
 }
-@media (min-width: 2000px) {
+@media (min-width: 1680px) {
   .tile-container {
-      width: 1750px;
+    width: 1500px;
+  }
+}
+@media (min-width: 1930px) {
+  .tile-container {
+    width: 1750px;
   }   
 }
-@media (min-width: 2250px) {
+@media (min-width: 2180px) {
   .tile-container {
-      width: calc(100% - 250px);
+    width: calc(100% - 180px);
   }
 }
