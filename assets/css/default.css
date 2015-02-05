@@ -26,9 +26,7 @@ body {
 }
 
 .tiles {
-	height: 125px;
 	color: white;
-	margin: 5px;
 }
 
 .tiles.green{
@@ -41,6 +39,10 @@ body {
 
 .tiles.purple{
 	background-color: #735f87;
+}
+
+.tiles.red{
+	background-color: #f35958;
 }
 
 /*
