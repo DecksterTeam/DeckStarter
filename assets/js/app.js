@@ -14,24 +14,19 @@ define([
             var $body = $('body');
 
             // var headerView = HeaderView;
-            // var header = headerView.render();
-            // $body.append(header.$el);
+            // headerView.render($body);
 
             var navbarView = NavbarView;
-            var navbar = navbarView.render();
-            $body.append(navbar.$el);
+            navbarView.render($body);
 
             var sidebarLeftView = SidebarLeftView;
-            var sidebarLeft = sidebarLeftView.render();
-            $body.append(sidebarLeft.$el);
+            sidebarLeftView.render($body);
 
             var middleContainerView = MiddleContainerView;
-            var middleContainer = middleContainerView.render();
-            $body.append(middleContainer.$el);
+            middleContainerView.render($body);
 
             // var footerView = FooterView;
-            // var footer = footerView.render();
-            // $body.append(footer.$el);
+            // footerView.render($body);
         }
     };
 });

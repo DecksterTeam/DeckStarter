@@ -1,13 +1,13 @@
 <div class="sidebar">
 
-  <ul class="nav nav-sidebar">
+  <ul class="nav-menu nav nav-sidebar">
     <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
     <li><a href="#">Reports</a></li>
     <li><a href="#">Analytics</a></li>
     <li><a href="#">Export</a></li>
   </ul>
 
-  <div class="panel-group" id="accordion">
+  {{!-- <div class="panel-group" id="accordion">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
@@ -38,6 +38,106 @@
         <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
       </div>
     </div>
-  </div>
+  </div> --}}
+
+  <ul class="filter-menu nav nav-sidebar" id="accordion">
+
+    <li>
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+        <b class="caret right-caret"></b> Filter 1
+      </a>
+    </li>
+
+    <ul id="collapse1" class="sub-filter nav nav-sidebar collapse">
+      <li>
+        <a href="#">Sub Filter 1</a>
+      </li>
+      <li>
+        <a href="#">Sub Filter 2</a>
+      </li>
+      <li>
+        <a href="#">Sub Filter 3</a>
+      </li>
+      <li>
+        <a href="#">Sub Filter 4</a>
+      </li>
+      <li>
+        <a href="#">Sub Filter 5</a>
+      </li>
+    </ul>
+
+    <li>
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+        <b class="caret right-caret"></b> Filter 2
+      </a>
+    </li>
+
+    <ul id="collapse2" class="sub-filter nav nav-sidebar collapse">
+      <li>
+        <a href="#">Sub Filter 1</a>
+      </li>
+      <li>
+        <a href="#">Sub Filter 2</a>
+      </li>
+    </ul>
+
+    <li>
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+        <b class="caret right-caret"></b> Filter 3
+      </a>
+    </li>
+
+    <ul id="collapse3" class="sub-filter nav nav-sidebar collapse">
+      <li>
+        <a href="#">Sub Filter 1</a>
+      </li>
+      <li>
+        <a href="#">Sub Filter 2</a>
+      </li>
+    </ul>
+
+    <li>
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+        <b class="caret right-caret"></b> Filter 4
+      </a>
+    </li>
+
+    <ul id="collapse4" class="sub-filter nav nav-sidebar collapse">
+      <li>
+        <a href="#">Sub Filter 1</a>
+      </li>
+      <li>
+        <a href="#">Sub Filter 2</a>
+      </li>
+      <li>
+        <a href="#">Sub Filter 3</a>
+      </li>
+      <li>
+        <a href="#">Sub Filter 4</a>
+      </li>
+      <li>
+        <a href="#">Sub Filter 5</a>
+      </li>
+      <li>
+        <a href="#">Sub Filter 6</a>
+      </li>
+    </ul>
+
+    <li>
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+        <b class="caret right-caret"></b> Filter 5
+      </a>
+    </li>
+
+    <ul id="collapse5" class="sub-filter nav nav-sidebar collapse">
+      <li>
+        <a href="#">Sub Filter 1</a>
+      </li>
+      <li>
+        <a href="#">Sub Filter 2</a>
+      </li>
+    </ul>
+
+  </ul>
 
 </div>

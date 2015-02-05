@@ -146,6 +146,36 @@ body {
   background-color: #428bca;
 }
 
+.nav-menu {
+  border-bottom: 1px solid #ddd;
+}
+
+.sub-filter > li > a {
+  padding-right: 20px;
+  padding-left: 55px;
+}
+
+.sidebar .caret {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #000000;
+  display: inline-block;
+  height: 0;
+  opacity: 0.3;
+  width: 0;
+  margin-right: 5px;
+  margin-bottom: 3px;
+}
+
+.sidebar .right-caret {
+  border-bottom: 4px solid transparent;
+  border-top: 4px solid transparent;
+  border-left: 4px solid #000000;
+  display: inline-block;
+  height: 0;
+  margin-right: 5px;
+}
+
 .middle-container {
   float: left;
   display: inline-block;
@@ -154,7 +184,6 @@ body {
     margin-right: auto;
     margin-left: auto;
 }
-
 
 /**
  * Responsive Style Overrides
