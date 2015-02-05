@@ -7,11 +7,11 @@ define([
     'use strict';
 
     return {
-        render: function() {
+        render: function(parent) {
             var middleContainerViewTemplate = Handlebars.compile(MiddleContainerHBS);
             var middleContainerViewHTML = middleContainerViewTemplate();
             this.$el = $(middleContainerViewHTML);
-            return this;
+            parent.append(this.$el);
         },
 		
 		initGrid: function(){

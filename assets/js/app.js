@@ -26,9 +26,8 @@ define([
             $body.append(sidebarLeft.$el);
 
             var middleContainerView = MiddleContainerView;
-            var middleContainer = middleContainerView.render();
-            $body.append(middleContainer.$el);
-			middleContainer.initGrid();
+            var middleContainer = middleContainerView.render($body);
+            middleContainer.initGrid();
 			
 
             // var footerView = FooterView;

@@ -18,22 +18,19 @@
 </p>
 
 
+## Demonstration
+
+**Here is a sneak peek at the project:**
+
+[DeckStarter](http://decksterteam.github.io/DeckStarter/)
+
 
 ## Installation
 
-
-#### Clone the Project
-
 **Clone the repo:**
-```sh
-# Clone the git repo
-$ git clone https://github.com/DecksterTeam/DeckStarter.git
-```
 
-**Change into project diretory:**
-```sh
-# cd into the project folder
-$ cd DeckStarter
+```bash
+  $ git clone https://github.com/DecksterTeam/DeckStarter.git
 ```
 
 **Open the app in your browser:**
@@ -55,3 +52,5 @@ By default, `nano-server` will run on port **5000** and use the current working 
 ```bash
   $ nano-server 3000
 ```
+
+For more information on nano-server, refer to their project page: [nano-server](https://github.com/tsherif/nano-server)
