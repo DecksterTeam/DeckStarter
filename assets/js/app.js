@@ -28,6 +28,8 @@ define([
             var middleContainerView = MiddleContainerView;
             var middleContainer = middleContainerView.render();
             $body.append(middleContainer.$el);
+			middleContainer.initGrid();
+			
 
             // var footerView = FooterView;
             // var footer = footerView.render();

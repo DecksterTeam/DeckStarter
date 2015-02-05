@@ -12,25 +12,38 @@ define([
             var middleContainerViewTemplate = Handlebars.compile(MiddleContainerHBS);
             var middleContainerViewHTML = middleContainerViewTemplate();
             this.$el = $(middleContainerViewHTML);
-			this.initGrid();
             return this;
         },
 		
 		initGrid: function(){
-			var gridster = $(this.$el).find('.gridster ul').gridster({
-	          widget_base_dimensions: [100, 100],
+			var gridElem = $(this.$el).find('.gridster ul');
+			var NUM_COLUMNS = this.gatherColumns();
+			var PADDING = 5;
+			
+			this._width = $('.gridster').innerWidth() - NUM_COLUMNS * PADDING * 2;
+			var gridster = gridElem.gridster({
+	          widget_base_dimensions: [this._width / 4, 100],
 	          widget_margins: [5, 5],
-	          helper: 'clone'
+	          helper: 'clone',
+	          autogrow_cols: true,
+	          resize: {
+	            enabled: true
+	          }
 	        }).data('gridster');
 			
-  // resize widgets on hover
-          gridster.$el
-            .on('mouseenter', '> li', function() {
-                gridster.resize_widget($(this), 3, 3);
-            })
-            .on('mouseleave', '> li', function() {
-                gridster.resize_widget($(this), 1, 1);
-            });
+  		  // // resize widgets on hover
+//           gridster.$el
+//             .on('mouseenter', '> li', function() {
+//                 gridster.resize_widget($(this), 3, 3);
+//             })
+//             .on('mouseleave', '> li', function() {
+//                 gridster.resize_widget($(this), 1, 1);
+//             });
+		},
+		
+		gatherColumns: function(){
+			var col = $.map($(this.$el).find('.gridster ul li[data-col]'), function(e,i){return parseInt($(e).data('col'));});
+			return Math.max.apply(Math, col);
 		}
     };
 });
