@@ -24,7 +24,7 @@
 **Clone the repo:**
 
 ```bash
-	$ git clone https://github.com/DecksterTeam/DeckStarter.git
+  $ git clone https://github.com/DecksterTeam/DeckStarter.git
 ```
 
 **Open the app in your browser:**
@@ -47,4 +47,4 @@ By default, `nano-server` will run on port **5000** and use the current working 
   $ nano-server 3000
 ```
 
-For more inrofmation about nano-server, refer to their documentation on their project page: [nano-server](https://github.com/tsherif/nano-server)
+For more information on nano-server, refer to their project page: [nano-server](https://github.com/tsherif/nano-server)
