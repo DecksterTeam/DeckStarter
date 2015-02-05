@@ -8,12 +8,11 @@ define([
     'use strict';
 
     return {
-        render: function() {
+        render: function(parent) {
             var navbarViewTemplate = Handlebars.compile(NavbarHBS);
             var navbarViewHTML = navbarViewTemplate();
             this.$el = $(navbarViewHTML);
-            
-            return this;
+            parent.append(this.$el);
         }
     };
 });

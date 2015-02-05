@@ -8,12 +8,26 @@ define([
     'use strict';
 
     return {
-        render: function() {
+        render: function(parent) {
             var sidebarLeftViewTemplate = Handlebars.compile(SidebarLeftHBS);
             var sidebarLeftViewHTML = sidebarLeftViewTemplate();
             this.$el = $(sidebarLeftViewHTML);
-            
-            return this;
+            parent.append(this.$el);
+
+            var selector = '.nav-menu li';
+            $(selector).on('click', function(){
+                $(selector).removeClass('active');
+                $(this).addClass('active');
+            });
+
+            var filterSelector = '.filter-menu li';
+            $(filterSelector).on('click', function() {
+                if($(this).find('.caret').hasClass('right-caret')) {
+                    $(this).find('.caret').removeClass('right-caret');
+                } else {
+                    $(this).find('.caret').addClass('right-caret');
+                }
+            });
         }
     };
 });
