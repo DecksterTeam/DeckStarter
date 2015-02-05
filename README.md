@@ -18,6 +18,12 @@
 </p>
 
 
+## Demonstration
+
+**Here is a sneak peek at the project:**
+
+[DeckStarter](http://decksterteam.github.io/DeckStarter/)
+
 
 ## Installation
 
