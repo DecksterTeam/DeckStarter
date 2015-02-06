@@ -18,12 +18,10 @@ define([
             // $body.append(header.$el);
 
             var navbarView = NavbarView;
-            var navbar = navbarView.render();
-            $body.append(navbar.$el);
+            var navbar = navbarView.render($body);
 
             var sidebarLeftView = SidebarLeftView;
-            var sidebarLeft = sidebarLeftView.render();
-            $body.append(sidebarLeft.$el);
+            var sidebarLeft = sidebarLeftView.render($body);
 
             var middleContainerView = MiddleContainerView;
             var middleContainer = middleContainerView.render($body);

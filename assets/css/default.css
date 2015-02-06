@@ -25,6 +25,9 @@ body {
   }
 }
 
+.main {
+	padding: 0 50px 0 75px;
+}
 
 .panel-group {
   border-top: 1px solid #ddd;
