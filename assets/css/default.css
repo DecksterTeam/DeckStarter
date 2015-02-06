@@ -96,20 +96,24 @@ body {
   width: 490px;
 }
 
-.tile.green{
+.green .tile{
 	background-color: #0aa699;
 }
 
-.tile.blue{
+.blue .tile{
 	background-color: #0090d9;
 }
 
-.tile.purple{
+.purple .tile{
 	background-color: #735f87;
 }
 
-.tiles.red{
+.red .tile{
 	background-color: #f35958;
+}
+
+.white .tile{
+	background-color: white;
 }
 
 /*
