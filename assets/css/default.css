@@ -25,6 +25,9 @@ body {
   }
 }
 
+.main {
+	padding: 0 50px 0 75px;
+}
 
 .panel-group {
   border-top: 1px solid #ddd;
@@ -69,8 +72,8 @@ body {
   float: left;
   display: inline-block;
   text-align: center;
-  height: 240px;
-  width: 240px;
+  height: 100%;
+  width: 100%;
 }
 
 .tile-sm {
@@ -93,16 +96,24 @@ body {
   width: 490px;
 }
 
-.tile.green{
+.green .tile{
 	background-color: #0aa699;
 }
 
-.tile.blue{
+.blue .tile{
 	background-color: #0090d9;
 }
 
-.tile.purple{
+.purple .tile{
 	background-color: #735f87;
+}
+
+.red .tile{
+	background-color: #f35958;
+}
+
+.white .tile{
+	background-color: white;
 }
 
 /*

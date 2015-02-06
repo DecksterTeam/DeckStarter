@@ -14,19 +14,23 @@ define([
             var $body = $('body');
 
             // var headerView = HeaderView;
-            // headerView.render($body);
+            // var header = headerView.render();
+            // $body.append(header.$el);
 
             var navbarView = NavbarView;
-            navbarView.render($body);
+            var navbar = navbarView.render($body);
 
             var sidebarLeftView = SidebarLeftView;
-            sidebarLeftView.render($body);
+            var sidebarLeft = sidebarLeftView.render($body);
 
             var middleContainerView = MiddleContainerView;
-            middleContainerView.render($body);
+            var middleContainer = middleContainerView.render($body);
+            middleContainer.initGrid();
+			
 
             // var footerView = FooterView;
-            // footerView.render($body);
+            // var footer = footerView.render();
+            // $body.append(footer.$el);
         }
     };
 });
