@@ -2,8 +2,8 @@ define([
     'jquery',
     'text!navbar/navbar.hbs',
     'handlebars',
-    'bootstrap'
-], function ($, NavbarHBS, Handlebars) {
+	'radio'
+], function ($, NavbarHBS, Handlebars, Radio) {
 
     'use strict';
 

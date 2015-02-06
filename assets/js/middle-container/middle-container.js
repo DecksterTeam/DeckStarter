@@ -2,8 +2,9 @@ define([
     'jquery',
     'text!middle-container/middle-container.hbs',
     'handlebars',
-    'text!middle-container/tile.hbs'
-], function ($, MiddleContainerHBS, Handlebars, TileHBS) {
+    'text!middle-container/tile.hbs',
+	'radio'
+], function ($, MiddleContainerHBS, Handlebars, TileHBS, Radio) {
     'use strict';
 
 	var _gridParent;
@@ -73,11 +74,13 @@ define([
 				_gridParent.gridster().data('gridster').resize_widget(elem, 
 					NUM_COLUMNS - parseInt($(elem).data('col')) + 1, 4);
 				event.target.dataset.tileFullscreen = "false";
+				Radio('tileExpanded').broadcast(elem);
 			}
 			else {
 				_gridParent.gridster().data('gridster').resize_widget(elem, 
 					$(elem).data('o_x'), $(elem).data('o_y'));
 				event.target.dataset.tileFullscreen = "true"
+				Radio('tileExpanded').broadcast(elem);
 			}
 		},
 		
