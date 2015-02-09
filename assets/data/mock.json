@@ -31,7 +31,8 @@
                           ]
                         }
                     ],
-            "color": "green",
+            "color": "purple",
+            "barcolor": "#554662",
             "height": "",
             "width": ""
         },
@@ -40,7 +41,7 @@
             "title": "Goat Percentage",
             "description": "% of Goats",
             "data": "70",
-            "color": "blue",
+            "color": "orange",
             "height": "",
             "width": ""
         },
@@ -49,10 +50,26 @@
             "title": "Percent Ring",
             "description": "% of Something",
             "data": "23",
-            "color": "purple",
+            "color": "green",
+            "height": "",
+            "width": ""
+        },
+        {
+            "id": 4,
+            "title": "Table",
+            "description": "this is a table",
+            "color": "blue",
+            "height": "",
+            "width": ""
+        },
+        {
+            "id": 5,
+            "title": "Percent Ring 5",
+            "description": "% of Something Else",
+            "data": "95",
+            "color": "red",
             "height": "",
             "width": ""
         }
-
     ]
 }

@@ -101,8 +101,16 @@ body {
 	background-color: #0090d9;
 }
 
+.orange{
+  background-color: #FFA14F;
+}
+
 .purple{
 	background-color: #735f87;
+}
+
+.red{
+  background-color: #FF866E;
 }
 
 .dark-green{
@@ -118,6 +126,16 @@ body {
 .dark-purple{
   fill: #554662;
   background-color: #554662;
+}
+
+.dark-orange{
+  fill: #FF8317;
+  background-color: #FF8317;
+}
+
+.dark-red{
+  fill: #FF5533;
+  background-color: #FF5533;
 }
 
 /*

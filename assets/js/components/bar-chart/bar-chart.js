@@ -31,7 +31,7 @@ define([
                     .staggerLabels(false)
                     .tooltips(false)
                     .showValues(true)
-                    .color(['#0aa699']);
+                    .color([params.barcolor]);
 
                 d3.select('#' + that.id + '.bar-chart svg')
                     .datum(params.data)
