@@ -1,0 +1,16 @@
+.percent-ring {
+	width: 290px;
+}
+
+.percent-ring-container {
+	margin-left: auto;
+	margin-right: auto;
+	width: 200px;
+	height: 200px;
+	text-align: center;
+	margin-top: 40px;
+}
+
+.light {
+	fill: white;
+}

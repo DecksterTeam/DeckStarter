@@ -2,7 +2,7 @@
     "tiles": [
         {
             "id": 1,
-            "title": "Bar Chart 1",
+            "title": "Bar Chart",
             "description": "test 1",
             "data": [ 
                         {
@@ -22,7 +22,7 @@
                             }, 
                             { 
                               "label" : "D Label", 
-                              "value" : 23
+                              "value" : 30
                             }, 
                             { 
                               "label" : "E Label",
@@ -37,44 +37,19 @@
         },
         {
             "id": 2,
-            "title": "Bar Chart 2",
-            "description": "test 2",
-            "data": [ 
-                        {
-                          "key": "Hello World 2",
-                          "values": [
-                            { 
-                              "label" : "A Label",
-                              "value" : 5
-                            }, 
-                            { 
-                              "label" : "B Label",
-                              "value" : 2
-                            }, 
-                            { 
-                              "label" : "C Label", 
-                              "value" : 1.5
-                            }, 
-                            { 
-                              "label" : "D Label", 
-                              "value" : 3
-                            }, 
-                            { 
-                              "label" : "E Label",
-                              "value" : 7
-                            },
-                            { 
-                              "label" : "F Label",
-                              "value" : 2
-                            }, 
-                            { 
-                              "label" : "G Label",
-                              "value" : 4
-                            }
-                          ]
-                        }
-                    ],
+            "title": "Goat Percentage",
+            "description": "% of Goats",
+            "data": "70",
             "color": "blue",
+            "height": "",
+            "width": ""
+        },
+        {
+            "id": 3,
+            "title": "Percent Ring",
+            "description": "% of Something",
+            "data": "23",
+            "color": "purple",
             "height": "",
             "width": ""
         }

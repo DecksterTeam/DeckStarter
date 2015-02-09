@@ -1,0 +1,29 @@
+.bar-chart {
+  height: 330px;
+  width: 590px;
+  /*fill: white;*/
+}
+
+.bar-chart svg {
+  width: 550px;
+  height: 300px;
+  /*fill: white;*/
+}
+
+.nvd3 .nv-x.nv-axis line {
+  stroke: none;
+  fill: none;
+}
+
+.nvd3 .nv-y.nv-axis line {
+  /*fill: white;*/
+}
+
+.chart-container {
+  height: 280px;
+  margin: 10px;
+  background-color: white;
+  border-radius: 6px;
+}
+
+/*#0A867C*/

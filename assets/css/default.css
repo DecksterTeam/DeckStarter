@@ -70,7 +70,7 @@ body {
   display: inline-block;
   text-align: center;
   height: 330px;
-  width: 490px;
+  width: 590px;
 }
 
 .tile-sm {
@@ -93,16 +93,31 @@ body {
   width: 490px;
 }
 
-.tile.green{
+.green{
 	background-color: #0aa699;
 }
 
-.tile.blue{
+.blue{
 	background-color: #0090d9;
 }
 
-.tile.purple{
+.purple{
 	background-color: #735f87;
+}
+
+.dark-green{
+  fill: #0A867C;
+  background-color: #0A867C;
+}
+
+.dark-blue{
+  fill: #006DA5;
+  background-color: #006DA5;
+}
+
+.dark-purple{
+  fill: #554662;
+  background-color: #554662;
 }
 
 /*
@@ -171,23 +186,6 @@ body {
   margin-left: auto;
 }
 
-.bar-chart svg {
-  width: 450px;
-  height: 300px;
-}
-
-.nvd3 .nv-x.nv-axis line {
-  stroke: none;
-  fill: none;
-}
-
-.chart-container {
-  height: 280px;
-  margin: 10px;
-  background-color: white;
-  border-radius: 6px;
-}
-
 /**
  * Responsive Style Overrides
  * Note - the width calc depends on the sidebar width.
@@ -201,13 +199,13 @@ body {
       width: 250px;
   }
 }*/
-@media (min-width: 500px) {
+@media (min-width: 600px) {
   .middle-container {
     margin-left: auto;
     width: 100%;
   }
   .tile-container {
-      width: 500px;
+      width: 600px;
   }
 }
 @media (min-width: 768px) {
@@ -216,7 +214,7 @@ body {
     width: calc(100% - 180px);
   }
   .tile-container {
-    width: 500px;
+    width: 600px;
   }
   .sidebar {
     position: fixed;
@@ -237,9 +235,9 @@ body {
     width: 750px;
   }
 }*/
-@media (min-width: 1180px) {
+@media (min-width: 1380px) {
   .tile-container {
-    width: 1000px;
+    width: 1200px;
   }
 }
 /*@media (min-width: 1430px) {
@@ -247,18 +245,18 @@ body {
     width: 1250px;
   }
 }*/
-@media (min-width: 1680px) {
+/*@media (min-width: 1680px) {
   .tile-container {
-    width: 1500px;
+    width: 1800px;
   }
-}
+}*/
 /*@media (min-width: 1930px) {
   .tile-container {
     width: 1750px;
   }   
 }*/
-@media (min-width: 2180px) {
+/*@media (min-width: 2180px) {
   .tile-container {
     width: calc(100% - 180px);
   }
-}
+}*/
