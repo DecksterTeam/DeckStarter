@@ -69,8 +69,8 @@ body {
   float: left;
   display: inline-block;
   text-align: center;
-  height: 240px;
-  width: 240px;
+  height: 330px;
+  width: 490px;
 }
 
 .tile-sm {
@@ -165,16 +165,34 @@ body {
   float: left;
   display: inline-block;
 }
+
 .tile-container {
   margin-right: auto;
   margin-left: auto;
+}
+
+.bar-chart svg {
+  width: 450px;
+  height: 300px;
+}
+
+.nvd3 .nv-x.nv-axis line {
+  stroke: none;
+  fill: none;
+}
+
+.chart-container {
+  height: 280px;
+  margin: 10px;
+  background-color: white;
+  border-radius: 6px;
 }
 
 /**
  * Responsive Style Overrides
  * Note - the width calc depends on the sidebar width.
  */
-@media (max-width: 499px) {
+/*@media (max-width: 499px) {
   .middle-container {
     margin-left: auto;
     width: 100%;
@@ -182,7 +200,7 @@ body {
   .tile-container {
       width: 250px;
   }
-}
+}*/
 @media (min-width: 500px) {
   .middle-container {
     margin-left: auto;
@@ -214,31 +232,31 @@ body {
     border-right: 1px solid #ddd;
   }
 }
-@media (min-width: 930px) {
+/*@media (min-width: 930px) {
   .tile-container {
     width: 750px;
   }
-}
+}*/
 @media (min-width: 1180px) {
   .tile-container {
     width: 1000px;
   }
 }
-@media (min-width: 1430px) {
+/*@media (min-width: 1430px) {
   .tile-container {
     width: 1250px;
   }
-}
+}*/
 @media (min-width: 1680px) {
   .tile-container {
     width: 1500px;
   }
 }
-@media (min-width: 1930px) {
+/*@media (min-width: 1930px) {
   .tile-container {
     width: 1750px;
   }   
-}
+}*/
 @media (min-width: 2180px) {
   .tile-container {
     width: calc(100% - 180px);

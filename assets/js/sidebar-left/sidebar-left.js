@@ -8,11 +8,11 @@ define([
     'use strict';
 
     return {
-        render: function(parent) {
+        render: function(options) {
             var sidebarLeftViewTemplate = Handlebars.compile(SidebarLeftHBS);
             var sidebarLeftViewHTML = sidebarLeftViewTemplate();
             this.$el = $(sidebarLeftViewHTML);
-            parent.append(this.$el);
+            options.parent.append(this.$el);
 
             var selector = '.nav-menu li';
             $(selector).on('click', function(){

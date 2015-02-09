@@ -1,18 +1,30 @@
 define([
     'jquery',
     'text!middle-container/middle-container.hbs',
+    'components/bar-chart/bar-chart',
     'handlebars',
     'bootstrap'
-], function ($, MiddleContainerHBS, Handlebars) {
+], function ($, MiddleContainerHBS, BarChartView, Handlebars) {
 
     'use strict';
 
     return {
-        render: function(parent) {
+        render: function(options) {
             var middleContainerViewTemplate = Handlebars.compile(MiddleContainerHBS);
             var middleContainerViewHTML = middleContainerViewTemplate();
             this.$el = $(middleContainerViewHTML);
-            parent.append(this.$el);
+            options.parent.append(this.$el);
+            this.populateTiles();
+        },
+        populateTiles: function() {
+            var that = this;
+            $.each(DataManager.tiles, function(index, tile) {
+                var barChart = BarChartView;
+                barChart.render({
+                    "parent": $('.tile-container'),
+                    "params": tile
+                });
+            });
         }
     };
 });

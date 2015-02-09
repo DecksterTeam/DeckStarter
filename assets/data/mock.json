@@ -1,0 +1,83 @@
+{
+    "tiles": [
+        {
+            "id": 1,
+            "title": "Bar Chart 1",
+            "description": "test 1",
+            "data": [ 
+                        {
+                          "key": "Hello World 1",
+                          "values": [
+                            { 
+                              "label" : "A Label",
+                              "value" : 29
+                            }, 
+                            { 
+                              "label" : "B Label", 
+                              "value" : 13
+                            }, 
+                            { 
+                              "label" : "C Label", 
+                              "value" : 4
+                            }, 
+                            { 
+                              "label" : "D Label", 
+                              "value" : 23
+                            }, 
+                            { 
+                              "label" : "E Label",
+                              "value" : 10
+                            }
+                          ]
+                        }
+                    ],
+            "color": "green",
+            "height": "",
+            "width": ""
+        },
+        {
+            "id": 2,
+            "title": "Bar Chart 2",
+            "description": "test 2",
+            "data": [ 
+                        {
+                          "key": "Hello World 2",
+                          "values": [
+                            { 
+                              "label" : "A Label",
+                              "value" : 5
+                            }, 
+                            { 
+                              "label" : "B Label",
+                              "value" : 2
+                            }, 
+                            { 
+                              "label" : "C Label", 
+                              "value" : 1.5
+                            }, 
+                            { 
+                              "label" : "D Label", 
+                              "value" : 3
+                            }, 
+                            { 
+                              "label" : "E Label",
+                              "value" : 7
+                            },
+                            { 
+                              "label" : "F Label",
+                              "value" : 2
+                            }, 
+                            { 
+                              "label" : "G Label",
+                              "value" : 4
+                            }
+                          ]
+                        }
+                    ],
+            "color": "blue",
+            "height": "",
+            "width": ""
+        }
+
+    ]
+}

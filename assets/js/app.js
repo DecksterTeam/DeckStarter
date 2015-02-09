@@ -1,32 +1,45 @@
 define([
     'jquery',
+    '../data/data-manager',
     'header/header',
     'navbar/navbar',
     'sidebar-left/sidebar-left',
     'middle-container/middle-container',
     'footer/footer'
-], function ($, HeaderView, NavbarView, SidebarLeftView, MiddleContainerView, FooterView) {
+], function ($, DataManager, HeaderView, NavbarView, SidebarLeftView, MiddleContainerView, FooterView) {
 
     'use strict';
 
     return {
         initialize: function () {
+            DataManager.initialize();
+
             var $body = $('body');
 
             // var headerView = HeaderView;
-            // headerView.render($body);
+            // headerView.render({
+            //     "parent": $body
+            // });
 
             var navbarView = NavbarView;
-            navbarView.render($body);
+            navbarView.render({
+                "parent": $body
+            });
 
             var sidebarLeftView = SidebarLeftView;
-            sidebarLeftView.render($body);
+            sidebarLeftView.render({
+                "parent": $body
+            });
 
             var middleContainerView = MiddleContainerView;
-            middleContainerView.render($body);
+            middleContainerView.render({
+                "parent": $body
+            });
 
             // var footerView = FooterView;
-            // footerView.render($body);
+            // footerView.render({
+            //     "parent": $body
+            // });
         }
     };
 });
