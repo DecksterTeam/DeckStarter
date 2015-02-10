@@ -1,16 +1,18 @@
 .table-tile .table-container {
 	width: 570px;
-	height: 258px;
+	/*height: 258px;*/
+	height: 280px;
 	border-radius: 6px;
 	overflow: hidden;
 	margin-left: 10px;
 	margin-right: 10px;
-	margin-top: 20px;
+	/*margin-top: 20px;*/
 }
 
 .table-tile .table-body-container {
 	width: 570px;
-	height: 222px;
+	/*height: 222px;*/
+	height: 244px;
 	overflow: auto;
 	border-radius: 0px 0px 6px 6px;
 }

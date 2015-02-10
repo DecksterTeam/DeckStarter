@@ -19,3 +19,14 @@
   background-color: white;
   border-radius: 6px;
 }
+
+.bar-chart h3 {
+  color: white;
+  background-color: #333;
+  border-radius: 0;
+}
+
+.bar-chart p {
+  color: #333;
+  background-color: white;
+}

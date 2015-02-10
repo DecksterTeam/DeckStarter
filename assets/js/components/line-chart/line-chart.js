@@ -26,15 +26,19 @@ define([
 
             nv.addGraph(function() {
                 var chart = nv.models.lineChart()
-                            .margin({left: 100})
+                            .x(function(d) { return d.x })
+                            .y(function(d) { return d.y })
+                            .margin({left: 75})
                             .showLegend(false)
-                            .tooltips(false)
+                            .useInteractiveGuideline(false)
                             .showYAxis(true)
                             .showXAxis(true);
 
-                chart.xAxis.axisLabel('x-Axis Label');
+                chart.xAxis
+                    .axisLabel('x-Axis Label');
 
-                chart.yAxis.axisLabel('y-Axis Label');
+                chart.yAxis
+                    .axisLabel('y-Axis Label');
 
                 d3.select('#' + that.id + ' svg')
                   .datum(params.data)
