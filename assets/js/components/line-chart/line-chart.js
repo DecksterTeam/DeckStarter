@@ -40,6 +40,13 @@ define([
                 chart.yAxis
                     .axisLabel('y-Axis Label');
 
+                chart.tooltipContent(function(key, x, y, e, chart) {
+                                return '<h3>' + key + '</h3>' +
+                                    '<p>x = ' +  x + '</p>' +
+                                    '<p>y = ' + y + '</p>';
+                                    // '<p>(' +  x + ', ' + y + ')</p>';
+                            });
+
                 d3.select('#' + that.id + ' svg')
                   .datum(params.data)
                   .call(chart);
