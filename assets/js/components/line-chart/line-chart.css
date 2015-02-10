@@ -1,0 +1,16 @@
+.line-chart {
+  height: 330px;
+  width: 590px;
+}
+
+.line-chart svg {
+  width: 550px;
+  height: 280px;
+}
+
+.line-chart .chart-container {
+  height: 280px;
+  margin: 10px;
+  background-color: white;
+  border-radius: 6px;
+}

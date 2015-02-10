@@ -2,11 +2,12 @@ define([
     'jquery',
     'text!middle-container/middle-container.hbs',
     'components/bar-chart/bar-chart',
+    'components/line-chart/line-chart',
     'components/percent-ring/percent-ring',
     'components/table/table',
     'handlebars',
     'bootstrap'
-], function ($, MiddleContainerHBS, BarChartView, PercentRingView, TableView, Handlebars) {
+], function ($, MiddleContainerHBS, BarChartView, LineChartView, PercentRingView, TableView, Handlebars) {
 
     'use strict';
 
@@ -45,8 +46,8 @@ define([
                 "params": DataManager.tiles[3]
             });
 
-            var percentRing = PercentRingView;
-            percentRing.render({
+            var lineChart = LineChartView;
+            lineChart.render({
                 "parent": $('.tile-container'),
                 "params": DataManager.tiles[4]
             });

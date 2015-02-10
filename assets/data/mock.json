@@ -1,75 +1,165 @@
 {
-    "tiles": [
+  "tiles": [
+    {
+      "id": 1,
+      "title": "Bar Chart",
+      "description": "This is a bar chart",
+      "data": [ 
         {
-            "id": 1,
-            "title": "Bar Chart",
-            "description": "test 1",
-            "data": [ 
-                        {
-                          "key": "Hello World 1",
-                          "values": [
-                            { 
-                              "label" : "A Label",
-                              "value" : 29
-                            }, 
-                            { 
-                              "label" : "B Label", 
-                              "value" : 13
-                            }, 
-                            { 
-                              "label" : "C Label", 
-                              "value" : 4
-                            }, 
-                            { 
-                              "label" : "D Label", 
-                              "value" : 30
-                            }, 
-                            { 
-                              "label" : "E Label",
-                              "value" : 10
-                            }
-                          ]
-                        }
-                    ],
-            "color": "purple",
-            "barcolor": "#554662",
-            "height": "",
-            "width": ""
-        },
-        {
-            "id": 2,
-            "title": "Goat Percentage",
-            "description": "% of Goats",
-            "data": "70",
-            "color": "orange",
-            "height": "",
-            "width": ""
-        },
-        {
-            "id": 3,
-            "title": "Percent Ring",
-            "description": "% of Something",
-            "data": "23",
-            "color": "green",
-            "height": "",
-            "width": ""
-        },
-        {
-            "id": 4,
-            "title": "Table",
-            "description": "this is a table",
-            "color": "blue",
-            "height": "",
-            "width": ""
-        },
-        {
-            "id": 5,
-            "title": "Percent Ring 5",
-            "description": "% of Something Else",
-            "data": "95",
-            "color": "red",
-            "height": "",
-            "width": ""
+          "key": "Hello World 1",
+          "values": [
+            { 
+              "label" : "A Label",
+              "color": "#554662",
+              "value" : 29
+            }, 
+            { 
+              "label" : "B Label",
+              "color": "#554662", 
+              "value" : 13
+            }, 
+            { 
+              "label" : "C Label",
+              "color": "#554662", 
+              "value" : 4
+            }, 
+            { 
+              "label" : "D Label",
+              "color": "#554662", 
+              "value" : 30
+            }, 
+            { 
+              "label" : "E Label",
+              "color": "#554662",
+              "value" : 10
+            }
+          ]
         }
-    ]
+      ],
+      "color": "purple",
+      "height": "",
+      "width": ""
+    },
+    {
+      "id": 2,
+      "title": "Goat Percentage",
+      "description": "% of Goats",
+      "data": "70",
+      "color": "orange",
+      "height": "",
+      "width": ""
+    },
+    {
+      "id": 3,
+      "title": "Percent Ring",
+      "description": "% of Something",
+      "data": "23",
+      "color": "green",
+      "height": "",
+      "width": ""
+    },
+    {
+      "id": 4,
+      "title": "Table",
+      "description": "this is a table",
+      "data": {
+        "headers": [
+          {
+            "dataid": "id",
+            "alias": "ID"
+          },
+          {
+            "dataid": "name",
+            "alias": "Name"
+          },
+          {
+            "dataid": "info",
+            "alias": "Information"
+          }
+        ],
+        "values": [
+          { 
+            "id": "0",
+            "name": "Item 0",
+            "info": "This is Item 0"
+          },
+          { 
+            "id": "1",
+            "name": "Item 1",
+            "info": "This is Item 1"
+          },
+          { 
+            "id": "2",
+            "name": "Item 2",
+            "info": "This is Item 2"
+          },
+          { 
+            "id": "3",
+            "name": "Item 3",
+            "info": "This is Item 3"
+          },
+          { 
+            "id": "4",
+            "name": "Item 4",
+            "info": "This is Item 4"
+          },
+          { 
+            "id": "5",
+            "name": "Item 5",
+            "info": "This is Item 5"
+          },
+          { 
+            "id": "6",
+            "name": "Item 6",
+            "info": "This is Item 6"
+          },
+          { 
+            "id": "7",
+            "name": "Item 7",
+            "info": "This is Item 7"
+          },
+          { 
+            "id": "8",
+            "name": "Item 8",
+            "info": "This is Item 8"
+          }
+        ]
+      },
+      "color": "blue",
+      "height": "",
+      "width": ""
+    },
+    {
+      "id": 5,
+      "title": "Line Chart",
+      "description": "This is a line chart",
+      "data": [ 
+        {
+          "key": "Line",
+          "color": "#FF5533",
+          "values": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 1,
+              "y": 1
+            },
+            {
+              "x": 2,
+              "y": 2
+            },
+            {
+              "x": 3,
+              "y": 3
+            }
+          ]
+        }
+      ],
+      "color": "red",
+      "height": "",
+      "width": ""
+    }
+  ]
 }

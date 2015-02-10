@@ -19,7 +19,25 @@ define([
                 "color": params.color
             });
             this.$el = $(tableViewHTML);
-            options.parent.append(this.$el);          
+            options.parent.append(this.$el);
+
+            var that = this;
+
+            $.each(params.data.headers, function(index, header) {
+                $('#' + that.id + ' .table-header tr').append(
+                    '<th>' + header.alias + '</th>'
+                );
+            });
+
+            $.each(params.data.values, function(index, value) {
+                $('#' + that.id + ' .table-body').append(
+                    '<tr>' +
+                        '<td>' + value.id + '</td>' +
+                        '<td>' + value.name + '</td>' +
+                        '<td>' + value.info + '</td>' +
+                    '</tr>'
+                );
+            });
         }
     };
 });

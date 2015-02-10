@@ -2,7 +2,7 @@
 	width: 290px;
 }
 
-.percent-ring-container {
+.percent-ring .percent-ring-container {
 	margin-left: auto;
 	margin-right: auto;
 	width: 200px;
@@ -11,6 +11,10 @@
 	margin-top: 40px;
 }
 
-.light {
+.percent-ring .description {
+	margin-top: 5px;
+}
+
+.percent-ring .light {
 	fill: white;
 }

@@ -30,14 +30,11 @@ define([
                     .y(function(d) { return d.value })
                     .staggerLabels(false)
                     .tooltips(false)
-                    .showValues(true)
-                    .color([params.barcolor]);
+                    .showValues(true);
 
                 d3.select('#' + that.id + '.bar-chart svg')
                     .datum(params.data)
                     .call(chart);
-
-                // nv.utils.windowResize(chart.update);
 
                 return chart;
             });
