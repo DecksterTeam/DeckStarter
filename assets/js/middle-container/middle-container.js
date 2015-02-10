@@ -19,37 +19,43 @@ define([
             this.$el = $(middleContainerViewHTML);
             options.parent.append(this.$el);
             this.populateTiles();
+
+            $(".gridster ul").gridster({
+                widget_margins: [10, 10],
+                widget_base_dimensions: [290, 330]
+            });
+
+            var gridster = $(".gridster ul").gridster().data('gridster');
+            // gridster.add_widget('<li>The HTML of the widget...</li>', 2, 1);
         },
         populateTiles: function() {
-            var that = this;
-
             var percentRing = PercentRingView;
             percentRing.render({
-                "parent": $('.tile-container'),
+                "parent": $('.gridster ul'),
                 "params": DataManager.tiles[0]
             });
 
             var barChart = BarChartView;
             barChart.render({
-                "parent": $('.tile-container'),
+                "parent": $('.gridster ul'),
                 "params": DataManager.tiles[1]
             });
 
             var pieChart = PieChartView;
             pieChart.render({
-                "parent": $('.tile-container'),
+                "parent": $('.gridster ul'),
                 "params": DataManager.tiles[2]
             });
 
             var table = TableView;
             table.render({
-                "parent": $('.tile-container'),
+                "parent": $('.gridster ul'),
                 "params": DataManager.tiles[3]
             });
 
             var lineChart = LineChartView;
             lineChart.render({
-                "parent": $('.tile-container'),
+                "parent": $('.gridster ul'),
                 "params": DataManager.tiles[4]
             });
         }
