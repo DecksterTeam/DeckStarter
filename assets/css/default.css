@@ -166,9 +166,9 @@ body {
   vertical-align:middle;
 }
 
-.sub-filter > li > a {
+ul.sub-filter > li > a {
   padding-right: 20px;
-  padding-left: 55px;
+  padding-left: 40px;
   background-color: #22262E; 
 }
 
@@ -177,17 +177,14 @@ body {
 } 
 
 .sidebar .caret {
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 4px solid #000000;
   display: inline-block;
-  height: 0;
-  opacity: 0.3;
-  width: 0;
-  margin-right: 5px;
-  margin-bottom: 3px;
+  right:25px;
+  top: 15px;
+  position: absolute;
+  color:#fff;
 }
 
+/*
 .sidebar .right-caret {
   border-bottom: 4px solid transparent;
   border-top: 4px solid transparent;
@@ -195,7 +192,9 @@ body {
   display: inline-block;
   height: 0;
   margin-right: 5px;
+  color:#fff;
 }
+*/
 
 .middle-container {
   float: left;
