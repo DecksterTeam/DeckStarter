@@ -40,6 +40,18 @@ define([
             // footerView.render({
             //     "parent": $body
             // });
+
+            var resizeTimeout;
+            $(window).resize(function(){
+                if(!!resizeTimeout){ clearTimeout(resizeTimeout); }
+                resizeTimeout = setTimeout(function() {
+                    var serializedComponents = middleContainerView.destroy();
+                    middleContainerView.render({
+                        "parent": $body,
+                        "serializedComponents": serializedComponents
+                    });
+                },500);
+            });
         }
     };
 });

@@ -18,3 +18,11 @@
 .percent-ring .light {
 	fill: white;
 }
+
+.resize-btn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	height: 25px;
+	width: 20px;
+}

@@ -9,6 +9,10 @@ define([
     'use strict';
 
     return {
+        "smallWidth": 2,
+        "smallHeight": 1,
+        "fullWidth": 4,
+        "fullHeight": 1,
         render: function(options) {
             var params = options.params;
             this.id = "line-chart-" + params.id;
@@ -52,6 +56,21 @@ define([
                   .call(chart);
 
                 return chart;
+            });
+        },
+        postRender: function(grid) {
+            var that = this;
+            var $resizeBtn = $('#' + this.id + ' .resize-btn');
+            $resizeBtn.on('click', function() {
+                if($resizeBtn.hasClass('glyphicon-resize-full')) {
+                    $resizeBtn.removeClass('glyphicon-resize-full');
+                    $resizeBtn.addClass('glyphicon-resize-small');
+                    grid.resize_widget($resizeBtn.parent(), that.fullWidth, that.fullHeight);
+                } else {
+                    $resizeBtn.addClass('glyphicon-resize-full');
+                    $resizeBtn.removeClass('glyphicon-resize-small');
+                    grid.resize_widget($resizeBtn.parent(), that.smallWidth, that.smallHeight);
+                }
             });
         }
     };
