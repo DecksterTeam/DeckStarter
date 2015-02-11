@@ -1,11 +1,11 @@
 .bar-chart {
-  height: 330px;
-  width: 590px;
+  height: 100%;
+  width: 100%;
 }
 
 .bar-chart svg {
-  width: 550px;
-  height: 300px;
+  width: 100%;
+  height: 100%;
 }
 
 .bar-chart .nvd3 .nv-x.nv-axis line {
@@ -14,7 +14,7 @@
 }
 
 .bar-chart .chart-container {
-  height: 280px;
+  height: calc(100% - 50px);
   margin: 10px;
   background-color: white;
   border-radius: 6px;

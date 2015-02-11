@@ -23,12 +23,12 @@ define([
             options.parent.append(this.$el);
             this.populateTiles();
 
-            $(".gridster ul").gridster({
+            $('.gridster ul').gridster({
                 widget_margins: [10, 10],
-                widget_base_dimensions: [290, 330]
+                widget_base_dimensions: [280, 280]
             });
 
-            this.gridster = $(".gridster ul").gridster().data('gridster');
+            this.gridster = $('.gridster ul').gridster().data('gridster');
 
             this.postRenderTiles(this.gridster);
         },
@@ -75,12 +75,17 @@ define([
                     tile.postRender(grid);
                 }
             });
+            this.resize();
         },
-        destroy: function() {
-            var serializedComponents = this.gridster.serialize();
-            this.gridster.destroy();
-            this.$el.remove();
-            return serializedComponents;
+        resize: function() {
+            var that = this;
+
+            $.each(this.tiles, function(index, tile) {
+                if(tile.setFullWidth) {
+                    var cols = Math.floor($('.gridster').width()/280);
+                    tile.setFullWidth(cols);
+                }
+            });
         }
     };
 });

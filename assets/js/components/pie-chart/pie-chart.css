@@ -1,17 +1,16 @@
 .pie-chart {
-	width: 290px;
-}
-
-.pie-chart .chart-container {
-	margin-left: auto;
-	margin-right: auto;
-	width: 270px;
-	height: 280px;
-	background-color: white;
-  	border-radius: 6px;
+	height: 100%;
+	width: 100%;
 }
 
 .pie-chart svg {
-	width: 270px;
-	height: 280px;
+	height: 100%;
+	width: 100%;
+}
+
+.pie-chart .chart-container {
+	margin: 10px;
+	height: calc(100% - 50px);
+	background-color: white;
+  	border-radius: 6px;
 }
