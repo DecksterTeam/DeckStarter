@@ -13,20 +13,24 @@ define([
     'use strict';
 
     return {
+        tiles: [],
         render: function(options) {
+            var serializedComponents = options.serializedComponents;
+            this.options = options;
             var middleContainerViewTemplate = Handlebars.compile(MiddleContainerHBS);
             var middleContainerViewHTML = middleContainerViewTemplate();
             this.$el = $(middleContainerViewHTML);
             options.parent.append(this.$el);
             this.populateTiles();
 
-            $(".gridster ul").gridster({
+            $('.gridster ul').gridster({
                 widget_margins: [10, 10],
-                widget_base_dimensions: [290, 330]
+                widget_base_dimensions: [280, 280]
             });
 
-            var gridster = $(".gridster ul").gridster().data('gridster');
-            // gridster.add_widget('<li>The HTML of the widget...</li>', 2, 1);
+            this.gridster = $('.gridster ul').gridster().data('gridster');
+
+            this.postRenderTiles(this.gridster);
         },
         populateTiles: function() {
             var percentRing = PercentRingView;
@@ -34,29 +38,53 @@ define([
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[0]
             });
+            this.tiles.push(percentRing);
 
             var barChart = BarChartView;
             barChart.render({
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[1]
             });
+            this.tiles.push(barChart);
 
             var pieChart = PieChartView;
             pieChart.render({
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[2]
             });
+            this.tiles.push(pieChart);
 
             var table = TableView;
             table.render({
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[3]
             });
+            this.tiles.push(table);
 
             var lineChart = LineChartView;
             lineChart.render({
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[4]
+            });
+            this.tiles.push(lineChart);
+        },
+        postRenderTiles: function(grid) {
+            var that = this;
+            $.each(this.tiles, function(index, tile) {
+                if(tile.postRender) {
+                    tile.postRender(grid);
+                }
+            });
+            this.resize();
+        },
+        resize: function() {
+            var that = this;
+
+            $.each(this.tiles, function(index, tile) {
+                if(tile.setFullWidth) {
+                    var cols = Math.floor($('.gridster').width()/280);
+                    tile.setFullWidth(cols);
+                }
             });
         }
     };

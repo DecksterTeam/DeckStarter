@@ -1,18 +1,15 @@
 .table-tile .table-container {
-	width: 580px;
-	/*height: 258px;*/
-	height: 280px;
+	width: calc(100% - 20px);
+	height: calc(100% - 50px);
 	border-radius: 6px;
 	overflow: hidden;
 	margin-left: 10px;
 	margin-right: 10px;
-	/*margin-top: 20px;*/
 }
 
 .table-tile .table-body-container {
-	width: 580px;
-	/*height: 222px;*/
-	height: 244px;
+	width: 100%;
+	height: calc(100% - 36px);
 	overflow: auto;
 	border-radius: 0px 0px 6px 6px;
 }
@@ -23,17 +20,15 @@
 }
 
 .table-tile .table.table-header{
-	/*border-radius: 6px;*/
 	margin: 0px;
-	width: 580px;
+	width: 100%;
 	background-color: #333;
 	color: white;
 }
 
 .table-tile .table.table-body{
-	/*border-radius: 0px 6px;*/
 	margin: 0px;
-	width: 580px;
+	width: 100%;
 	background-color: white;
 }
 
