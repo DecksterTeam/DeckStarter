@@ -10,19 +10,21 @@ define([
     return {
         "smallCol": 1,
         "smallRow": 1,
-        "smallWidth": 2,
+        "smallWidth": 4,
         "smallHeight": 1,
         "fullWidth": 4,
         "fullHeight": 2,
         render: function(options) {
             var params = options.params;
-            this.id = "table-" + params.id;
+            this.id = "table-" + options.id;
+            this.smallCol = options.startCol;
+            this.smallRow = options.startRow;
             var tableViewTemplate = Handlebars.compile(TableHBS);
             var tableViewHTML = tableViewTemplate({
                 "id": this.id,
                 "title": params.title,
                 "description": params.description,
-                "color": params.color,
+                "color": options.color || params.color,
                 "col": this.smallCol,
                 "row": this.smallRow,
                 "sizex": this.smallWidth,
@@ -52,7 +54,7 @@ define([
         postRender: function(grid) {
             this.grid = grid;
             var that = this;
-            var $resizeBtn = $('#' + this.id + ' .resize-btn');
+            var $resizeBtn = $('#' + that.id + ' .resize-btn');
             $resizeBtn.on('click', function() {
                 if($resizeBtn.hasClass('glyphicon-resize-full')) {
                     $resizeBtn.removeClass('glyphicon-resize-full');

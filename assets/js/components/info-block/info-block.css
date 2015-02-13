@@ -1,0 +1,10 @@
+.info-block .info {
+	margin-top: 45px;
+	height: 100px;
+	font-size: 100px;
+	line-height: 100px;
+}
+
+.info-block .description {
+	margin-top: 10px;
+}
