@@ -9,7 +9,7 @@ define([
     'use strict';
 
     return {
-        "smallCol": 1,
+        "smallCol": 2,
         "smallRow": 1,
         "smallWidth": 2,
         "smallHeight": 1,
@@ -17,13 +17,15 @@ define([
         "fullHeight": 2,
         render: function(options) {
             var params = options.params;
-            this.id = "bar-chart-" + params.id;
+            this.id = "bar-chart-" + options.id;
+            this.smallCol = options.startCol;
+            this.smallRow = options.startRow;
             var barChartViewTemplate = Handlebars.compile(BarChartHBS);
             var barChartViewHTML = barChartViewTemplate({
                 "id": this.id,
                 "title": params.title,
                 "description": params.description,
-                "color": params.color,
+                "color": options.color || params.color,
                 "col": this.smallCol,
                 "row": this.smallRow,
                 "sizex": this.smallWidth,

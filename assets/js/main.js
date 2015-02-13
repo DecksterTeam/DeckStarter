@@ -10,7 +10,7 @@
             'handlebars': '../../lib/vendor/handlebars/handlebars',
             'd3': '../../lib/vendor/d3/d3.min',
             'nv': '../../lib/vendor/nvd3/build/nv.d3.min',
-            'gridster': '../../lib/vendor/gridster/jquery.gridster.min'
+            'gridster': '../../lib/vendor/gridster/jquery.gridster'
         },
         shim: {
             'bootstrap': {

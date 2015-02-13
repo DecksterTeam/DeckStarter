@@ -18,13 +18,15 @@ define([
         render: function(options) {
             this.options = options;
             var params = options.params;
-            this.id = "pie-chart-" + params.id;
+            this.id = "pie-chart-" + options.id;
+            this.smallCol = options.startCol;
+            this.smallRow = options.startRow;
             var pieChartViewTemplate = Handlebars.compile(PieChartHBS);
             var pieChartViewHTML = pieChartViewTemplate({
                 "id": this.id,
                 "title": params.title,
                 "description": params.description,
-                "color": params.color,
+                "color": options.color || params.color,
                 "col": this.smallCol,
                 "row": this.smallRow,
                 "sizex": this.smallWidth,
@@ -33,7 +35,7 @@ define([
             this.$el = $(pieChartViewHTML);
             options.parent.append(this.$el);
 
-            this.addChart();
+            this.addChart(this.id);
         },
         postRender: function(grid) {
             this.grid = grid;
@@ -61,7 +63,7 @@ define([
                 }
             });
         },
-        addChart: function() {
+        addChart: function(id) {
             var that = this;
 
             nv.addGraph(function() {
@@ -71,7 +73,7 @@ define([
                     .y(function(d) { return d.value })
                     .showLabels(true);
 
-                d3.select('#' + that.id + ' svg')
+                d3.select('#' + id + ' svg')
                     .datum(that.options.params.data)
                     .call(chart);
 
