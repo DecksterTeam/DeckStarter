@@ -7,13 +7,21 @@ ul {
   list-style-type: none;
 }
 
+.page-header {
+    background-color:white;
+}
+
+.container-fluid {
+    margin:0px;
+    padding:0px;
+}
 
 .controls {
     margin-bottom: 20px;
 }
 
 .gridster ul {
-    background-color: #EFEFEF;
+    background-color: #DDD;
 }
 
 .gridster li {
@@ -37,7 +45,7 @@ ul {
 }
 
 .gridster .gs-w {
-    background: #DDD;
+    background: #FFF;
     cursor: pointer;
 }
 

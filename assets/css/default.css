@@ -68,7 +68,7 @@ body {
 .tile {
   color: white;
   margin: 5px;
-  border-radius: 6px;
+  /* border-radius: 6px; */
   float: left;
   display: inline-block;
   text-align: center;
