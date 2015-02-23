@@ -7,9 +7,10 @@ define([
     'components/percent-ring/percent-ring',
     'components/info-block/info-block',
     'components/table/table',
+    'components/map/map',
     'handlebars',
     'bootstrap'
-], function ($, MiddleContainerHBS, BarChartView, LineChartView, PieChartView, PercentRingView, InfoBlockView, TableView, Handlebars) {
+], function ($, MiddleContainerHBS, BarChartView, LineChartView, PieChartView, PercentRingView, InfoBlockView, TableView, MapView, Handlebars) {
 
     'use strict';
 
@@ -35,93 +36,27 @@ define([
         },
         populateTiles: function() {
 
-            var pieChart1 = PieChartView;
-            pieChart1.render({
+            var map = MapView;
+            map.render({
                 "id": 1,
+                "color": "blue",
+                "startCol": 1,
+                "startRow": 1,
+                "parent": $('.gridster ul'),
+                "params": DataManager.tiles[7]
+            });
+            this.tiles.push(map);
+
+            var pie = PieChartView;
+            pie.render({
+                "id": 2,
                 "color": "orange",
                 "startCol": 1,
                 "startRow": 1,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[2]
             });
-            this.tiles.push(pieChart1);
-
-            var pieChart2 = PieChartView;
-            pieChart2.render({
-                "id": 2,
-                "color": "green",
-                "startCol": 2,
-                "startRow": 1,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[2]
-            });
-            this.tiles.push(pieChart2);
-
-            var pieChart3 = PieChartView;
-            pieChart3.render({
-                "id": 3,
-                "color": "blue",
-                "startCol": 3,
-                "startRow": 1,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[2]
-            });
-            this.tiles.push(pieChart3);
-
-            var pieChart4 = PieChartView;
-            pieChart4.render({
-                "id": 4,
-                "color": "red",
-                "startCol": 4,
-                "startRow": 1,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[2]
-            });
-            this.tiles.push(pieChart4);
-
-            var percentRing1 = InfoBlockView;
-            percentRing1.render({
-                "id": 1,
-                "color": "purple",
-                "startCol": 2,
-                "startRow": 2,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[6]
-            });
-            this.tiles.push(percentRing1);
-
-            var percentRing2 = InfoBlockView;
-            percentRing2.render({
-                "id": 2,
-                "color": "orange",
-                "startCol": 3,
-                "startRow": 2,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[6]
-            });
-            this.tiles.push(percentRing2);
-
-            var table1 = TableView;
-            table1.render({
-                "id": 1,
-                "color": "green",
-                "startCol": 3,
-                "startRow": 2,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[3]
-            });
-            this.tiles.push(table1);
-
-            var table2 = TableView;
-            table2.render({
-                "id": 2,
-                "color": "blue",
-                "startCol": 1,
-                "startRow": 3,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[3]
-            });
-            this.tiles.push(table2);
+            this.tiles.push(pie);
 
         },
         postRenderTiles: function(grid) {

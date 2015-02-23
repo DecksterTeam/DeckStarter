@@ -261,8 +261,8 @@ body {
 }*/
 @media (min-width: 768px) {
   .middle-container {
-    margin-left: 180px;
-    width: calc(100% - 180px);
+    /*margin-left: 180px;*/
+    width: 100%;
   }
 /*  .tile-container {
     width: 600px;

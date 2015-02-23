@@ -272,6 +272,37 @@
       "color": "orange",
       "height": "",
       "width": ""
+    },
+    {
+      "id": 7,
+      "title": "Map",
+      "description": "Data about something",
+      "data": {
+          "overlayId":"testOverlayId1",
+          "name":"Test Name 1",
+          "format":"geojson",
+          "feature": {
+              "type":"FeatureCollection",
+              "features":[
+                  {
+                      "type": "Feature",
+                      "geometry": {
+                          "type": "Point",
+                          "coordinates": [0.0, 10.0]
+                      },
+                      "properties": {
+                          "featureId": "f1"
+                      }
+                  }
+              ]
+          },
+          "zoom":false,
+          "dataZoom": false,
+          "readOnly":false
+      },
+      "color": "blue",
+      "height": "",
+      "width": ""
     }
   ]
 }
