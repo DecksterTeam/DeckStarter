@@ -68,7 +68,7 @@ body {
 .tile {
   color: white;
   margin: 5px;
-  border-radius: 6px;
+  /* border-radius: 6px; */
   float: left;
   display: inline-block;
   text-align: center;
@@ -134,35 +134,57 @@ body {
 .nav-sidebar > li > a {
   padding-right: 20px;
   padding-left: 20px;
+  color: #8B91A0;
 }
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
-  color: #fff;
-  background-color: #428bca;
+  color: #FFf;
 }
-
+.nav > li > a:hover, .nav > li > a:focus{
+  background-color: #1B1E24;
+  color:#fff;
+}  
 .nav-menu {
-  border-bottom: 1px solid #ddd;
+  /* border-bottom: 1px solid #ddd; */
 }
 
-.sub-filter > li > a {
-  padding-right: 20px;
-  padding-left: 55px;
+.sidebar-separator{
+   background-color:#22262E;
+   color:white;
+   padding: 20px 5px 20px 20px;
 }
+
+.sidebar > .info {
+   color:white;
+   padding: 20px 5px 20px 20px;
+}
+
+.sidebar > .info > span {
+  color:#fff;
+  display:inline-block;
+  vertical-align:middle;
+}
+
+ul.sub-filter > li > a {
+  padding-right: 20px;
+  padding-left: 40px;
+  background-color: #22262E; 
+}
+
+.sub-filter > li > a:hover {
+  background-color: #1B1E24; 
+} 
 
 .sidebar .caret {
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 4px solid #000000;
   display: inline-block;
-  height: 0;
-  opacity: 0.3;
-  width: 0;
-  margin-right: 5px;
-  margin-bottom: 3px;
+  right:25px;
+  top: 15px;
+  position: absolute;
+  color:#fff;
 }
 
+/*
 .sidebar .right-caret {
   border-bottom: 4px solid transparent;
   border-top: 4px solid transparent;
@@ -170,7 +192,9 @@ body {
   display: inline-block;
   height: 0;
   margin-right: 5px;
+  color:#fff;
 }
+*/
 
 .middle-container {
   float: left;
@@ -221,8 +245,10 @@ body {
     display: block;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-    background-color: #f5f5f5;
-    border-right: 1px solid #ddd;
+    background-color:#1B1E24; 
+    border-right: 1px outset #6F7B8A; 
+    border-top:1px outset #6F7B8A; 
+    border-bottom:1px outset #6F7B8A;
   }
 }
 @media (min-width: 930px) {

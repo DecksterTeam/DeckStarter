@@ -15,7 +15,8 @@
             'bootstrap' : {
                 deps : ['jquery']
             }
-        }
+        }, 
+        urlArgs: "bust=" + (new Date()).getTime()
     });
 
     require( ['app', 'jquery', 'bootstrap', 'gridster'], 
