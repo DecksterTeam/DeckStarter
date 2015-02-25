@@ -28,10 +28,7 @@ define([
             var that = this;
             this.gridster = $('.gridster ul').gridster({
                 widget_margins: [10, 10],
-                widget_base_dimensions: [280, 280],
-                resize: {
-                    stop: that.resize
-                }
+                widget_base_dimensions: [280, 280]
             }).data('gridster');
 
             this.postRenderTiles(this.gridster);
@@ -70,7 +67,6 @@ define([
                 "params": DataManager.tiles[6]
             });
             this.tiles.push(info);
-
         },
         postRenderTiles: function(grid) {
             var that = this;
@@ -85,31 +81,29 @@ define([
         resize: function() {
             var that = this;
 
-            console.log(this.gridster.$widgets);
-            console.log(this.gridster.serialize());
-            this.widgets = this.gridster.$widgets;
-            this.serializedWidgets = this.gridster.serialize();
-
-            this.gridster.destroy();
-            $('.gridster ul').empty();
-            $('.gridster').removeClass('ready');
-
-            this.gridster = $('.gridster ul').gridster({
-                widget_margins: [10, 10],
-                widget_base_dimensions: [280, 280],
-                resize: {
-                    stop: that.resize
-                }
-            }).data('gridster');
-
-            var maxCols = Math.floor($('.gridster').width()/300);
-
-            $.each(this.widgets, function(index, widget) {
-                var attrs = that.serializedWidgets[index];
-                that.gridster.add_widget(widget, attrs.size_x, attrs.size_y);
+            this.gridster.$widgets = this.gridster.$widgets.sort(function(a, b) {
+                var aRow = $(a).attr('data-row');
+                var aCol = $(a).attr('data-col');
+                var bRow = $(b).attr('data-row');
+                var bCol = $(b).attr('data-col');
+               if (aRow > bRow || aRow === bRow && aCol > bCol) {
+                   return 1;
+               }
+               return -1;
             });
 
-            this.postRenderTiles(this.gridster);
+            this.serializedWidgets = this.gridster.serialize();
+
+            $.each(this.gridster.$widgets, function(index, widget) {
+                var attrs = that.serializedWidgets[index];
+                $(widget).attr("data-col",1).attr("data-row",1);
+            });
+
+            this.gridster.generate_grid_and_stylesheet();
+            this.gridster.get_widgets_from_DOM();
+            this.gridster.set_dom_grid_height();
+            this.gridster.set_dom_grid_width();
+
         }
     };
 });

@@ -47,8 +47,8 @@ define([
                     $resizeBtn.addClass('glyphicon-resize-small');
                     grid.resize_widget($resizeBtn.parent(), that.fullWidth, that.fullHeight, function() {
                         setTimeout(function() {
-                            // d3.selectAll('#' + that.id + ' svg > *').remove();
-                            // that.addChart();
+                            d3.selectAll('#' + that.id + ' svg > *').remove();
+                            that.addChart(that.id);
                         }, 300);
                     });
                 } else {
@@ -56,8 +56,8 @@ define([
                     $resizeBtn.removeClass('glyphicon-resize-small');
                     grid.resize_widget($resizeBtn.parent(), that.smallWidth, that.smallHeight, function() {
                         setTimeout(function() {
-                            // d3.selectAll('#' + that.id + ' svg > *').remove();
-                            // that.addChart();
+                            d3.selectAll('#' + that.id + ' svg > *').remove();
+                            that.addChart(that.id);
                         }, 300);
                     });
                 }
