@@ -25,12 +25,14 @@ define([
             options.parent.append(this.$el);
             this.populateTiles();
 
-            $('.gridster ul').gridster({
+            var that = this;
+            this.gridster = $('.gridster ul').gridster({
                 widget_margins: [10, 10],
-                widget_base_dimensions: [280, 280]
-            });
-
-            this.gridster = $('.gridster ul').gridster().data('gridster');
+                widget_base_dimensions: [280, 280],
+                resize: {
+                    stop: that.resize
+                }
+            }).data('gridster');
 
             this.postRenderTiles(this.gridster);
         },
@@ -58,6 +60,17 @@ define([
             });
             this.tiles.push(pie);
 
+            var info = InfoBlockView;
+            info.render({
+                "id": 3,
+                "color": "green",
+                "startCol": 1,
+                "startRow": 1,
+                "parent": $('.gridster ul'),
+                "params": DataManager.tiles[6]
+            });
+            this.tiles.push(info);
+
         },
         postRenderTiles: function(grid) {
             var that = this;
@@ -72,40 +85,31 @@ define([
         resize: function() {
             var that = this;
 
-            $.each(this.tiles, function(index, tile) {
-                if(tile.setFullWidth) {
-                    var cols = Math.floor($('.gridster').width()/300);
-                    tile.setFullWidth(cols);
+            console.log(this.gridster.$widgets);
+            console.log(this.gridster.serialize());
+            this.widgets = this.gridster.$widgets;
+            this.serializedWidgets = this.gridster.serialize();
+
+            this.gridster.destroy();
+            $('.gridster ul').empty();
+            $('.gridster').removeClass('ready');
+
+            this.gridster = $('.gridster ul').gridster({
+                widget_margins: [10, 10],
+                widget_base_dimensions: [280, 280],
+                resize: {
+                    stop: that.resize
                 }
+            }).data('gridster');
+
+            var maxCols = Math.floor($('.gridster').width()/300);
+
+            $.each(this.widgets, function(index, widget) {
+                var attrs = that.serializedWidgets[index];
+                that.gridster.add_widget(widget, attrs.size_x, attrs.size_y);
             });
 
-            var cols = Math.floor($('.gridster').width()/300);
-
-            // this.gridster.set_dom_grid_width(cols * 300);
-
-            // var curRow = 1;
-            // var curCol = 1;
-
-            // $.each(this.tiles, function(index, tile) {
-            //     var dataRow = curRow;
-            //     var dataCol = curCol;
-
-            //     var endCol = curCol + tile.smallWidth - 1;
-
-            //     if(endCol > cols) {
-            //         curRow++;
-            //         dataRow = curRow;
-            //         dataCol = 1;
-            //         curCol = 1 + tile.smallWidth;
-            //     } else {
-            //         curCol = endCol + 1;
-            //     }
-
-            //     console.log(dataRow + ', '+ dataCol);
-
-
-            //     that.gridster.move_widget(tile.$el, dataCol, dataRow);
-            // });
+            this.postRenderTiles(this.gridster);
         }
     };
 });
