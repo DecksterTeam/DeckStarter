@@ -13,7 +13,7 @@ define([
         "smallRow": 1,
         "smallWidth": 1,
         "smallHeight": 1,
-        "fullWidth": 2,
+        "fullWidth": 4,
         "fullHeight": 2,
         render: function(options) {
             this.options = options;
@@ -45,16 +45,23 @@ define([
                 if($resizeBtn.hasClass('glyphicon-resize-full')) {
                     $resizeBtn.removeClass('glyphicon-resize-full');
                     $resizeBtn.addClass('glyphicon-resize-small');
-                    grid.resize_widget($resizeBtn.parent(), that.fullWidth, that.fullHeight, function() {
+
+                    that.fullWidth = Math.floor($('.gridster').width()/300);
+
+                    that.storedCol = that.$el.attr("data-col");
+
+                    grid.resize_widget_mod($resizeBtn.parent(), that.fullWidth, that.fullHeight, 1, function() {
                         setTimeout(function() {
                             d3.selectAll('#' + that.id + ' svg > *').remove();
                             that.addChart(that.id);
                         }, 300);
                     });
+
                 } else {
                     $resizeBtn.addClass('glyphicon-resize-full');
                     $resizeBtn.removeClass('glyphicon-resize-small');
-                    grid.resize_widget($resizeBtn.parent(), that.smallWidth, that.smallHeight, function() {
+
+                    grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, parseInt(that.storedCol), function() {
                         setTimeout(function() {
                             d3.selectAll('#' + that.id + ' svg > *').remove();
                             that.addChart(that.id);

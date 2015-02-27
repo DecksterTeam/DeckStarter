@@ -28,12 +28,46 @@ define([
             var that = this;
             this.gridster = $('.gridster ul').gridster({
                 widget_margins: [10, 10],
-                widget_base_dimensions: [280, 280]
+                widget_base_dimensions: [280, 280],
+                max_cols: 4
             }).data('gridster');
 
             this.postRenderTiles(this.gridster);
         },
         populateTiles: function() {
+
+            var info = InfoBlockView;
+            info.render({
+                "id": 3,
+                "color": "green",
+                "startCol": 1,
+                "startRow": 1,
+                "parent": $('.gridster ul'),
+                "params": DataManager.tiles[6]
+            });
+            this.tiles.push(info);
+
+            var info = InfoBlockView;
+            info.render({
+                "id": 3,
+                "color": "green",
+                "startCol": 1,
+                "startRow": 1,
+                "parent": $('.gridster ul'),
+                "params": DataManager.tiles[6]
+            });
+            this.tiles.push(info);
+
+            var info = InfoBlockView;
+            info.render({
+                "id": 3,
+                "color": "green",
+                "startCol": 1,
+                "startRow": 1,
+                "parent": $('.gridster ul'),
+                "params": DataManager.tiles[6]
+            });
+            this.tiles.push(info);
 
             var map = MapView;
             map.render({
@@ -67,6 +101,17 @@ define([
                 "params": DataManager.tiles[6]
             });
             this.tiles.push(info);
+
+            var ring = PercentRingView;
+            ring.render({
+                "id": 4,
+                "color": "red",
+                "startCol": 1,
+                "startRow": 1,
+                "parent": $('.gridster ul'),
+                "params": DataManager.tiles[0]
+            });
+            this.tiles.push(ring);
         },
         postRenderTiles: function(grid) {
             var that = this;
@@ -81,21 +126,7 @@ define([
         resize: function() {
             var that = this;
 
-            this.gridster.$widgets = this.gridster.$widgets.sort(function(a, b) {
-                var aRow = $(a).attr('data-row');
-                var aCol = $(a).attr('data-col');
-                var bRow = $(b).attr('data-row');
-                var bCol = $(b).attr('data-col');
-               if (aRow > bRow || aRow === bRow && aCol > bCol) {
-                   return 1;
-               }
-               return -1;
-            });
-
-            this.serializedWidgets = this.gridster.serialize();
-
             $.each(this.gridster.$widgets, function(index, widget) {
-                var attrs = that.serializedWidgets[index];
                 $(widget).attr("data-col",1).attr("data-row",1);
             });
 
