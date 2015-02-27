@@ -61,6 +61,10 @@ define([
                     $resizeBtn.addClass('glyphicon-resize-full');
                     $resizeBtn.removeClass('glyphicon-resize-small');
 
+                    if(parseInt(that.storedCol) > Math.floor($('.gridster').width()/300)) {
+                        that.storedCol = 1;
+                    }
+
                     grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, parseInt(that.storedCol), function() {
                         setTimeout(function() {
                             d3.selectAll('#' + that.id + ' svg > *').remove();
