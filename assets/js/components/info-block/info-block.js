@@ -43,20 +43,36 @@ define([
                 if($resizeBtn.hasClass('glyphicon-resize-full')) {
                     $resizeBtn.removeClass('glyphicon-resize-full');
                     $resizeBtn.addClass('glyphicon-resize-small');
-                    grid.resize_widget($resizeBtn.parent(), that.fullWidth, that.fullHeight);
+
+                    that.fullWidth = Math.floor($('.gridster').width()/300);
+
+                    that.storedCol = that.$el.attr("data-col");
+
+                    grid.resize_widget_mod($resizeBtn.parent(), that.fullWidth, that.fullHeight, 1);
+
                 } else {
                     $resizeBtn.addClass('glyphicon-resize-full');
                     $resizeBtn.removeClass('glyphicon-resize-small');
-                    grid.resize_widget($resizeBtn.parent(), that.smallWidth, that.smallHeight);
+
+                    grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, parseInt(that.storedCol));
                 }
             });
         },
-        setFullWidth: function(newFullWidth) {
+        updateWidth: function() {
             var that = this;
+            var gridWidth = Math.floor($('.gridster').width()/300);
+            var $widget = $(this.$el);
+            $widget.attr("data-col",1).attr("data-row",1);
+
             var $resizeBtn = $('#' + this.id + ' .resize-btn');
-            this.fullWidth = newFullWidth;
-            if($resizeBtn.hasClass('glyphicon-resize-small')) {
-                that.grid.resize_widget($resizeBtn.parent(), that.fullWidth, that.fullHeight);
+            if($resizeBtn.hasClass('glyphicon-resize-full')) {
+                if($widget.attr("data-sizex") > gridWidth) {
+                    $widget.attr("data-sizex", gridWidth);
+                } else {
+                    $widget.attr("data-sizex", that.smallWidth);
+                }
+            } else {
+                $widget.attr("data-sizex", gridWidth);
             }
         }
     };

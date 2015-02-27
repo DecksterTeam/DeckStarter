@@ -11,8 +11,8 @@
 	margin-top: 20px;
 }
 
-.percent-ring .light {
-	border: 1px solid white;
+.percent-ring .dark {
+	fill: white;
 }
 
 .resize-btn {

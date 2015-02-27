@@ -70,6 +70,13 @@ define([
                 }
             });
         },
+        postResize: function() {
+            var that = this;
+            setTimeout(function() {
+                d3.selectAll('#' + that.id + ' svg > *').remove();
+                that.addChart(that.id);
+            }, 300);
+        },
         addChart: function(id) {
             var that = this;
 
@@ -84,21 +91,24 @@ define([
                     .datum(that.options.params.data)
                     .call(chart);
 
-                // nv.utils.windowResize(function() { chart.update() });
-
                 return chart;
             });
         },
-        setFullWidth: function(newFullWidth) {
+        updateWidth: function() {
             var that = this;
+            var gridWidth = Math.floor($('.gridster').width()/300);
+            var $widget = $(this.$el);
+            $widget.attr("data-col",1).attr("data-row",1);
+
             var $resizeBtn = $('#' + this.id + ' .resize-btn');
-            this.fullWidth = newFullWidth;
-            if($resizeBtn.hasClass('glyphicon-resize-small')) {
-                that.grid.resize_widget($resizeBtn.parent(), that.fullWidth, that.fullHeight, function() {
-                    setTimeout(function() {
-                        that.chart.update();
-                    }, 300);
-                });
+            if($resizeBtn.hasClass('glyphicon-resize-full')) {
+                if($widget.attr("data-sizex") > gridWidth) {
+                    $widget.attr("data-sizex", gridWidth);
+                } else {
+                    $widget.attr("data-sizex", that.smallWidth);
+                }
+            } else {
+                $widget.attr("data-sizex", gridWidth);
             }
         }
     };

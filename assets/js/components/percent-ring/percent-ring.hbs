@@ -1,5 +1,5 @@
 <li id="{{id}}" class="percent-ring tile {{color}}" data-row="{{row}}" data-col="{{col}}" data-sizex="{{sizex}}" data-sizey="{{sizey}}">
-	{{!-- <span class="resize-btn glyphicon glyphicon-resize-full" aria-hidden="true"></span> --}}
+	<span class="resize-btn glyphicon glyphicon-resize-full" aria-hidden="true"></span>
 	<h4>{{title}}</h4>
 	<div class="percent-ring-container">
 		<svg width="150%" height="150%" viewBox="-1 -1 141 141" shape-rendering="geometricPrecision">
@@ -9,8 +9,8 @@
 				</clipPath>
 			</defs>
 			<g  clip-path="url(#clip-path)">
-				<path class="light {{color}}" d="M70,70 v-70 a70,70 0 0,1 0,140 a70,70 0 1,1 0,-140" />
-				<path class="dark dark-{{color}}" />
+				<path class="light fill-light-{{color}}" d="M70,70 v-70 a70,70 0 0,1 0,140 a70,70 0 1,1 0,-140" />
+				<path class="dark" />
 			</g>
 			<path d="M20,70 a50,50 0 0,1 100,0 a50,50 0 0,1 -100,0" fill="none" />
 			<text class="perc" x="70" y="79" font-size="30px" fill="white" text-anchor="middle">

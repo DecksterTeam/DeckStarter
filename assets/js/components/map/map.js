@@ -36,104 +36,46 @@ define([
             options.parent.append(this.$el);
 
             window.addEventListener("message", receiveMessage, false);
+        },
+        postRender: function(grid) {
+            this.grid = grid;
+            var that = this;
+            var $resizeBtn = $('#' + this.id + ' .resize-btn');
+            $resizeBtn.on('click', function() {
+                if($resizeBtn.hasClass('glyphicon-resize-full')) {
+                    $resizeBtn.removeClass('glyphicon-resize-full');
+                    $resizeBtn.addClass('glyphicon-resize-small');
 
-            $('.navbar-brand').on('click', function() {
+                    that.fullWidth = Math.floor($('.gridster').width()/300);
 
-                // sendMessage("map.overlay.create",
+                    that.storedCol = that.$el.attr("data-col");
 
-                //     {
-                //     "name": "Test Name 1",
-                //     "overlayId": "testOverlayId1",
-                //     "coords": {
-                //         "minLat": "7.602108",
-                //         "minLon": "-13.908691",
-                //         "maxLat": "11.587669",
-                //         "maxLon": "-8.283691"
-                //     },
-                //     "symbolizers": {
-                //         "lowSymbolizer": {
-                //             "externalGraphic": "/cmapi/payloads/images/customCluster.png",
-                //             "fontColor": "rgb(130, 37, 251)",
-                //             "fontOpacity": 1,
-                //             "fontSize": "12",
-                //             "fontWeight": "bold",
-                //             "graphicHeight": 36,
-                //             "graphicOpacity": 1,
-                //             "graphicWidth": 36,
-                //             "label": "${count}",
-                //             "labelOutlineWidth": 3,
-                //             "labelYOffset": 5,
-                //             "pointRadius": 10
-                //         },
-                //         "midSymbolizer": {
-                //             "externalGraphic": "/cmapi/payloads/images/customCluster.png",
-                //             "fontColor": "rgb(130, 37, 251)",
-                //             "fontOpacity": 1,
-                //             "fontSize": "13",
-                //             "fontWeight": "bold",
-                //             "graphicHeight": 48,
-                //             "graphicOpacity": 1,
-                //             "graphicWidth": 48,
-                //             "label": "${count}",
-                //             "labelOutlineWidth": 3,
-                //             "labelYOffset": 0,
-                //             "pointRadius": 15
-                //         },
-                //         "highSymbolizer": {
-                //             "externalGraphic": "/cmapi/payloads/images/customCluster.png",
-                //             "fontColor": "rgb(130, 37, 251)",
-                //             "fontOpacity": 1,
-                //             "fontSize": "14",
-                //             "fontWeight": "bold",
-                //             "graphicHeight": 60,
-                //             "graphicOpacity": 1,
-                //             "graphicWidth": 60,
-                //             "label": "${count}",
-                //             "labelOutlineWidth": 3,
-                //             "labelYOffset": -7,
-                //             "pointRadius": 20
-                //         },
-                //         "noClusterSymbolizer": {
-                //             "externalGraphic": "${icon}",
-                //             "graphicOpacity": 1,
-                //             "pointRadius": 15,
-                //             "graphicHeight": "${height}",
-                //             "graphicWidth": "${width}"
-                //         }
-                //     }
-                // }
+                    grid.resize_widget_mod($resizeBtn.parent(), that.fullWidth, that.fullHeight, 1);
 
-                // );
+                } else {
+                    $resizeBtn.addClass('glyphicon-resize-full');
+                    $resizeBtn.removeClass('glyphicon-resize-small');
 
-
-                sendMessage("map.feature.plot", 
-                
-                    {
-                        "overlayId":"testOverlayId1",
-                        "name":"Test Name 1",
-                        "format":"geojson",
-                        "feature": {
-                            "type":"FeatureCollection",
-                            "features":[
-                                {
-                                    "type": "Feature",
-                                    "geometry": {
-                                        "type": "Point",
-                                        "coordinates": [0.0, 10.0]
-                                    },
-                                    "properties": {
-                                        "featureId": "f1"
-                                    }
-                                }
-                            ]
-                        },
-                        "zoom":false,
-                        "dataZoom": false,
-                        "readOnly":false
-                    }
-
-                );
+                    grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, parseInt(that.storedCol));
+                }
             });
+        },
+        updateWidth: function() {
+            var that = this;
+            var gridWidth = Math.floor($('.gridster').width()/300);
+            var $widget = $(this.$el);
+            $widget.attr("data-col",1).attr("data-row",1);
+
+            var $resizeBtn = $('#' + this.id + ' .resize-btn');
+            if($resizeBtn.hasClass('glyphicon-resize-full')) {
+                if(parseInt($widget.attr("data-sizex")) > gridWidth) {
+                    $widget.attr("data-sizex", gridWidth);
+                } else {
+                    $widget.attr("data-sizex", that.smallWidth);
+                }
+            } else {
+                $widget.attr("data-sizex", gridWidth);
+            }
         }
     };
 
@@ -147,7 +89,29 @@ define([
     }
 
     function receiveMessage(event) {
-        console.debug(event);
+        sendMessage("map.feature.plot", {
+            "overlayId":"testOverlayId1",
+            "name":"Test Name 1",
+            "format":"geojson",
+            "feature": {
+                "type":"FeatureCollection",
+                "features":[
+                    {
+                        "type": "Feature",
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [0.0, 10.0]
+                        },
+                        "properties": {
+                            "featureId": "f1"
+                        }
+                    }
+                ]
+            },
+            "zoom":false,
+            "dataZoom": false,
+            "readOnly":false
+        });
     }
 
 });

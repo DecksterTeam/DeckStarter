@@ -28,51 +28,17 @@ define([
             var that = this;
             this.gridster = $('.gridster ul').gridster({
                 widget_margins: [10, 10],
-                widget_base_dimensions: [280, 280],
-                max_cols: 4
+                widget_base_dimensions: [280, 280]
             }).data('gridster');
 
             this.postRenderTiles(this.gridster);
         },
         populateTiles: function() {
 
-            var info = InfoBlockView;
-            info.render({
-                "id": 3,
-                "color": "green",
-                "startCol": 1,
-                "startRow": 1,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[6]
-            });
-            this.tiles.push(info);
-
-            var info = InfoBlockView;
-            info.render({
-                "id": 3,
-                "color": "green",
-                "startCol": 1,
-                "startRow": 1,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[6]
-            });
-            this.tiles.push(info);
-
-            var info = InfoBlockView;
-            info.render({
-                "id": 3,
-                "color": "green",
-                "startCol": 1,
-                "startRow": 1,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[6]
-            });
-            this.tiles.push(info);
-
             var map = MapView;
             map.render({
                 "id": 1,
-                "color": "blue",
+                "color": "green",
                 "startCol": 1,
                 "startRow": 1,
                 "parent": $('.gridster ul'),
@@ -83,7 +49,7 @@ define([
             var pie = PieChartView;
             pie.render({
                 "id": 2,
-                "color": "orange",
+                "color": "red",
                 "startCol": 1,
                 "startRow": 1,
                 "parent": $('.gridster ul'),
@@ -94,7 +60,7 @@ define([
             var info = InfoBlockView;
             info.render({
                 "id": 3,
-                "color": "green",
+                "color": "purple",
                 "startCol": 1,
                 "startRow": 1,
                 "parent": $('.gridster ul'),
@@ -105,13 +71,25 @@ define([
             var ring = PercentRingView;
             ring.render({
                 "id": 4,
-                "color": "red",
+                "color": "orange",
                 "startCol": 1,
                 "startRow": 1,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[0]
             });
             this.tiles.push(ring);
+
+            var table1 = TableView;
+            table1.render({
+                "id": 1,
+                "color": "blue",
+                "startCol": 3,
+                "startRow": 2,
+                "parent": $('.gridster ul'),
+                "params": DataManager.tiles[3]
+            });
+            this.tiles.push(table1);
+
         },
         postRenderTiles: function(grid) {
             var that = this;
@@ -121,19 +99,23 @@ define([
                     tile.postRender(grid);
                 }
             });
-            // this.resize();
+            this.resize();
         },
         resize: function() {
-            var that = this;
-
-            $.each(this.gridster.$widgets, function(index, widget) {
-                $(widget).attr("data-col",1).attr("data-row",1);
+            $.each(this.tiles, function(index, tile) {
+                tile.updateWidth();
             });
 
             this.gridster.generate_grid_and_stylesheet();
             this.gridster.get_widgets_from_DOM();
             this.gridster.set_dom_grid_height();
             this.gridster.set_dom_grid_width();
+
+            $.each(this.tiles, function(index, tile) {
+                if(tile.postResize) {
+                    tile.postResize();
+                }
+            });
 
         }
     };
