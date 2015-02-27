@@ -7,9 +7,10 @@ define([
     'components/percent-ring/percent-ring',
     'components/info-block/info-block',
     'components/table/table',
+    'components/map/map',
     'handlebars',
     'bootstrap'
-], function ($, MiddleContainerHBS, BarChartView, LineChartView, PieChartView, PercentRingView, InfoBlockView, TableView, Handlebars) {
+], function ($, MiddleContainerHBS, BarChartView, LineChartView, PieChartView, PercentRingView, InfoBlockView, TableView, MapView, Handlebars) {
 
     'use strict';
 
@@ -24,104 +25,70 @@ define([
             options.parent.append(this.$el);
             this.populateTiles();
 
-            $('.gridster ul').gridster({
+            var that = this;
+            this.gridster = $('.gridster ul').gridster({
                 widget_margins: [10, 10],
                 widget_base_dimensions: [280, 280]
-            });
-
-            this.gridster = $('.gridster ul').gridster().data('gridster');
+            }).data('gridster');
 
             this.postRenderTiles(this.gridster);
         },
         populateTiles: function() {
 
-            var pieChart1 = PieChartView;
-            pieChart1.render({
+            var map = MapView;
+            map.render({
                 "id": 1,
-                "color": "orange",
+                "color": "green",
+                "startCol": 1,
+                "startRow": 1,
+                "parent": $('.gridster ul'),
+                "params": DataManager.tiles[7]
+            });
+            this.tiles.push(map);
+
+            var pie = PieChartView;
+            pie.render({
+                "id": 2,
+                "color": "red",
                 "startCol": 1,
                 "startRow": 1,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[2]
             });
-            this.tiles.push(pieChart1);
+            this.tiles.push(pie);
 
-            var pieChart2 = PieChartView;
-            pieChart2.render({
-                "id": 2,
-                "color": "green",
-                "startCol": 2,
-                "startRow": 1,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[2]
-            });
-            this.tiles.push(pieChart2);
-
-            var pieChart3 = PieChartView;
-            pieChart3.render({
+            var info = InfoBlockView;
+            info.render({
                 "id": 3,
-                "color": "blue",
-                "startCol": 3,
-                "startRow": 1,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[2]
-            });
-            this.tiles.push(pieChart3);
-
-            var pieChart4 = PieChartView;
-            pieChart4.render({
-                "id": 4,
-                "color": "red",
-                "startCol": 4,
-                "startRow": 1,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[2]
-            });
-            this.tiles.push(pieChart4);
-
-            var percentRing1 = InfoBlockView;
-            percentRing1.render({
-                "id": 1,
                 "color": "purple",
-                "startCol": 2,
-                "startRow": 2,
+                "startCol": 1,
+                "startRow": 1,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[6]
             });
-            this.tiles.push(percentRing1);
+            this.tiles.push(info);
 
-            var percentRing2 = InfoBlockView;
-            percentRing2.render({
-                "id": 2,
+            var ring = PercentRingView;
+            ring.render({
+                "id": 4,
                 "color": "orange",
-                "startCol": 3,
-                "startRow": 2,
+                "startCol": 1,
+                "startRow": 1,
                 "parent": $('.gridster ul'),
-                "params": DataManager.tiles[6]
+                "params": DataManager.tiles[0]
             });
-            this.tiles.push(percentRing2);
+            this.tiles.push(ring);
 
             var table1 = TableView;
             table1.render({
                 "id": 1,
-                "color": "green",
+                "color": "blue",
                 "startCol": 3,
                 "startRow": 2,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[3]
             });
             this.tiles.push(table1);
-
-            var table2 = TableView;
-            table2.render({
-                "id": 2,
-                "color": "blue",
-                "startCol": 1,
-                "startRow": 3,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[3]
-            });
-            this.tiles.push(table2);
 
         },
         postRenderTiles: function(grid) {
@@ -132,45 +99,24 @@ define([
                     tile.postRender(grid);
                 }
             });
-            // this.resize();
+            this.resize();
         },
         resize: function() {
-            var that = this;
+            $.each(this.tiles, function(index, tile) {
+                tile.updateWidth();
+            });
+
+            this.gridster.generate_grid_and_stylesheet();
+            this.gridster.get_widgets_from_DOM();
+            this.gridster.set_dom_grid_height();
+            this.gridster.set_dom_grid_width();
 
             $.each(this.tiles, function(index, tile) {
-                if(tile.setFullWidth) {
-                    var cols = Math.floor($('.gridster').width()/300);
-                    tile.setFullWidth(cols);
+                if(tile.postResize) {
+                    tile.postResize();
                 }
             });
 
-            var cols = Math.floor($('.gridster').width()/300);
-
-            // this.gridster.set_dom_grid_width(cols * 300);
-
-            // var curRow = 1;
-            // var curCol = 1;
-
-            // $.each(this.tiles, function(index, tile) {
-            //     var dataRow = curRow;
-            //     var dataCol = curCol;
-
-            //     var endCol = curCol + tile.smallWidth - 1;
-
-            //     if(endCol > cols) {
-            //         curRow++;
-            //         dataRow = curRow;
-            //         dataCol = 1;
-            //         curCol = 1 + tile.smallWidth;
-            //     } else {
-            //         curCol = endCol + 1;
-            //     }
-
-            //     console.log(dataRow + ', '+ dataCol);
-
-
-            //     that.gridster.move_widget(tile.$el, dataCol, dataRow);
-            // });
         }
     };
 });
