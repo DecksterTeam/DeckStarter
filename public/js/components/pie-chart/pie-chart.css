@@ -1,16 +1,33 @@
-.pie-chart {
-	height: 100%;
-	width: 100%;
-}
-
-.pie-chart svg {
-	height: 100%;
-	width: 100%;
+.pie-chart .tile-content-container {
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 30px;
+	padding: auto;
+	width: calc(100% - 20px);
+	height: calc(100% - 50px);
 }
 
 .pie-chart .chart-container {
-	margin: 10px;
-	height: calc(100% - 50px);
-	background-color: white;
-  	border-radius: 6px;
+	display: inline-block;
+	float: left;
+	margin-left: 10px;
+}
+
+.pie-chart-legend {
+	display: inline-block;
+	float: left;
+	width: 60px;
+	/*border: white solid 1px;*/
+	border-radius: 6px;
+	overflow: hidden;
+}
+
+.pie-chart-legend span {
+	display: list-item;
+ 	font-size: 1em;
+	font-weight: normal;
+	text-align: center;
+	line-height: 100%;
+	border-radius: 0px;
+	padding: 3px;
 }

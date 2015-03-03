@@ -3,11 +3,12 @@ define([
     'text!middle-container/middle-container.hbs',
     'components/percent-ring/percent-ring',
     'components/info-block/info-block',
+    'components/pie-chart/pie-chart',
     'components/table/table',
     'components/map/map',
     'handlebars',
     'bootstrap'
-], function ($, MiddleContainerHBS, PercentRingView, InfoBlockView, TableView, MapView, Handlebars) {
+], function ($, MiddleContainerHBS, PercentRingView, InfoBlockView, PieChartView, TableView, MapView, Handlebars) {
 
     'use strict';
 
@@ -43,16 +44,16 @@ define([
             });
             this.tiles.push(map);
 
-            // var pie = PieChartView;
-            // pie.render({
-            //     "id": 2,
-            //     "color": "red",
-            //     "startCol": 1,
-            //     "startRow": 1,
-            //     "parent": $('.gridster ul'),
-            //     "params": DataManager.tiles[2]
-            // });
-            // this.tiles.push(pie);
+            var pie = PieChartView;
+            pie.render({
+                "id": 2,
+                "color": "orange",
+                "startCol": 1,
+                "startRow": 1,
+                "parent": $('.gridster ul'),
+                "params": DataManager.tiles[2]
+            });
+            this.tiles.push(pie);
 
             var info = InfoBlockView;
             info.render({
@@ -68,7 +69,7 @@ define([
             var ring = PercentRingView;
             ring.render({
                 "id": 4,
-                "color": "orange",
+                "color": "red",
                 "startCol": 1,
                 "startRow": 1,
                 "parent": $('.gridster ul'),
@@ -80,8 +81,8 @@ define([
             table1.render({
                 "id": 1,
                 "color": "blue",
-                "startCol": 3,
-                "startRow": 2,
+                "startCol": 1,
+                "startRow": 1,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[3]
             });

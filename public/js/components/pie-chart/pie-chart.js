@@ -1,10 +1,10 @@
 define([
     'jquery',
     'text!components/pie-chart/pie-chart.hbs',
+    'chart',
     'handlebars',
-    'bootstrap',
-    'nv'
-], function ($, PieChartHBS, Handlebars) {
+    'bootstrap'
+], function ($, PieChartHBS, Chart, Handlebars) {
 
     'use strict';
 
@@ -35,7 +35,49 @@ define([
             this.$el = $(pieChartViewHTML);
             options.parent.append(this.$el);
 
-            this.addChart(this.id);
+            var that = this;
+
+            this.data = [
+                {
+                    value: 100,
+                    color:"#F7464A",
+                    highlight: "#FF5A5E",
+                    label: "Label 1"
+                },
+                {
+                    value: 50,
+                    color: "#46BFBD",
+                    highlight: "#5AD3D1",
+                    label: "Label 2"
+                },
+                {
+                    value: 30,
+                    color: "#862B59",
+                    highlight: "#924069",
+                    label: "Label 3"
+                },
+                {
+                    value: 130,
+                    color:"#7c699f",
+                    highlight: "#8a79a9",
+                    label: "Label 4"
+                },
+                {
+                    value: 30,
+                    color: "#4884b8",
+                    highlight: "#5a90bf",
+                    label: "Label 5"
+                }
+            ];
+
+            var $legend = $('#' + that.id + ' .pie-chart-legend');
+            $.each(that.data, function(index, elem) {
+                $legend.append('<span style="background-color:' + elem.color + ';">' + elem.label + '</span>');
+            });
+
+            setTimeout(function() {
+                that.addChart(that.id);
+            }, 300);
         },
         postRender: function(grid) {
             this.grid = grid;
@@ -51,8 +93,8 @@ define([
                     that.storedCol = that.$el.attr("data-col");
 
                     grid.resize_widget_mod($resizeBtn.parent(), that.fullWidth, that.fullHeight, 1, function() {
+                        $('#' + that.id + ' .chart-container').empty();
                         setTimeout(function() {
-                            d3.selectAll('#' + that.id + ' svg > *').remove();
                             that.addChart(that.id);
                         }, 300);
                     });
@@ -66,37 +108,41 @@ define([
                     }
 
                     grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, parseInt(that.storedCol), function() {
+                        $('#' + that.id + ' .chart-container').empty();
                         setTimeout(function() {
-                            d3.selectAll('#' + that.id + ' svg > *').remove();
                             that.addChart(that.id);
                         }, 300);
                     });
                 }
             });
         },
-        postResize: function() {
-            var that = this;
-            setTimeout(function() {
-                d3.selectAll('#' + that.id + ' svg > *').remove();
-                that.addChart(that.id);
-            }, 300);
-        },
+        // postResize: function() {
+        //     var that = this;
+        //     $('#' + that.id + ' .chart-container').empty();
+        //     setTimeout(function() {
+        //         that.addChart(that.id);
+        //     }, 300);
+        // },
         addChart: function(id) {
+            var options = {
+                segmentStrokeWidth : 1,
+                animationEasing : "easeOutCirc",
+                animationSteps : 30
+            };
+
             var that = this;
 
-            nv.addGraph(function() {
-                var chart = nv.models.pieChart()
-                    .margin({top: 20})
-                    .x(function(d) { return d.label })
-                    .y(function(d) { return d.value })
-                    .showLabels(true);
+            var newHeight = $('#' + that.id + ' .tile-content-container').height() - 40;
+            var newWidth = newHeight;
 
-                d3.select('#' + id + ' svg')
-                    .datum(that.options.params.data)
-                    .call(chart);
+            console.log('width = ' + newWidth);
+            console.log('height = ' + newHeight);
 
-                return chart;
-            });
+            $('#' + that.id + ' .chart-container').append('<canvas width="' + newWidth + '" height="' + newHeight + '"></canvas>');
+
+            var $canvas = $('#' + that.id + ' canvas');
+            var ctx = $canvas.get(0).getContext("2d");
+            var pieChart = new Chart(ctx).Pie(that.data, options);
         },
         updateWidth: function() {
             var that = this;
