@@ -10,9 +10,9 @@ define([
     return {
         "smallCol": 1,
         "smallRow": 1,
-        "smallWidth": 4,
+        "smallWidth": 6,
         "smallHeight": 1,
-        "fullWidth": 4,
+        "fullWidth": 6,
         "fullHeight": 2,
         render: function(options) {
             var params = options.params;

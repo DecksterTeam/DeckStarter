@@ -5,6 +5,7 @@
 	padding: auto;
 	width: calc(100% - 20px);
 	height: calc(100% - 50px);
+	overflow: hidden;
 }
 
 .pie-chart .chart-container {

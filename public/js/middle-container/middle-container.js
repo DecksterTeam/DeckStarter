@@ -24,9 +24,14 @@ define([
             this.populateTiles();
 
             var that = this;
+
+            var phDimensions = $('.gridster').width()/6;
+            var marginWidth = phDimensions * .03;
+            var baseDimensions = phDimensions - (2*marginWidth);
+
             this.gridster = $('.gridster ul').gridster({
-                widget_margins: [10, 10],
-                widget_base_dimensions: [280, 280]
+                widget_base_dimensions: [baseDimensions, baseDimensions],
+                widget_margins: [marginWidth, marginWidth]
             }).data('gridster');
 
             this.postRenderTiles(this.gridster);
@@ -100,10 +105,15 @@ define([
             // this.resize();
         },
         resize: function() {
-            $.each(this.tiles, function(index, tile) {
-                tile.updateWidth();
-            });
 
+            var phDimensions = $('.gridster').width()/6;
+            var marginWidth = phDimensions * .03;
+            var baseDimensions = phDimensions - (2*marginWidth);
+
+            this.gridster.resize_widget_dimensions({
+                widget_base_dimensions: [baseDimensions, baseDimensions],
+                widget_margins: [marginWidth, marginWidth]
+            });
             this.gridster.generate_grid_and_stylesheet();
             this.gridster.get_widgets_from_DOM();
             this.gridster.set_dom_grid_height();

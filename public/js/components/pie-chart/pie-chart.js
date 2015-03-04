@@ -88,7 +88,7 @@ define([
                     $resizeBtn.removeClass('glyphicon-resize-full');
                     $resizeBtn.addClass('glyphicon-resize-small');
 
-                    that.fullWidth = Math.floor($('.gridster').width()/300);
+                    that.fullWidth = 6;
 
                     that.storedCol = that.$el.attr("data-col");
 
