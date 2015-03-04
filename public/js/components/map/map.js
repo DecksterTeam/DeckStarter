@@ -19,6 +19,7 @@ define([
             this.id = "map-" + options.id;
             this.smallCol = options.startCol;
             this.smallRow = options.startRow;
+            this.fullWidth = options.fullWidth;
             var mapViewTemplate = Handlebars.compile(MapHBS);
             var mapViewHTML = mapViewTemplate({
                 "id": this.id,

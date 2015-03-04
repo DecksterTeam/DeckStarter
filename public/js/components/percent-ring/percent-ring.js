@@ -19,6 +19,7 @@ define([
             this.id = "percent-ring-" + options.id;
             this.smallCol = options.startCol;
             this.smallRow = options.startRow;
+            this.fullWidth = options.fullWidth;
             var percentRingViewTemplate = Handlebars.compile(PercentRingHBS);
             var barChartViewHTML = percentRingViewTemplate({
                 "id": this.id,

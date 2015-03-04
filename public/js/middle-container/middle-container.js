@@ -44,6 +44,7 @@ define([
                 "color": "green",
                 "startCol": 1,
                 "startRow": 1,
+                "fullWidth": 6,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[7]
             });
@@ -55,6 +56,7 @@ define([
                 "color": "red",
                 "startCol": 1,
                 "startRow": 1,
+                "fullWidth": 6,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[0]
             });
@@ -66,6 +68,7 @@ define([
                 "color": "purple",
                 "startCol": 1,
                 "startRow": 1,
+                "fullWidth": 6,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[6]
             });
@@ -77,6 +80,7 @@ define([
                 "color": "orange",
                 "startCol": 1,
                 "startRow": 1,
+                "fullWidth": 6,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[2]
             });
@@ -88,6 +92,8 @@ define([
                 "color": "blue",
                 "startCol": 1,
                 "startRow": 1,
+                "smallWidth": 6,
+                "fullWidth": 6,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[3]
             });

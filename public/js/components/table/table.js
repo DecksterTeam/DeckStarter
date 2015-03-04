@@ -19,6 +19,8 @@ define([
             this.id = "table-" + options.id;
             this.smallCol = options.startCol;
             this.smallRow = options.startRow;
+            this.smallWidth = options.smallWidth;
+            this.fullWidth = options.fullWidth;
             var tableViewTemplate = Handlebars.compile(TableHBS);
             var tableViewHTML = tableViewTemplate({
                 "id": this.id,
