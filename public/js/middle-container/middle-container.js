@@ -97,7 +97,7 @@ define([
                     tile.postRender(grid);
                 }
             });
-            this.resize();
+            // this.resize();
         },
         resize: function() {
             $.each(this.tiles, function(index, tile) {

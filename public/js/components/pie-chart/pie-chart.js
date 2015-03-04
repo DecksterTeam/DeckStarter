@@ -116,13 +116,13 @@ define([
                 }
             });
         },
-        // postResize: function() {
-        //     var that = this;
-        //     $('#' + that.id + ' .chart-container').empty();
-        //     setTimeout(function() {
-        //         that.addChart(that.id);
-        //     }, 300);
-        // },
+        postResize: function() {
+            var that = this;
+            $('#' + that.id + ' .chart-container').empty();
+            setTimeout(function() {
+                that.addChart(that.id);
+            }, 300);
+        },
         addChart: function(id) {
             var options = {
                 segmentStrokeWidth : 1,
@@ -134,9 +134,6 @@ define([
 
             var newHeight = $('#' + that.id + ' .tile-content-container').height() - 40;
             var newWidth = newHeight;
-
-            console.log('width = ' + newWidth);
-            console.log('height = ' + newHeight);
 
             $('#' + that.id + ' .chart-container').append('<canvas width="' + newWidth + '" height="' + newHeight + '"></canvas>');
 
