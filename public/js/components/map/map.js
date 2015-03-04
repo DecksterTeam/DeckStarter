@@ -56,11 +56,11 @@ define([
                     $resizeBtn.addClass('glyphicon-resize-full');
                     $resizeBtn.removeClass('glyphicon-resize-small');
 
-                    if(parseInt(that.storedCol) > Math.floor($('.gridster').width()/300)) {
-                        grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, 1);
-                    } else {
+                    // if(parseInt(that.storedCol) > Math.floor($('.gridster').width()/300)) {
+                    //     grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, 1);
+                    // } else {
                         grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, parseInt(that.storedCol));
-                    }
+                    // }
                 }
             });
         },
