@@ -1,10 +1,26 @@
-.info-block .info {
-	margin-top: 45px;
-	height: 100px;
-	font-size: 100px;
-	line-height: 100px;
+.info-block .tile-content-container {
+	text-align: center;
+	margin: 0 auto;
+	padding: auto;
+	width: calc(100% - 20px);
+	height: calc(100% - 50px);
+	overflow: hidden;
 }
 
-.info-block .description {
-	margin-top: 10px;
+.info-block .info {
+	margin-left: auto;
+	margin-right: auto;
+	height: calc(100% - 50px);
+	text-align: center;
+	margin-top: auto;
+	margin-bottom: 20px;
+	display: inline-block;
+}
+
+.resize-btn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	height: 25px;
+	width: 20px;
 }

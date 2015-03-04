@@ -44,16 +44,16 @@ define([
             });
             this.tiles.push(map);
 
-            var pie = PieChartView;
-            pie.render({
-                "id": 2,
-                "color": "orange",
+            var ring = PercentRingView;
+            ring.render({
+                "id": 4,
+                "color": "red",
                 "startCol": 1,
                 "startRow": 1,
                 "parent": $('.gridster ul'),
-                "params": DataManager.tiles[2]
+                "params": DataManager.tiles[0]
             });
-            this.tiles.push(pie);
+            this.tiles.push(ring);
 
             var info = InfoBlockView;
             info.render({
@@ -66,16 +66,16 @@ define([
             });
             this.tiles.push(info);
 
-            var ring = PercentRingView;
-            ring.render({
-                "id": 4,
-                "color": "red",
+            var pie = PieChartView;
+            pie.render({
+                "id": 2,
+                "color": "orange",
                 "startCol": 1,
                 "startRow": 1,
                 "parent": $('.gridster ul'),
-                "params": DataManager.tiles[0]
+                "params": DataManager.tiles[2]
             });
-            this.tiles.push(ring);
+            this.tiles.push(pie);
 
             var table1 = TableView;
             table1.render({

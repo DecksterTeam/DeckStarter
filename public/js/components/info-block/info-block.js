@@ -34,6 +34,8 @@ define([
             });
             this.$el = $(infoBlockViewHTML);
             options.parent.append(this.$el);
+
+            this.postResize();
         },
         postRender: function(grid) {
             this.grid = grid;
@@ -60,7 +62,31 @@ define([
                         grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, parseInt(that.storedCol));
                     }
                 }
+                that.postResize();
             });
+        },
+        postResize: function() {
+            var that = this;
+            setTimeout(function() {
+                var height = $('#' + that.id + ' .tile-content-container').height()/2 - 15;
+
+                var width = $('#' + that.id + ' .tile-content-container').width() - 10;
+
+                var span = $('#' + that.id + ' .info');
+                var fontSize = parseInt(span.css('font-size'));
+                
+                if(span.width() < width) {
+                    do {
+                        fontSize++;
+                        span.css('font-size', fontSize.toString() + 'px').css('line-height', height + 'px').css('padding-top', height/2 - 10);
+                    } while (span.width() <= width);
+                } else {
+                    do {
+                        fontSize--;
+                        span.css('font-size', fontSize.toString() + 'px').css('line-height', height + 'px').css('padding-top', height/2 - 10);
+                    } while (span.width() >= width);
+                }
+            }, 300);
         },
         updateWidth: function() {
             var that = this;
