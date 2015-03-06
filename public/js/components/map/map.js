@@ -12,14 +12,17 @@ define([
         "smallRow": 1,
     	"smallWidth": 2,
         "smallHeight": 2,
-        "fullWidth": 2,
+        "fullWidth": 8,
         "fullHeight": 2,
         render: function(options) {
             var params = options.params;
             this.id = "map-" + options.id;
             this.smallCol = options.startCol;
             this.smallRow = options.startRow;
+            this.smallWidth = options.smallWidth;
+            this.smallHeight = options.smallHeight;
             this.fullWidth = options.fullWidth;
+            this.fullHeight = options.fullHeight;
             var mapViewTemplate = Handlebars.compile(MapHBS);
             var mapViewHTML = mapViewTemplate({
                 "id": this.id,
@@ -46,8 +49,6 @@ define([
                 if($resizeBtn.hasClass('glyphicon-resize-full')) {
                     $resizeBtn.removeClass('glyphicon-resize-full');
                     $resizeBtn.addClass('glyphicon-resize-small');
-
-                    that.fullWidth = 6;
 
                     that.storedCol = that.$el.attr("data-col");
 

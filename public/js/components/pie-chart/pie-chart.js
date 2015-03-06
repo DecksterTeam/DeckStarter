@@ -11,9 +11,9 @@ define([
     return {
         "smallCol": 1,
         "smallRow": 1,
-        "smallWidth": 1,
-        "smallHeight": 1,
-        "fullWidth": 6,
+        "smallWidth": 2,
+        "smallHeight": 2,
+        "fullWidth": 8,
         "fullHeight": 2,
         render: function(options) {
             this.options = options;
@@ -21,7 +21,10 @@ define([
             this.id = "pie-chart-" + options.id;
             this.smallCol = options.startCol;
             this.smallRow = options.startRow;
+            this.smallWidth = options.smallWidth;
+            this.smallHeight = options.smallHeight;
             this.fullWidth = options.fullWidth;
+            this.fullHeight = options.fullHeight;
             var pieChartViewTemplate = Handlebars.compile(PieChartHBS);
             var pieChartViewHTML = pieChartViewTemplate({
                 "id": this.id,
@@ -89,8 +92,6 @@ define([
                     $resizeBtn.removeClass('glyphicon-resize-full');
                     $resizeBtn.addClass('glyphicon-resize-small');
 
-                    // that.fullWidth = 6;
-
                     that.storedCol = that.$el.attr("data-col");
 
                     grid.resize_widget_mod($resizeBtn.parent(), that.fullWidth, that.fullHeight, 1, function() {
@@ -133,7 +134,7 @@ define([
 
             var that = this;
 
-            var newHeight = $('#' + that.id + ' .tile-content-container').height() - 50;
+            var newHeight = $('#' + that.id + ' .tile-content-container').height() - 80;
             var newWidth = newHeight;
 
             $('#' + that.id + ' .chart-container').append('<canvas width="' + newWidth + '" height="' + newHeight + '"></canvas>');

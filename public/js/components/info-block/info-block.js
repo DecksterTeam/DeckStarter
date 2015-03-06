@@ -19,7 +19,10 @@ define([
             this.id = "info-block-" + options.id;
             this.smallCol = options.startCol;
             this.smallRow = options.startRow;
+            this.smallWidth = options.smallWidth;
+            this.smallHeight = options.smallHeight;
             this.fullWidth = options.fullWidth;
+            this.fullHeight = options.fullHeight;
             var infoBlockViewTemplate = Handlebars.compile(InfoBlockHBS);
             var infoBlockViewHTML = infoBlockViewTemplate({
                 "id": this.id,
@@ -44,8 +47,6 @@ define([
                 if($resizeBtn.hasClass('glyphicon-resize-full')) {
                     $resizeBtn.removeClass('glyphicon-resize-full');
                     $resizeBtn.addClass('glyphicon-resize-small');
-
-                    that.fullWidth = 6;
 
                     that.storedCol = that.$el.attr("data-col");
 

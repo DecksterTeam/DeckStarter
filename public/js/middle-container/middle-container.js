@@ -25,7 +25,7 @@ define([
 
             var that = this;
 
-            var phDimensions = $('.gridster').width()/6;
+            var phDimensions = ($('.gridster').width()/8) - 10;
             var marginWidth = phDimensions * .03;
             var baseDimensions = phDimensions - (2*marginWidth);
 
@@ -44,11 +44,29 @@ define([
                 "color": "green",
                 "startCol": 1,
                 "startRow": 1,
-                "fullWidth": 6,
+                "smallWidth": 4,
+                "smallHeight": 2,
+                "fullWidth": 8,
+                "fullHeight": 4,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[7]
             });
             this.tiles.push(map);
+
+            var pie = PieChartView;
+            pie.render({
+                "id": 2,
+                "color": "orange",
+                "startCol": 1,
+                "startRow": 1,
+                "smallWidth": 2,
+                "smallHeight": 2,
+                "fullWidth": 8,
+                "fullHeight": 4,
+                "parent": $('.gridster ul'),
+                "params": DataManager.tiles[2]
+            });
+            this.tiles.push(pie);
 
             var ring = PercentRingView;
             ring.render({
@@ -56,7 +74,10 @@ define([
                 "color": "red",
                 "startCol": 1,
                 "startRow": 1,
-                "fullWidth": 6,
+                "smallWidth": 2,
+                "smallHeight": 1,
+                "fullWidth": 8,
+                "fullHeight": 4,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[0]
             });
@@ -68,23 +89,14 @@ define([
                 "color": "purple",
                 "startCol": 1,
                 "startRow": 1,
-                "fullWidth": 6,
+                "smallWidth": 2,
+                "smallHeight": 1,
+                "fullWidth": 8,
+                "fullHeight": 4,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[6]
             });
             this.tiles.push(info);
-
-            var pie = PieChartView;
-            pie.render({
-                "id": 2,
-                "color": "orange",
-                "startCol": 1,
-                "startRow": 1,
-                "fullWidth": 6,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[2]
-            });
-            this.tiles.push(pie);
 
             var table1 = TableView;
             table1.render({
@@ -92,8 +104,10 @@ define([
                 "color": "blue",
                 "startCol": 1,
                 "startRow": 1,
-                "smallWidth": 6,
-                "fullWidth": 6,
+                "smallWidth": 8,
+                "smallHeight": 2,
+                "fullWidth": 8,
+                "fullHeight": 2,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[3]
             });
@@ -112,7 +126,7 @@ define([
         },
         resize: function() {
 
-            var phDimensions = $('.gridster').width()/6;
+            var phDimensions = ($('.gridster').width()/8) - 10;
             var marginWidth = phDimensions * .03;
             var baseDimensions = phDimensions - (2*marginWidth);
 

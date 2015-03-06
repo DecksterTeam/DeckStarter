@@ -10,17 +10,19 @@ define([
     return {
         "smallCol": 1,
         "smallRow": 1,
-        "smallWidth": 6,
-        "smallHeight": 1,
-        "fullWidth": 6,
-        "fullHeight": 2,
+        "smallWidth": 4,
+        "smallHeight": 2,
+        "fullWidth": 4,
+        "fullHeight": 3,
         render: function(options) {
             var params = options.params;
             this.id = "table-" + options.id;
             this.smallCol = options.startCol;
             this.smallRow = options.startRow;
             this.smallWidth = options.smallWidth;
+            this.smallHeight = options.smallHeight;
             this.fullWidth = options.fullWidth;
+            this.fullHeight = options.fullHeight;
             var tableViewTemplate = Handlebars.compile(TableHBS);
             var tableViewHTML = tableViewTemplate({
                 "id": this.id,
