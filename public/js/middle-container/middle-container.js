@@ -4,11 +4,12 @@ define([
     'components/percent-ring/percent-ring',
     'components/info-block/info-block',
     'components/pie-chart/pie-chart',
+    'components/line-chart/line-chart',
     'components/table/table',
     'components/map/map',
     'handlebars',
     'bootstrap'
-], function ($, MiddleContainerHBS, PercentRingView, InfoBlockView, PieChartView, TableView, MapView, Handlebars) {
+], function ($, MiddleContainerHBS, PercentRingView, InfoBlockView, PieChartView, LineChartView, TableView, MapView, Handlebars) {
 
     'use strict';
 
@@ -67,6 +68,21 @@ define([
                 "params": DataManager.tiles[2]
             });
             this.tiles.push(pie);
+
+            var line = LineChartView;
+            line.render({
+                "id": 1,
+                "color": "red",
+                "startCol": 1,
+                "startRow": 1,
+                "smallWidth": 4,
+                "smallHeight": 2,
+                "fullWidth": 8,
+                "fullHeight": 4,
+                "parent": $('.gridster ul'),
+                "params": DataManager.tiles[4]
+            });
+            this.tiles.push(line);
 
             var ring = PercentRingView;
             ring.render({
