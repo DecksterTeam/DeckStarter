@@ -134,7 +134,7 @@ define([
 
             var that = this;
 
-            var newHeight = $('#' + that.id + ' .tile-content-container').height() - 80;
+            var newHeight = $('#' + that.id + ' .tile-content-container').height() - $('#' + that.id + ' .pie-chart-legend').height() - 25;
             var newWidth = newHeight;
 
             $('#' + that.id + ' .chart-container').append('<canvas width="' + newWidth + '" height="' + newHeight + '"></canvas>');

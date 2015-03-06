@@ -3,34 +3,29 @@
 	margin-left: 10px;
 	width: calc(100% - 20px);
 	height: calc(100% - 50px);
-	overflow: hidden;
 }
 
 .pie-chart .chart-container {
 	display: inline-block;
-	margin-top: 30px;
-	/*vertical-align:middle;*/
-	/*float: left;*/
-	margin-left: 10px;
+	margin-top: 10px;
 }
 
 .pie-chart-legend {
-	vertical-align: top;
 	display: inline-block;
-	margin-top: 10px;
 	/*float: left;*/
-	width: 60px;
+	width: 100%;
 	/*border: white solid 1px;*/
 	border-radius: 6px;
 	overflow: hidden;
 }
 
 .pie-chart-legend span {
-	display: list-item;
+	display: inline-block;
  	font-size: 1em;
 	font-weight: normal;
 	text-align: center;
 	line-height: 100%;
-	border-radius: 0px;
-	padding: 3px;
+	border-radius: 6px;
+	padding: 5px;
+	margin: 1px;
 }
