@@ -45,15 +45,15 @@ define([
                 );
             });
 
-            $.each(params.data.values, function(index, value) {
+            for(var index = 1; index <= 25; index++) {
                 $('#' + that.id + ' .table-body').append(
                     '<tr>' +
-                        '<td>' + value.id + '</td>' +
-                        '<td>' + value.name + '</td>' +
-                        '<td>' + value.info + '</td>' +
+                        '<td>' + index + '</td>' +
+                        '<td>Item ' + index + '</td>' +
+                        '<td>This is Item ' + index + '</td>' +
                     '</tr>'
                 );
-            });
+            };
         },
         postRender: function(grid) {
             this.grid = grid;
@@ -70,23 +70,6 @@ define([
                     grid.resize_widget($resizeBtn.parent(), that.smallWidth, that.smallHeight);
                 }
             });
-        },
-        updateWidth: function() {
-            var that = this;
-            var gridWidth = Math.floor($('.gridster').width()/300);
-            var $widget = $(this.$el);
-            $widget.attr("data-col",1).attr("data-row",1);
-
-            var $resizeBtn = $('#' + this.id + ' .resize-btn');
-            if($resizeBtn.hasClass('glyphicon-resize-full')) {
-                if($widget.attr("data-sizex") > gridWidth) {
-                    $widget.attr("data-sizex", gridWidth);
-                } else {
-                    $widget.attr("data-sizex", that.smallWidth);
-                }
-            } else {
-                $widget.attr("data-sizex", gridWidth);
-            }
         }
     };
 });
