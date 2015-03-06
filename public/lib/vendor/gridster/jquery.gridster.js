@@ -1340,7 +1340,7 @@
     };
 
     fn.resize_widget_mod = function($widget, size_x, size_y, new_col, callback) {
-        var fullWidth = size_x;
+        // var fullWidth = size_x;
         var wgd = $widget.coords().grid;
         var col = wgd.col;
         var max_cols = this.options.max_cols;
@@ -1366,7 +1366,7 @@
         var new_grid_data = {
             col: new_col,
             row: wgd.row,
-            size_x: fullWidth,
+            size_x: size_x,
             size_y: size_y
         };
 
@@ -2104,17 +2104,6 @@
         this.cells_occupied_by_placeholder = {};
         this.cells_occupied_by_player = {};
 
-        this.$widgets = this.$widgets.sort(function(a, b) {
-            var aRow = $(a).attr('data-row');
-            var aCol = $(a).attr('data-col');
-            var bRow = $(b).attr('data-row');
-            var bCol = $(b).attr('data-col');
-            if (aRow > bRow || aRow === bRow && aCol > bCol) {
-               return 1;
-            }
-            return -1;
-        });
-
         this.set_dom_grid_height();
         this.set_dom_grid_width();
 
@@ -2181,7 +2170,7 @@
 
         this.$resized_widget.addClass('resizing');
 
-		if (this.options.resize.start) {
+        if (this.options.resize.start) {
             this.options.resize.start.call(this, event, ui, this.$resized_widget);
         }
 
@@ -2601,14 +2590,14 @@
     */
     fn.is_empty = function(col, row) {
         if (typeof this.gridmap[col] !== 'undefined') {
-			if(typeof this.gridmap[col][row] !== 'undefined' &&
-				 this.gridmap[col][row] === false
-			) {
-				return true;
-			}
-			return false;
-		}
-		return true;
+            if(typeof this.gridmap[col][row] !== 'undefined' &&
+                 this.gridmap[col][row] === false
+            ) {
+                return true;
+            }
+            return false;
+        }
+        return true;
     };
 
 
@@ -4059,6 +4048,139 @@
         }
 
         return $widget;
+    };
+
+    fn.generate_grid_and_stylesheet_mod = function() {
+        var aw = this.$wrapper.width();
+        var max_cols = this.options.max_cols;
+
+        var cols = Math.floor(aw / this.min_widget_width) +
+                   this.options.extra_cols;
+
+        var actual_cols = this.$widgets.map(function() {
+            return $(this).attr('data-col');
+        }).get();
+
+        //needed to pass tests with phantomjs
+        actual_cols.length || (actual_cols = [0]);
+
+        var min_cols = Math.max.apply(Math, actual_cols);
+
+        this.cols = Math.max(min_cols, cols, this.options.min_cols);
+
+        if (max_cols !== Infinity && max_cols >= min_cols && max_cols < this.cols) {
+            this.cols = max_cols;
+        }
+
+        // get all rows that could be occupied by the current widgets
+        var max_rows = this.options.extra_rows;
+        this.$widgets.each(function(i, w) {
+            max_rows += (+$(w).attr('data-sizey'));
+        });
+
+        this.rows = Math.max(max_rows, this.options.min_rows);
+
+        this.baseX = ($(window).width() - aw) / 2;
+        this.baseY = this.$wrapper.offset().top;
+
+        if (this.options.autogenerate_stylesheet) {
+            this.generate_stylesheet_mod();
+        }
+
+        return this.generate_faux_grid(this.rows, this.cols);
+    };
+
+    fn.generate_stylesheet_mod = function(opts) {
+        var styles = '';
+        var max_size_x = this.options.max_size_x;
+        var max_rows = 0;
+        var max_cols = 0;
+        var i;
+        var rules;
+ 
+        opts || (opts = {});
+        opts.cols || (opts.cols = this.cols);
+        opts.rows || (opts.rows = this.rows);
+        opts.namespace || (opts.namespace = this.options.namespace);
+        opts.widget_base_dimensions || (opts.widget_base_dimensions = this.options.widget_base_dimensions);
+        opts.widget_margins || (opts.widget_margins = this.options.widget_margins);
+        opts.min_widget_width = (opts.widget_margins[0] * 2) +
+            opts.widget_base_dimensions[0];
+        opts.min_widget_height = (opts.widget_margins[1] * 2) +
+            opts.widget_base_dimensions[1];
+ 
+ 
+        /* generate CSS styles for cols */
+        for (i = opts.cols; i >= 0; i--) {
+            styles += (opts.namespace + ' [data-col="'+ (i + 1) + '"] { left:' +
+                ((i * opts.widget_base_dimensions[0]) +
+                (i * opts.widget_margins[0]) +
+                ((i + 1) * opts.widget_margins[0])) + 'px;} ');
+        }
+ 
+        /* generate CSS styles for rows */
+        for (i = opts.rows; i >= 0; i--) {
+            styles += (opts.namespace + ' [data-row="' + (i + 1) + '"] { top:' +
+                ((i * opts.widget_base_dimensions[1]) +
+                (i * opts.widget_margins[1]) +
+                ((i + 1) * opts.widget_margins[1]) ) + 'px;} ');
+        }
+ 
+        for (var y = 1; y <= opts.rows; y++) {
+            styles += (opts.namespace + ' [data-sizey="' + y + '"] { height:' +
+                (y * opts.widget_base_dimensions[1] +
+                (y - 1) * (opts.widget_margins[1] * 2)) + 'px;}');
+        }
+ 
+        for (var x = 1; x <= max_size_x; x++) {
+            styles += (opts.namespace + ' [data-sizex="' + x + '"] { width:' +
+                (x * opts.widget_base_dimensions[0] +
+                (x - 1) * (opts.widget_margins[0] * 2)) + 'px;}');
+        }
+ 
+        return this.add_style_tag_mod(styles);
+    };
+ 
+    fn.add_style_tag_mod = function(css) {
+        var d = document;
+        var tag = d.createElement('style');
+ 
+        tag.setAttribute('generated-from', 'gridster');
+ 
+        d.getElementsByTagName('head')[0].appendChild(tag);
+        tag.setAttribute('type', 'text/css');
+ 
+        if (tag.styleSheet) {
+            tag.styleSheet.cssText = css;
+        } else {
+            tag.appendChild(document.createTextNode(css));
+        }
+        return this;
+    };
+ 
+    fn.resize_widget_dimensions = function(options) {
+        if (options.widget_margins) {
+            this.options.widget_margins = options.widget_margins;
+        }
+ 
+        if (options.widget_base_dimensions) {
+             this.options.widget_base_dimensions = options.widget_base_dimensions;
+        }
+ 
+        this.min_widget_width  = (this.options.widget_margins[0] * 2) + this.options.widget_base_dimensions[0];
+        this.min_widget_height = (this.options.widget_margins[1] * 2) + this.options.widget_base_dimensions[1];
+ 
+        var serializedGrid = this.serialize();
+        this.$widgets.each($.proxy(function(i, widget) {
+            var $widget = $(widget);
+            this.resize_widget($widget);
+        }, this));
+ 
+        this.generate_grid_and_stylesheet_mod();
+        this.get_widgets_from_DOM();
+        this.set_dom_grid_height();
+ 
+        return false;
     };
 
 

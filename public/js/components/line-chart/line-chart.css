@@ -1,11 +1,5 @@
-.line-chart {
-  height: 100%;
-  width: 100%;
-}
-
-.line-chart svg {
-  height: 100%;
-  width: 100%;
+.line-chart canvas {
+  margin: 10px;
 }
 
 .line-chart .chart-container {
@@ -13,6 +7,7 @@
   margin: 10px;
   background-color: white;
   border-radius: 6px;
+  /*overflow: hidden;*/
 }
 
 .line-chart h3 {

@@ -12,13 +12,17 @@ define([
         "smallRow": 1,
     	"smallWidth": 2,
         "smallHeight": 2,
-        "fullWidth": 2,
+        "fullWidth": 8,
         "fullHeight": 2,
         render: function(options) {
             var params = options.params;
             this.id = "map-" + options.id;
             this.smallCol = options.startCol;
             this.smallRow = options.startRow;
+            this.smallWidth = options.smallWidth;
+            this.smallHeight = options.smallHeight;
+            this.fullWidth = options.fullWidth;
+            this.fullHeight = options.fullHeight;
             var mapViewTemplate = Handlebars.compile(MapHBS);
             var mapViewHTML = mapViewTemplate({
                 "id": this.id,
@@ -46,8 +50,6 @@ define([
                     $resizeBtn.removeClass('glyphicon-resize-full');
                     $resizeBtn.addClass('glyphicon-resize-small');
 
-                    that.fullWidth = Math.floor($('.gridster').width()/300);
-
                     that.storedCol = that.$el.attr("data-col");
 
                     grid.resize_widget_mod($resizeBtn.parent(), that.fullWidth, that.fullHeight, 1);
@@ -56,11 +58,11 @@ define([
                     $resizeBtn.addClass('glyphicon-resize-full');
                     $resizeBtn.removeClass('glyphicon-resize-small');
 
-                    if(parseInt(that.storedCol) > Math.floor($('.gridster').width()/300)) {
-                        grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, 1);
-                    } else {
+                    // if(parseInt(that.storedCol) > Math.floor($('.gridster').width()/300)) {
+                    //     grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, 1);
+                    // } else {
                         grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, parseInt(that.storedCol));
-                    }
+                    // }
                 }
             });
         },

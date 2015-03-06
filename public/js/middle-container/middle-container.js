@@ -3,11 +3,14 @@ define([
     'text!middle-container/middle-container.hbs',
     'components/percent-ring/percent-ring',
     'components/info-block/info-block',
+    'components/pie-chart/pie-chart',
+    'components/line-chart/line-chart',
+    'components/bar-chart/bar-chart',
     'components/table/table',
     'components/map/map',
     'handlebars',
     'bootstrap'
-], function ($, MiddleContainerHBS, PercentRingView, InfoBlockView, TableView, MapView, Handlebars) {
+], function ($, MiddleContainerHBS, PercentRingView, InfoBlockView, PieChartView, LineChartView, BarChartView, TableView, MapView, Handlebars) {
 
     'use strict';
 
@@ -23,9 +26,17 @@ define([
             this.populateTiles();
 
             var that = this;
+
+            var phDimensions = ($('.gridster').width()/8) - 10;
+            var marginWidth = phDimensions * .03;
+            var baseDimensions = phDimensions - (2*marginWidth);
+
             this.gridster = $('.gridster ul').gridster({
-                widget_margins: [10, 10],
-                widget_base_dimensions: [280, 280]
+                widget_base_dimensions: [baseDimensions, baseDimensions],
+                widget_margins: [marginWidth, marginWidth],
+                draggable: {
+                    handle: '.tile h4'
+                }
             }).data('gridster');
 
             this.postRenderTiles(this.gridster);
@@ -38,21 +49,74 @@ define([
                 "color": "green",
                 "startCol": 1,
                 "startRow": 1,
+                "smallWidth": 4,
+                "smallHeight": 2,
+                "fullWidth": 8,
+                "fullHeight": 4,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[7]
             });
             this.tiles.push(map);
 
-            // var pie = PieChartView;
-            // pie.render({
-            //     "id": 2,
-            //     "color": "red",
-            //     "startCol": 1,
-            //     "startRow": 1,
-            //     "parent": $('.gridster ul'),
-            //     "params": DataManager.tiles[2]
-            // });
-            // this.tiles.push(pie);
+            var pie = PieChartView;
+            pie.render({
+                "id": 2,
+                "color": "orange",
+                "startCol": 1,
+                "startRow": 1,
+                "smallWidth": 2,
+                "smallHeight": 2,
+                "fullWidth": 8,
+                "fullHeight": 4,
+                "parent": $('.gridster ul'),
+                "params": DataManager.tiles[2]
+            });
+            this.tiles.push(pie);
+
+            var line = LineChartView;
+            line.render({
+                "id": 1,
+                "color": "purple",
+                "startCol": 1,
+                "startRow": 1,
+                "smallWidth": 4,
+                "smallHeight": 2,
+                "fullWidth": 8,
+                "fullHeight": 4,
+                "parent": $('.gridster ul'),
+                "params": DataManager.tiles[4]
+            });
+            this.tiles.push(line);
+
+            var bar = BarChartView;
+            bar.render({
+                "id": 1,
+                "color": "red",
+                "startCol": 1,
+                "startRow": 1,
+                "smallWidth": 4,
+                "smallHeight": 2,
+                "fullWidth": 8,
+                "fullHeight": 4,
+                "parent": $('.gridster ul'),
+                "params": DataManager.tiles[1]
+            });
+            this.tiles.push(bar);
+
+            var ring = PercentRingView;
+            ring.render({
+                "id": 4,
+                "color": "red",
+                "startCol": 1,
+                "startRow": 1,
+                "smallWidth": 2,
+                "smallHeight": 1,
+                "fullWidth": 8,
+                "fullHeight": 4,
+                "parent": $('.gridster ul'),
+                "params": DataManager.tiles[0]
+            });
+            this.tiles.push(ring);
 
             var info = InfoBlockView;
             info.render({
@@ -60,28 +124,25 @@ define([
                 "color": "purple",
                 "startCol": 1,
                 "startRow": 1,
+                "smallWidth": 2,
+                "smallHeight": 1,
+                "fullWidth": 8,
+                "fullHeight": 4,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[6]
             });
             this.tiles.push(info);
 
-            var ring = PercentRingView;
-            ring.render({
-                "id": 4,
-                "color": "orange",
-                "startCol": 1,
-                "startRow": 1,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[0]
-            });
-            this.tiles.push(ring);
-
             var table1 = TableView;
             table1.render({
                 "id": 1,
                 "color": "blue",
-                "startCol": 3,
-                "startRow": 2,
+                "startCol": 1,
+                "startRow": 1,
+                "smallWidth": 8,
+                "smallHeight": 2,
+                "fullWidth": 8,
+                "fullHeight": 2,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[3]
             });
@@ -96,13 +157,18 @@ define([
                     tile.postRender(grid);
                 }
             });
-            this.resize();
+            // this.resize();
         },
         resize: function() {
-            $.each(this.tiles, function(index, tile) {
-                tile.updateWidth();
-            });
 
+            var phDimensions = ($('.gridster').width()/8) - 10;
+            var marginWidth = phDimensions * .03;
+            var baseDimensions = phDimensions - (2*marginWidth);
+
+            this.gridster.resize_widget_dimensions({
+                widget_base_dimensions: [baseDimensions, baseDimensions],
+                widget_margins: [marginWidth, marginWidth]
+            });
             this.gridster.generate_grid_and_stylesheet();
             this.gridster.get_widgets_from_DOM();
             this.gridster.set_dom_grid_height();

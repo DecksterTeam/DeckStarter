@@ -11,14 +11,18 @@ define([
         "smallCol": 1,
         "smallRow": 1,
         "smallWidth": 4,
-        "smallHeight": 1,
+        "smallHeight": 2,
         "fullWidth": 4,
-        "fullHeight": 2,
+        "fullHeight": 3,
         render: function(options) {
             var params = options.params;
             this.id = "table-" + options.id;
             this.smallCol = options.startCol;
             this.smallRow = options.startRow;
+            this.smallWidth = options.smallWidth;
+            this.smallHeight = options.smallHeight;
+            this.fullWidth = options.fullWidth;
+            this.fullHeight = options.fullHeight;
             var tableViewTemplate = Handlebars.compile(TableHBS);
             var tableViewHTML = tableViewTemplate({
                 "id": this.id,
@@ -41,15 +45,15 @@ define([
                 );
             });
 
-            $.each(params.data.values, function(index, value) {
+            for(var index = 1; index <= 25; index++) {
                 $('#' + that.id + ' .table-body').append(
                     '<tr>' +
-                        '<td>' + value.id + '</td>' +
-                        '<td>' + value.name + '</td>' +
-                        '<td>' + value.info + '</td>' +
+                        '<td>' + index + '</td>' +
+                        '<td>Item ' + index + '</td>' +
+                        '<td>This is Item ' + index + '</td>' +
                     '</tr>'
                 );
-            });
+            };
         },
         postRender: function(grid) {
             this.grid = grid;
@@ -66,23 +70,6 @@ define([
                     grid.resize_widget($resizeBtn.parent(), that.smallWidth, that.smallHeight);
                 }
             });
-        },
-        updateWidth: function() {
-            var that = this;
-            var gridWidth = Math.floor($('.gridster').width()/300);
-            var $widget = $(this.$el);
-            $widget.attr("data-col",1).attr("data-row",1);
-
-            var $resizeBtn = $('#' + this.id + ' .resize-btn');
-            if($resizeBtn.hasClass('glyphicon-resize-full')) {
-                if($widget.attr("data-sizex") > gridWidth) {
-                    $widget.attr("data-sizex", gridWidth);
-                } else {
-                    $widget.attr("data-sizex", that.smallWidth);
-                }
-            } else {
-                $widget.attr("data-sizex", gridWidth);
-            }
         }
     };
 });

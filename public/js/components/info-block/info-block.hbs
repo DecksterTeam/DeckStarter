@@ -1,8 +1,14 @@
 <li id="{{id}}" class="info-block tile {{color}}" data-row="{{row}}" data-col="{{col}}" data-sizex="{{sizex}}" data-sizey="{{sizey}}">
 	<span class="resize-btn glyphicon glyphicon-resize-full" aria-hidden="true"></span>
 	<h4>{{title}}</h4>
-	<div class="info-block-container">
-		<p class="info">{{info}}</p>
-		<p class="description">{{description}}</p>
+	<div class="tile-content-container">
+		<div class="info">
+			<svg viewBox="-1 -1 141 141">
+				<text x="70" y="90" font-size="80px" fill="white" text-anchor="middle">
+					{{info}}
+				</text>
+			</svg>
+		</div>
+		<span class="description">{{description}}</span>
 	</div>
 </li>
