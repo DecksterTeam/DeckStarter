@@ -33,7 +33,10 @@ define([
 
             this.gridster = $('.gridster ul').gridster({
                 widget_base_dimensions: [baseDimensions, baseDimensions],
-                widget_margins: [marginWidth, marginWidth]
+                widget_margins: [marginWidth, marginWidth],
+                draggable: {
+                    handle: '.tile h4'
+                }
             }).data('gridster');
 
             this.postRenderTiles(this.gridster);
