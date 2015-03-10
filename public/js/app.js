@@ -36,6 +36,17 @@ define([
                 "parent": $body
             });
 
+            $('#tabs a').on('click', function() {
+                var that = this;
+                $.each($('#tabs').children(), function(index, child) {
+                    if($(child).attr('id') !== $(that).attr('id')) {
+                        $(child).removeClass('active');
+                    }
+                });
+                $(this).parent().addClass('active');
+                middleContainerView.changeDashboard($(this).attr('id'));
+            });
+
             // var footerView = FooterView;
             // footerView.render({
             //     "parent": $body

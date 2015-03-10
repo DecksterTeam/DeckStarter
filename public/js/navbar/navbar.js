@@ -13,6 +13,14 @@ define([
             var navbarViewHTML = navbarViewTemplate();
             this.$el = $(navbarViewHTML);
             options.parent.append(this.$el);
+
+            $('.navbar-brand').on('click', function() {
+                console.log('brand');
+            });
+
+            $('#profile').on('click', function() {
+                console.log('profile');
+            });
         }
     };
 });
