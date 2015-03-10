@@ -10,9 +10,8 @@
 .percent-ring .percent-ring-container {
 	margin-left: auto;
 	margin-right: auto;
-	height: calc(100% - 50px);
+	height: calc(100% - 30px);
 	text-align: center;
-	margin-top: 10px;
 	margin-bottom: 10px;
 }
 
