@@ -27,7 +27,7 @@ define([
 
             var that = this;
 
-            var phDimensions = ($('.gridster').width()/8) - 10;
+            var phDimensions = ($('.gridster').width()/8) - 5;
             var marginWidth = phDimensions * .03;
             var baseDimensions = phDimensions - (2*marginWidth);
 
@@ -42,7 +42,18 @@ define([
             this.dashboards[this.currentDashboard].postRenderTiles(this.gridster);
         },
         resize: function() {
-            var phDimensions = ($('.gridster').width()/8) - 10;
+            var bodyWidth = $('body').width();
+            var fullTileWidth = 8;
+
+            // if(bodyWidth < 1000) {
+            //     console.log('<1000');
+            //     fullTileWidth = 4;
+            // } else {
+            //     console.log('full');
+            //     fullTileWidth = 8;
+            // }
+
+            var phDimensions = ($('.gridster').width()/fullTileWidth) - 5;
             var marginWidth = phDimensions * .03;
             var baseDimensions = phDimensions - (2*marginWidth);
 
@@ -50,12 +61,13 @@ define([
                 widget_base_dimensions: [baseDimensions, baseDimensions],
                 widget_margins: [marginWidth, marginWidth]
             });
+
+            this.dashboards[this.currentDashboard].resize(fullTileWidth);
+
             this.gridster.generate_grid_and_stylesheet();
             this.gridster.get_widgets_from_DOM();
             this.gridster.set_dom_grid_height();
             this.gridster.set_dom_grid_width();
-
-            this.dashboards[this.currentDashboard].resize();
         },
         changeDashboard: function(newDash) {
             $('.gridster').remove();

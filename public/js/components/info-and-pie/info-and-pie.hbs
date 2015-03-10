@@ -1,0 +1,30 @@
+<li id="{{id}}" class="info-and-pie tile {{color}}" data-row="{{row}}" data-col="{{col}}" data-sizex="{{sizex}}" data-sizey="{{sizey}}">
+	<span class="resize-btn glyphicon glyphicon-resize-full" aria-hidden="true"></span>
+	<h4>{{title}}</h4>
+	<div class="tile-content-container">
+		<div class="info">
+			<svg viewBox="-1 -1 141 70">
+				<text x="70" y="40" font-size="35px" fill="white" text-anchor="middle">
+					{{info}}
+				</text>
+				<text x="70" y="55" font-size="12px" fill="white" text-anchor="middle">
+					foo bar
+				</text>
+			</svg>
+			<hr>
+			<svg viewBox="-1 -1 141 70">
+				<text x="70" y="40" font-size="35px" fill="white" text-anchor="middle">
+					1000
+				</text>
+				<text x="70" y="55" font-size="12px" fill="white" text-anchor="middle">
+					foo barrrr
+				</text>
+			</svg>
+		</div>
+		{{!-- <span class="description">{{description}}</span> --}}
+		<div class="pie-chart-container">
+			<div class="pie-chart-legend"></div>
+			<div class="chart-container"></div>
+		</div>
+	</div>
+</li>

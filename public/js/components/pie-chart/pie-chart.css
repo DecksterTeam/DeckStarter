@@ -10,7 +10,7 @@
 	margin-top: 10px;
 }
 
-.pie-chart-legend {
+.pie-chart .pie-chart-legend {
 	display: inline-block;
 	/*float: left;*/
 	width: 100%;
@@ -19,7 +19,7 @@
 	overflow: hidden;
 }
 
-.pie-chart-legend span {
+.pie-chart .pie-chart-legend span {
 	display: inline-block;
  	font-size: 1em;
 	font-weight: normal;
