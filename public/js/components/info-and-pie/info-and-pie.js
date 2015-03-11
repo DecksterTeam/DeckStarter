@@ -46,31 +46,31 @@ define([
                     value: 100,
                     color:"#F7464A",
                     highlight: "#FF5A5E",
-                    label: "Label 1"
+                    label: "01"
                 },
                 {
                     value: 50,
                     color: "#46BFBD",
                     highlight: "#5AD3D1",
-                    label: "Label 2"
+                    label: "02"
                 },
                 {
                     value: 30,
                     color: "#862B59",
                     highlight: "#924069",
-                    label: "Label 3"
+                    label: "03"
                 },
                 {
                     value: 130,
                     color:"#7c699f",
                     highlight: "#8a79a9",
-                    label: "Label 4"
+                    label: "04"
                 },
                 {
                     value: 30,
                     color: "#FFA14F",
                     highlight: "#ffaf69",
-                    label: "Label 5"
+                    label: "05"
                 }
             ];
 

@@ -26,10 +26,10 @@ define([
                 "parent": $body
             });
 
-            // var sidebarLeftView = SidebarLeftView;
-            // sidebarLeftView.render({
-            //     "parent": $body
-            // });
+            var sidebarLeftView = SidebarLeftView;
+            sidebarLeftView.render({
+                "parent": $body
+            });
 
             var middleContainerView = MiddleContainerView;
             middleContainerView.render({
