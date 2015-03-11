@@ -93,20 +93,20 @@ define([
             });
             this.tiles.push(bar);
 
-            var ring = PercentRingView;
-            ring.render({
-                "id": 4,
-                "color": "red",
-                "startCol": 1,
-                "startRow": 1,
-                "smallWidth": 2,
-                "smallHeight": 2,
-                "fullWidth": 8,
-                "fullHeight": 4,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[0]
-            });
-            this.tiles.push(ring);
+            // var ring = PercentRingView;
+            // ring.render({
+            //     "id": 4,
+            //     "color": "red",
+            //     "startCol": 1,
+            //     "startRow": 1,
+            //     "smallWidth": 2,
+            //     "smallHeight": 2,
+            //     "fullWidth": 8,
+            //     "fullHeight": 4,
+            //     "parent": $('.gridster ul'),
+            //     "params": DataManager.tiles[0]
+            // });
+            // this.tiles.push(ring);
 
             // var info = InfoBlockView;
             // info.render({
