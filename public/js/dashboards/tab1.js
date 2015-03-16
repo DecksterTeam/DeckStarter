@@ -18,125 +18,81 @@ define([
     return {
         tiles: [],
         populateTiles: function(grid) {
-            var infoAndPie = InfoAndPieView;
-            infoAndPie.render({
-                "id": 3,
-                "color": "blue",
-                "startCol": 1,
-                "startRow": 1,
-                "smallWidth": 4,
-                "smallHeight": 2,
-                "fullWidth": 8,
-                "fullHeight": 4,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[6]
-            });
-            this.tiles.push(infoAndPie);
-
             var map = MapView;
             map.render({
                 "id": 1,
                 "color": "green",
                 "startCol": 1,
                 "startRow": 1,
-                "smallWidth": 4,
-                "smallHeight": 2,
-                "fullWidth": 8,
+                "smallWidth": 8,
+                "smallHeight": 4,
+                "fullWidth": 12,
                 "fullHeight": 4,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[7]
             });
             this.tiles.push(map);
 
-            // var pie = PieChartView;
-            // pie.render({
-            //     "id": 2,
-            //     "color": "orange",
-            //     "startCol": 1,
-            //     "startRow": 1,
-            //     "smallWidth": 2,
-            //     "smallHeight": 2,
-            //     "fullWidth": 8,
-            //     "fullHeight": 4,
-            //     "parent": $('.gridster ul'),
-            //     "params": DataManager.tiles[2]
-            // });
-            // this.tiles.push(pie);
-
-            var line = LineChartView;
-            line.render({
-                "id": 1,
+            var info = InfoBlockView;
+            info.render({
+                "id": 3,
                 "color": "purple",
                 "startCol": 1,
                 "startRow": 1,
-                "smallWidth": 4,
+                "smallWidth": 2,
                 "smallHeight": 2,
-                "fullWidth": 8,
+                "fullWidth": 12,
                 "fullHeight": 4,
                 "parent": $('.gridster ul'),
-                "params": DataManager.tiles[4]
+                "params": DataManager.tiles[6]
             });
-            this.tiles.push(line);
+            this.tiles.push(info);
+
+            var ring = PercentRingView;
+            ring.render({
+                "id": 4,
+                "color": "orange",
+                "startCol": 1,
+                "startRow": 1,
+                "smallWidth": 2,
+                "smallHeight": 2,
+                "fullWidth": 12,
+                "fullHeight": 4,
+                "parent": $('.gridster ul'),
+                "params": DataManager.tiles[0]
+            });
+            this.tiles.push(ring);
+
+            var table = TableView;
+            table.render({
+                "id": 1,
+                "title": "Table",
+                "color": "blue",
+                "startCol": 1,
+                "startRow": 1,
+                "smallWidth": 4,
+                "smallHeight": 4,
+                "fullWidth": 12,
+                "fullHeight": 4,
+                "parent": $('.gridster ul'),
+                "params": DataManager.tiles[3]
+            });
+            this.tiles.push(table);
 
             var bar = BarChartView;
             bar.render({
                 "id": 1,
                 "color": "red",
                 "startCol": 1,
-                "startRow": 1,
-                "smallWidth": 4,
+                "startRow": 9,
+                "smallWidth": 8,
                 "smallHeight": 2,
-                "fullWidth": 8,
+                "fullWidth": 12,
                 "fullHeight": 4,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[1]
             });
             this.tiles.push(bar);
-
-            // var ring = PercentRingView;
-            // ring.render({
-            //     "id": 4,
-            //     "color": "red",
-            //     "startCol": 1,
-            //     "startRow": 1,
-            //     "smallWidth": 2,
-            //     "smallHeight": 2,
-            //     "fullWidth": 8,
-            //     "fullHeight": 4,
-            //     "parent": $('.gridster ul'),
-            //     "params": DataManager.tiles[0]
-            // });
-            // this.tiles.push(ring);
-
-            // var info = InfoBlockView;
-            // info.render({
-            //     "id": 3,
-            //     "color": "purple",
-            //     "startCol": 1,
-            //     "startRow": 1,
-            //     "smallWidth": 2,
-            //     "smallHeight": 1,
-            //     "fullWidth": 8,
-            //     "fullHeight": 4,
-            //     "parent": $('.gridster ul'),
-            //     "params": DataManager.tiles[6]
-            // });
-            // this.tiles.push(info);
-
-            // var table = TableView;
-            // table.render({
-            //     "id": 1,
-            //     "color": "blue",
-            //     "startCol": 1,
-            //     "startRow": 1,
-            //     "smallWidth": 8,
-            //     "smallHeight": 2,
-            //     "fullWidth": 8,
-            //     "fullHeight": 2,
-            //     "parent": $('.gridster ul'),
-            //     "params": DataManager.tiles[3]
-            // });
-            // this.tiles.push(table);
         },
         postRenderTiles: function(grid) {
             $.each(this.tiles, function(index, tile) {

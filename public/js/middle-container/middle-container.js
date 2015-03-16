@@ -27,7 +27,7 @@ define([
 
             var that = this;
 
-            var phDimensions = ($('.gridster').width()/8) - 5;
+            var phDimensions = ($('.gridster').width()/12) - 5;
             var marginWidth = phDimensions * .03;
             var baseDimensions = phDimensions - (2*marginWidth);
 
@@ -43,15 +43,7 @@ define([
         },
         resize: function() {
             var bodyWidth = $('body').width();
-            var fullTileWidth = 8;
-
-            // if(bodyWidth < 1000) {
-            //     console.log('<1000');
-            //     fullTileWidth = 4;
-            // } else {
-            //     console.log('full');
-            //     fullTileWidth = 8;
-            // }
+            var fullTileWidth = 12;
 
             var phDimensions = ($('.gridster').width()/fullTileWidth) - 5;
             var marginWidth = phDimensions * .03;

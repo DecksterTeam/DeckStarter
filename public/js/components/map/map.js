@@ -2,8 +2,9 @@ define([
     'jquery',
     'text!components/map/map.hbs',
     'handlebars',
+    'radio',
     'bootstrap'
-], function ($, MapHBS, Handlebars) {
+], function ($, MapHBS, Handlebars, Radio) {
 
     'use strict';
 
@@ -15,6 +16,7 @@ define([
         "fullWidth": 8,
         "fullHeight": 2,
         render: function(options) {
+            var mapURL = 'https://meridianjs.com:3000/modes/embedded/';
             var params = options.params;
             this.id = "map-" + options.id;
             this.smallCol = options.startCol;
@@ -34,12 +36,16 @@ define([
                 "col": this.smallCol,
                 "row": this.smallRow,
                 "sizex": this.smallWidth,
-                "sizey": this.smallHeight
+                "sizey": this.smallHeight,
+                "mapURL": mapURL
             });
             this.$el = $(mapViewHTML);
             options.parent.append(this.$el);
 
             window.addEventListener("message", receiveMessage, false);
+
+            // Radio('btnClick').subscribe(function(){console.log('hi')});
+            // Radio('btnClick').broadcast();
         },
         postRender: function(grid) {
             this.grid = grid;
@@ -65,23 +71,6 @@ define([
                     // }
                 }
             });
-        },
-        updateWidth: function() {
-            var that = this;
-            var gridWidth = Math.floor($('.gridster').width()/300);
-            var $widget = $(this.$el);
-            $widget.attr("data-col",1).attr("data-row",1);
-
-            var $resizeBtn = $('#' + this.id + ' .resize-btn');
-            if($resizeBtn.hasClass('glyphicon-resize-full')) {
-                if(parseInt($widget.attr("data-sizex")) > gridWidth) {
-                    $widget.attr("data-sizex", gridWidth);
-                } else {
-                    $widget.attr("data-sizex", that.smallWidth);
-                }
-            } else {
-                $widget.attr("data-sizex", gridWidth);
-            }
         }
     };
 
@@ -91,33 +80,35 @@ define([
             message: message
         };
         document.getElementById('embed-map').contentWindow.postMessage(toSend, 
-            "https://meridianjs.com:3000/modes/basic/");
+            'https://meridianjs.com:3000/modes/embedded/');
     }
 
     function receiveMessage(event) {
-        sendMessage("map.feature.plot", {
-            "overlayId":"testOverlayId1",
-            "name":"Test Name 1",
-            "format":"geojson",
-            "feature": {
-                "type":"FeatureCollection",
-                "features":[
-                    {
-                        "type": "Feature",
-                        "geometry": {
-                            "type": "Point",
-                            "coordinates": [0.0, 10.0]
-                        },
-                        "properties": {
-                            "featureId": "f1"
+        if(event.data.channel === 'map.status.ready') {
+            sendMessage("map.feature.plot", {
+                "overlayId":"testOverlayId1",
+                "name":"Test Name 1",
+                "format":"geojson",
+                "feature": {
+                    "type":"FeatureCollection",
+                    "features":[
+                        {
+                            "type": "Feature",
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [0.0, 10.0]
+                            },
+                            "properties": {
+                                "featureId": "f1"
+                            }
                         }
-                    }
-                ]
-            },
-            "zoom":false,
-            "dataZoom": false,
-            "readOnly":false
-        });
+                    ]
+                },
+                "zoom":true,
+                "dataZoom": false,
+                "readOnly":false
+            });
+        }
     }
 
 });
