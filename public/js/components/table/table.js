@@ -55,7 +55,9 @@ define([
                 );
             };
 
-            $('#' + that.id + ' tr').on('click', function() {
+            $('#' + that.id + ' .table-body tr').on('click', function(event) {
+                $('#' + that.id + ' tr.active').removeClass('active');
+                $(this).addClass('active');
                 Radio('plotOnMap').broadcast();
             });
         },

@@ -84,11 +84,14 @@ define([
         if(event.data.channel === 'map.status.ready') {
             $('#map-1 .loading-label').css('display', 'none');
 
+            var count = 0;
+
             Radio('plotOnMap').subscribe(function() {
+                count++;
                 sendMessage("map.clear", {});
                 sendMessage("map.feature.plot", {
-                    "overlayId":"testOverlayId1",
-                    "name":"Test Name 1",
+                    "overlayId":"testOverlayId" + count,
+                    "name":"Test Name " + count,
                     "format":"geojson",
                     "feature": {
                         "type":"FeatureCollection",
@@ -97,15 +100,15 @@ define([
                                 "type": "Feature",
                                 "geometry": {
                                     "type": "Point",
-                                    "coordinates": [0.0, 10.0]
+                                    "coordinates": [0.0, count]
                                 },
                                 "properties": {
-                                    "featureId": "f1"
+                                    "featureId": "f" + count
                                 }
                             }
                         ]
                     },
-                    "zoom":true,
+                    "zoom":false,
                     "dataZoom": false,
                     "readOnly":false
                 });
