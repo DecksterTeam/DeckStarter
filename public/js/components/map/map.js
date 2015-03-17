@@ -68,6 +68,10 @@ define([
                     // }
                 }
             });
+        },
+        remove: function() {
+            Radio('plotOnMap').unsubscribe(plotOnMap);
+            this.$el.remove();
         }
     };
 
@@ -84,35 +88,42 @@ define([
         if(event.data.channel === 'map.status.ready') {
             $('#map-1 .loading-label').css('display', 'none');
 
-            var count = 0;
-
-            Radio('plotOnMap').subscribe(function() {
-                count++;
-                sendMessage("map.clear", {});
-                sendMessage("map.feature.plot", {
-                    "overlayId":"testOverlayId" + count,
-                    "name":"Test Name " + count,
-                    "format":"geojson",
-                    "feature": {
-                        "type":"FeatureCollection",
-                        "features":[
-                            {
-                                "type": "Feature",
-                                "geometry": {
-                                    "type": "Point",
-                                    "coordinates": [0.0, count]
-                                },
-                                "properties": {
-                                    "featureId": "f" + count
-                                }
-                            }
-                        ]
-                    },
-                    "zoom":false,
-                    "dataZoom": false,
-                    "readOnly":false
-                });
-            });
+            Radio('plotOnMap').subscribe(plotOnMap);
         }
+    }
+
+    function plotOnMap() {
+        sendMessage("map.clear", {});
+        sendMessage("map.feature.plot", {
+            "overlayId":"testOverlayId " + generateRandomData(0,9999),
+            "name":"Test Name",
+            "format":"geojson",
+            "feature": {
+                "type":"FeatureCollection",
+                "features":[
+                    {
+                        "type": "Feature",
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [generateRandomData(0,10), generateRandomData(0,10)]
+                        },
+                        "properties": {
+                            "featureId": "f1"
+                        }
+                    }
+                ]
+            },
+            "zoom":false,
+            "dataZoom": false,
+            "readOnly":false
+        });
+    }
+
+    function generateRandomData(x, y) {
+        var dataArray = [];
+        for(var i = 0; i < 7; i++) {
+            dataArray.push(Math.floor(Math.random() * ((y-x)+1) + x));
+        }
+        return dataArray;
     }
 });
