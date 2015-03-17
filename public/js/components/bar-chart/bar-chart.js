@@ -38,21 +38,9 @@ define([
             this.$el = $(barChartViewHTML);
             options.parent.append(this.$el);
 
-            // this.setNewData();
+            this.setNewData();
 
-            var that = this;
-
-            setTimeout(function() {
-                that.addChart(that.id);
-            }, 300);
-
-            Radio('plotOnMap').subscribe(function() {
-                that.setNewData();
-                $('#' + that.id + ' .chart-container canvas').remove();
-                setTimeout(function() {
-                    that.addChart(that.id);
-                }, 300);
-            });
+            Radio('plotOnMap').subscribe([this.setNewData, this]);
         },
         postRender: function(grid) {
             this.grid = grid;
@@ -66,7 +54,7 @@ define([
                     that.storedCol = that.$el.attr("data-col");
 
                     grid.resize_widget_mod($resizeBtn.parent(), that.fullWidth, that.fullHeight, 1, function() {
-                        $('#' + that.id + ' .chart-container canvas').remove();
+                        $('#' + that.id + ' .chart-container').empty();
                         setTimeout(function() {
                             that.addChart(that.id);
                         }, 300);
@@ -77,7 +65,7 @@ define([
                     $resizeBtn.removeClass('glyphicon-resize-small');
 
                     grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, parseInt(that.storedCol), function() {
-                        $('#' + that.id + ' .chart-container canvas').remove();
+                        $('#' + that.id + ' .chart-container').empty();
                         setTimeout(function() {
                             that.addChart(that.id);
                         }, 300);
@@ -85,32 +73,33 @@ define([
                 }
             });
         },
+        remove: function() {
+            Radio('plotOnMap').unsubscribe(this.setNewData);
+            $('#' + this.id + ' .chart-container').empty();
+            this.$el.remove();
+        },
         postResize: function() {
             var that = this;
-            $('#' + that.id + ' .chart-container canvas').remove();
+            $('#' + that.id + ' .chart-container').empty();
             setTimeout(function() {
                 that.addChart(that.id);
             }, 300);
         },
         addChart: function(id) {
-            if(this.data) {
-                var options = {};
+            var options = {};
 
-                var that = this;
+            var that = this;
 
-                var newHeight = $('#' + that.id + ' .chart-container').height() - 20;
-                var newWidth = $('#' + that.id + ' .chart-container').width() - 20;
+            var newHeight = $('#' + that.id + ' .chart-container').height() - 20;
+            var newWidth = $('#' + that.id + ' .chart-container').width() - 20;
 
-                $('#' + that.id + ' .chart-container').append('<canvas width="' + newWidth + '" height="' + newHeight + '"></canvas>');
+            $('#' + that.id + ' .chart-container').append('<canvas width="' + newWidth + '" height="' + newHeight + '"></canvas>');
 
-                var $canvas = $('#' + that.id + ' canvas');
-                var ctx = $canvas.get(0).getContext("2d");
-                var barChart = new Chart(ctx).Bar(that.data, options);
-            }
+            var $canvas = $('#' + that.id + ' canvas');
+            var ctx = $canvas.get(0).getContext("2d");
+            var barChart = new Chart(ctx).Bar(that.data, options);
         },
         setNewData: function() {
-            $('#' + this.id + ' .chart-container .no-data-label').css('display', 'none');
-
             this.data = {
                 labels: ["January", "February", "March", "April", "May", "June", "July"],
                 datasets: [
@@ -124,6 +113,12 @@ define([
                     }
                 ]
             };
+
+            var that = this;
+            $('#' + that.id + ' .chart-container').empty();
+            setTimeout(function() {
+                that.addChart(that.id);
+            }, 300);
         }
     };
 

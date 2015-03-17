@@ -17,65 +17,65 @@ define([
     return {
         tiles: [],
         populateTiles: function(grid) {
-            var map = MapView;
-            map.render({
-                "id": 1,
-                "color": "green",
-                "startCol": 1,
-                "startRow": 1,
-                "smallWidth": 6,
-                "smallHeight": 4,
-                "fullWidth": 8,
-                "fullHeight": 4,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[7]
-            });
-            this.tiles.push(map);
+            // var map = MapView;
+            // map.render({
+            //     "id": 1,
+            //     "color": "green",
+            //     "startCol": 1,
+            //     "startRow": 1,
+            //     "smallWidth": 6,
+            //     "smallHeight": 4,
+            //     "fullWidth": 8,
+            //     "fullHeight": 4,
+            //     "parent": $('.gridster ul'),
+            //     "params": DataManager.tiles[7]
+            // });
+            // this.tiles.push(map);
 
-            var ring = PercentRingView;
-            ring.render({
-                "id": 4,
-                "color": "purple",
-                "startCol": 1,
-                "startRow": 1,
-                "smallWidth": 2,
-                "smallHeight": 1,
-                "fullWidth": 8,
-                "fullHeight": 4,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[0]
-            });
-            this.tiles.push(ring);
+            // var ring = PercentRingView;
+            // ring.render({
+            //     "id": 4,
+            //     "color": "purple",
+            //     "startCol": 1,
+            //     "startRow": 1,
+            //     "smallWidth": 2,
+            //     "smallHeight": 1,
+            //     "fullWidth": 8,
+            //     "fullHeight": 4,
+            //     "parent": $('.gridster ul'),
+            //     "params": DataManager.tiles[0]
+            // });
+            // this.tiles.push(ring);
 
-            var pie = PieChartView;
-            pie.render({
-                "id": 2,
-                "color": "orange",
-                "startCol": 1,
-                "startRow": 1,
-                "smallWidth": 2,
-                "smallHeight": 2,
-                "fullWidth": 8,
-                "fullHeight": 4,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[2]
-            });
-            this.tiles.push(pie);
+            // var pie = PieChartView;
+            // pie.render({
+            //     "id": 2,
+            //     "color": "orange",
+            //     "startCol": 1,
+            //     "startRow": 1,
+            //     "smallWidth": 2,
+            //     "smallHeight": 2,
+            //     "fullWidth": 8,
+            //     "fullHeight": 4,
+            //     "parent": $('.gridster ul'),
+            //     "params": DataManager.tiles[2]
+            // });
+            // this.tiles.push(pie);
 
-            var info = InfoBlockView;
-            info.render({
-                "id": 3,
-                "color": "blue",
-                "startCol": 1,
-                "startRow": 1,
-                "smallWidth": 2,
-                "smallHeight": 1,
-                "fullWidth": 8,
-                "fullHeight": 4,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[6]
-            });
-            this.tiles.push(info);
+            // var info = InfoBlockView;
+            // info.render({
+            //     "id": 3,
+            //     "color": "blue",
+            //     "startCol": 1,
+            //     "startRow": 1,
+            //     "smallWidth": 2,
+            //     "smallHeight": 1,
+            //     "fullWidth": 8,
+            //     "fullHeight": 4,
+            //     "parent": $('.gridster ul'),
+            //     "params": DataManager.tiles[6]
+            // });
+            // this.tiles.push(info);
         },
         postRenderTiles: function(grid) {
             $.each(this.tiles, function(index, tile) {

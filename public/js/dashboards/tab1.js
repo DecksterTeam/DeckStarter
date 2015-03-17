@@ -103,7 +103,11 @@ define([
         },
         removeTiles: function() {
             $.each(this.tiles, function(index, tile) {
-                tile.$el.remove();
+                if(tile.remove) {
+                    tile.remove();
+                } else {
+                    tile.$el.remove(); 
+                }
             });
             this.tiles = [];
         },
