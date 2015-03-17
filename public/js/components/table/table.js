@@ -2,8 +2,9 @@ define([
     'jquery',
     'text!components/table/table.hbs',
     'handlebars',
+    'radio',
     'bootstrap'
-], function ($, TableHBS, Handlebars) {
+], function ($, TableHBS, Handlebars, Radio) {
 
     'use strict';
 
@@ -53,6 +54,10 @@ define([
                     '</tr>'
                 );
             };
+
+            $('#' + that.id + ' tr').on('click', function() {
+                Radio('plotOnMap').broadcast();
+            });
         },
         postRender: function(grid) {
             this.grid = grid;

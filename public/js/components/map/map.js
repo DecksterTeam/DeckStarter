@@ -18,7 +18,7 @@ define([
         render: function(options) {
             var mapURL = 'https://meridianjs.com:3000/modes/embedded/';
             var params = options.params;
-            this.id = "map-" + options.id;
+            this.id = "map-1";
             this.smallCol = options.startCol;
             this.smallRow = options.startRow;
             this.smallWidth = options.smallWidth;
@@ -43,9 +43,6 @@ define([
             options.parent.append(this.$el);
 
             window.addEventListener("message", receiveMessage, false);
-
-            // Radio('btnClick').subscribe(function(){console.log('hi')});
-            // Radio('btnClick').broadcast();
         },
         postRender: function(grid) {
             this.grid = grid;
@@ -85,30 +82,34 @@ define([
 
     function receiveMessage(event) {
         if(event.data.channel === 'map.status.ready') {
-            sendMessage("map.feature.plot", {
-                "overlayId":"testOverlayId1",
-                "name":"Test Name 1",
-                "format":"geojson",
-                "feature": {
-                    "type":"FeatureCollection",
-                    "features":[
-                        {
-                            "type": "Feature",
-                            "geometry": {
-                                "type": "Point",
-                                "coordinates": [0.0, 10.0]
-                            },
-                            "properties": {
-                                "featureId": "f1"
+            $('#map-1 .loading-label').css('display', 'none');
+
+            Radio('plotOnMap').subscribe(function() {
+                sendMessage("map.clear", {});
+                sendMessage("map.feature.plot", {
+                    "overlayId":"testOverlayId1",
+                    "name":"Test Name 1",
+                    "format":"geojson",
+                    "feature": {
+                        "type":"FeatureCollection",
+                        "features":[
+                            {
+                                "type": "Feature",
+                                "geometry": {
+                                    "type": "Point",
+                                    "coordinates": [0.0, 10.0]
+                                },
+                                "properties": {
+                                    "featureId": "f1"
+                                }
                             }
-                        }
-                    ]
-                },
-                "zoom":true,
-                "dataZoom": false,
-                "readOnly":false
+                        ]
+                    },
+                    "zoom":true,
+                    "dataZoom": false,
+                    "readOnly":false
+                });
             });
         }
     }
-
 });
