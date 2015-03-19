@@ -26,7 +26,7 @@ define([
             var lineChartViewTemplate = Handlebars.compile(LineChartHBS);
             var lineChartViewHTML = lineChartViewTemplate({
                 "id": this.id,
-                "title": params.title,
+                "title": "Line Chart",
                 "description": params.description,
                 "color": options.color || params.color,
                 "col": this.smallCol,
