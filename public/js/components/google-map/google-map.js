@@ -1,6 +1,6 @@
 define([
     'jquery',
-    'text!components/map/map.hbs',
+    'text!components/google-map/google-map.hbs',
     'handlebars',
     'radio',
     'bootstrap'
@@ -16,7 +16,7 @@ define([
         "fullWidth": 8,
         "fullHeight": 2,
         render: function(options) {
-            var mapURL = 'https://meridianjs.com:3000/modes/embedded/';
+            var mapURL = 'https://www.google.com/maps/embed/v1/search?key=AIzaSyC_oaxmPFs7aQIWVPEDeMErEfh_daoD0qU';
             var params = options.params;
             this.id = "map-1";
             this.smallCol = options.startCol;
@@ -42,7 +42,8 @@ define([
             this.$el = $(mapViewHTML);
             options.parent.append(this.$el);
 
-            window.addEventListener("message", receiveMessage, false);
+            this.addMap();
+            Radio('plotOnMap').subscribe([this.plot, this]);
         },
         postRender: function(grid) {
             this.grid = grid;
@@ -70,55 +71,59 @@ define([
             });
         },
         remove: function() {
-            window.removeEventListener("message", receiveMessage, false);
-            Radio('plotOnMap').unsubscribe(plotOnMap);
+            Radio('plotOnMap').unsubscribe(this.plot);
             this.$el.remove();
+        },
+        addMap: function() {
+            var mapOptions = {
+                zoom: 4,
+                center: new google.maps.LatLng(0,0)
+            };
+
+            this.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+            this.markers = [];
+        },
+        plot: function(data) {
+            var that = this;
+            that.clear();
+
+            var myLatlng = new google.maps.LatLng(
+                generateRandomData(0,10),
+                generateRandomData(0,10)
+            );
+
+            var contentString = '<div id="content">'+
+                '<div id="siteNotice">'+
+                '</div>'+
+                '<h1 id="firstHeading" class="firstHeading">Something</h1>'+
+                '<div id="bodyContent">'+
+                '<p>This is dummy conent.</p>'+
+                '</div>'+
+                '</div>';
+
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: that.map,
+                title: 'Uluru (Ayers Rock)'
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(that.map, marker);
+            });
+
+            this.markers.push(marker);
+        },
+        clear: function() {
+            var that = this;
+            for (var i = 0; i < this.markers.length; i++) {
+                console.log(that.markers[i]);
+                that.markers[i].setMap(null);
+            }
         }
     };
-
-    function sendMessage(channel, message) {
-        var toSend = {
-            channel: channel,
-            message: message
-        };
-        document.getElementById('embed-map').contentWindow.postMessage(toSend, 
-            'https://meridianjs.com:3000/modes/embedded/');
-    }
-
-    function receiveMessage(event) {
-        if(event.data.channel === 'map.status.ready') {
-            $('#map-1 .loading-label').css('display', 'none');
-
-            Radio('plotOnMap').subscribe(plotOnMap);
-        }
-    }
-
-    function plotOnMap() {
-        sendMessage("map.clear", {});
-        sendMessage("map.feature.plot", {
-            "overlayId":"testOverlayId " + generateRandomData(0,9999),
-            "name":"Test Name",
-            "format":"geojson",
-            "feature": {
-                "type":"FeatureCollection",
-                "features":[
-                    {
-                        "type": "Feature",
-                        "geometry": {
-                            "type": "Point",
-                            "coordinates": [generateRandomData(0,10), generateRandomData(0,10)]
-                        },
-                        "properties": {
-                            "featureId": "f1"
-                        }
-                    }
-                ]
-            },
-            "zoom":false,
-            "dataZoom": false,
-            "readOnly":false
-        });
-    }
 
     function generateRandomData(x, y) {
         return Math.floor(Math.random() * ((y-x)+1) + x);

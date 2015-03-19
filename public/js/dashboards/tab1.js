@@ -8,7 +8,7 @@ define([
     'components/line-chart/line-chart',
     'components/bar-chart/bar-chart',
     'components/table/table',
-    'components/map/map',
+    'components/google-map/google-map',
     'handlebars',
     'bootstrap'
 ], function ($, MiddleContainerHBS, InfoAndPieView, PercentRingView, InfoBlockView, PieChartView, LineChartView, BarChartView, TableView, MapView, Handlebars) {
@@ -113,8 +113,6 @@ define([
         },
         resize: function(newFullWidth) {
             $.each(this.tiles, function(index, tile) {
-                // tile.$el.attr('data-col', 1).attr('data-row', 1);
-                // tile.fullWidth = newFullWidth;
                 if(tile.postResize) {
                     tile.postResize();
                 }

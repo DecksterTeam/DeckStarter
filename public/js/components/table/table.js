@@ -56,7 +56,6 @@ define([
             };
 
             $('#' + that.id + ' .table-body tr').on('click', function(event) {
-                console.log('here');
                 $('#' + that.id + ' tr.active').removeClass('active');
                 $(this).addClass('active');
                 Radio('plotOnMap').broadcast();
