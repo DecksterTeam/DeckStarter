@@ -304,5 +304,282 @@
       "height": "",
       "width": ""
     }
-  ]
+  ],
+
+  "rawData": {
+    "tableHeaders": ["ID", "Count"],
+    "tableData": [
+      {
+        "id": "1",
+        "count": 11,
+        "data": [
+          {
+            "January": 2
+          },
+          {
+            "February": 3
+          },
+          {
+            "March": 1
+          },
+          {
+            "April": 0
+          },
+          {
+            "May": 0
+          },
+          {
+            "June": 5
+          },
+          {
+            "July": 0
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "count": 23,
+        "data": [
+          {
+            "January": 5
+          },
+          {
+            "February": 4
+          },
+          {
+            "March": 4
+          },
+          {
+            "April": 5
+          },
+          {
+            "May": 2
+          },
+          {
+            "June": 1
+          },
+          {
+            "July": 2
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "count": 4,
+        "data": [
+          {
+            "January": 2
+          },
+          {
+            "February": 1
+          },
+          {
+            "March": 1
+          },
+          {
+            "April": 0
+          },
+          {
+            "May": 0
+          },
+          {
+            "June": 0
+          },
+          {
+            "July": 0
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "count": 46,
+        "data": [
+          {
+            "January": 2
+          },
+          {
+            "February": 18
+          },
+          {
+            "March": 17
+          },
+          {
+            "April": 3
+          },
+          {
+            "May": 3
+          },
+          {
+            "June": 1
+          },
+          {
+            "July": 2
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "count": 10,
+        "data": [
+          {
+            "January": 1
+          },
+          {
+            "February": 1
+          },
+          {
+            "March": 1
+          },
+          {
+            "April": 1
+          },
+          {
+            "May": 2
+          },
+          {
+            "June": 2
+          },
+          {
+            "July": 2
+          }
+        ]
+      },
+      {
+        "id": "6",
+        "count": 5,
+        "data": [
+          {
+            "January": 0
+          },
+          {
+            "February": 3
+          },
+          {
+            "March": 0
+          },
+          {
+            "April": 0
+          },
+          {
+            "May": 0
+          },
+          {
+            "June": 1
+          },
+          {
+            "July": 1
+          }
+        ]
+      },
+      {
+        "id": "7",
+        "count": 7,
+        "data": [
+          {
+            "January": 4
+          },
+          {
+            "February": 2
+          },
+          {
+            "March": 1
+          },
+          {
+            "April": 0
+          },
+          {
+            "May": 0
+          },
+          {
+            "June": 0
+          },
+          {
+            "July": 0
+          }
+        ]
+      },
+      {
+        "id": "8",
+        "count": 9,
+        "data": [
+          {
+            "January": 0
+          },
+          {
+            "February": 1
+          },
+          {
+            "March": 2
+          },
+          {
+            "April": 3
+          },
+          {
+            "May": 3
+          },
+          {
+            "June": 0
+          },
+          {
+            "July": 0
+          }
+        ]
+      },
+      {
+        "id": "9",
+        "count": 1,
+        "data": [
+          {
+            "January": 0
+          },
+          {
+            "February": 0
+          },
+          {
+            "March": 0
+          },
+          {
+            "April": 0
+          },
+          {
+            "May": 1
+          },
+          {
+            "June": 0
+          },
+          {
+            "July": 0
+          }
+        ]
+      },
+      {
+        "id": "10",
+        "count": 3,
+        "data": [
+          {
+            "January": 0
+          },
+          {
+            "February": 0
+          },
+          {
+            "March": 1
+          },
+          {
+            "April": 0
+          },
+          {
+            "May": 2
+          },
+          {
+            "June": 0
+          },
+          {
+            "July": 0
+          }
+        ]
+      }
+    ]
+  }
+
 }

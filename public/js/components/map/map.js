@@ -96,7 +96,7 @@ define([
     function plotOnMap() {
         sendMessage("map.clear", {});
         sendMessage("map.feature.plot", {
-            "overlayId":"testOverlayId " + generateRandomData(0,9999),
+            "overlayId":"testOverlayId" + generateRandomData(0,9999),
             "name":"Test Name",
             "format":"geojson",
             "feature": {
