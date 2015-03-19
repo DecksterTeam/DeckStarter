@@ -100,14 +100,12 @@ define([
             }
         },
         setNewData: function(data) {
-            console.log(data);
-
             var labels = [];
             var dataCount = [];
 
             $.each(data.data, function(index, obj){
                 labels.push(obj.key);
-                dataCount.push(obj.value);
+                dataCount.push(obj.values.length);
             });
 
             this.data = {

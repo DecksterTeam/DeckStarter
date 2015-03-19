@@ -87,34 +87,41 @@ define([
             var that = this;
             that.clear();
 
-            var myLatlng = new google.maps.LatLng(
-                generateRandomData(0,10),
-                generateRandomData(0,10)
-            );
+            $.each(data.data, function(i, obj){
+                $.each(obj.values, function(j, val){
 
-            var contentString = '<div id="content">'+
-                '<div id="siteNotice">'+
-                '</div>'+
-                '<h1 id="firstHeading" class="firstHeading">Something</h1>'+
-                '<div id="bodyContent">'+
-                '<p>This is dummy conent.</p>'+
-                '</div>'+
-                '</div>';
+                    var myLatlng = new google.maps.LatLng(
+                        val.coords.lat,
+                        val.coords.lon
+                    );
 
-            var infowindow = new google.maps.InfoWindow({
-                content: contentString
+                    var contentString = 
+                        '<div id="content">'+
+                        '<h3>' + val.fid + '</h3>'+
+                        '<div>'+
+                        '<p>lon: ' + val.coords.lon + '</p>'+
+                        '<p>lat: ' + val.coords.lat + '</p>'+
+                        '<p>month: ' + obj.key + '</p>'+
+                        '</div>'+
+                        '</div>';
+
+                    var infowindow = new google.maps.InfoWindow({
+                        content: contentString
+                    });
+
+                    var marker = new google.maps.Marker({
+                        position: myLatlng,
+                        map: that.map,
+                        title: val.fid
+                    });
+                    google.maps.event.addListener(marker, 'click', function() {
+                        infowindow.open(that.map, marker);
+                    });
+
+                    that.markers.push(marker);
+
+                });
             });
-
-            var marker = new google.maps.Marker({
-                position: myLatlng,
-                map: that.map,
-                title: 'Uluru (Ayers Rock)'
-            });
-            google.maps.event.addListener(marker, 'click', function() {
-                infowindow.open(that.map, marker);
-            });
-
-            this.markers.push(marker);
         },
         clear: function() {
             var that = this;
@@ -123,8 +130,4 @@ define([
             }
         }
     };
-
-    function generateRandomData(x, y) {
-        return Math.floor(Math.random() * ((y-x)+1) + x);
-    }
 });

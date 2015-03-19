@@ -93,26 +93,38 @@ define([
         }
     }
 
-    function plotOnMap() {
+    function plotOnMap(data) {
+        console.log(data);
         sendMessage("map.clear", {});
+
+        var features = [];
+
+        $.each(data.data, function(i, obj){
+            $.each(obj.values, function(j, val){
+                var feature = {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [val.coords.lon, val.coords.lon]
+                    },
+                    "properties": {
+                        "featureId": val.fid,
+                        "lon": val.coords.lon,
+                        "lat": val.coords.lat,
+                        "month": obj.key
+                    }
+                };
+                features.push(feature);
+            });
+        });
+
         sendMessage("map.feature.plot", {
             "overlayId":"testOverlayId" + generateRandomData(0,9999),
             "name":"Test Name",
             "format":"geojson",
             "feature": {
                 "type":"FeatureCollection",
-                "features":[
-                    {
-                        "type": "Feature",
-                        "geometry": {
-                            "type": "Point",
-                            "coordinates": [generateRandomData(0,10), generateRandomData(0,10)]
-                        },
-                        "properties": {
-                            "featureId": "f1"
-                        }
-                    }
-                ]
+                "features":features
             },
             "zoom":false,
             "dataZoom": false,
