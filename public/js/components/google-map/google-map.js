@@ -119,7 +119,6 @@ define([
         clear: function() {
             var that = this;
             for (var i = 0; i < this.markers.length; i++) {
-                console.log(that.markers[i]);
                 that.markers[i].setMap(null);
             }
         }

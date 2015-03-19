@@ -37,28 +37,30 @@ define([
             this.$el = $(tableViewHTML);
             options.parent.append(this.$el);
 
+            this.data = DataManager.rawData.tableData;
+            this.headers = DataManager.rawData.tableHeaders;
+
             var that = this;
 
-            $.each(params.data.headers, function(index, header) {
+            $.each(this.headers, function(index, header) {
                 $('#' + that.id + ' .table-header tr').append(
-                    '<th>' + header.alias + '</th>'
+                    '<th>' + header + '</th>'
                 );
             });
 
-            for(var index = 1; index <= 25; index++) {
+            $.each(this.data, function(index, val){
                 $('#' + that.id + ' .table-body').append(
-                    '<tr>' +
-                        '<td>' + index + '</td>' +
-                        '<td>Item ' + index + '</td>' +
-                        '<td>This is Item ' + index + '</td>' +
+                    '<tr data-index="' + index + '">' +
+                        '<td>' + val.id + '</td>' +
+                        '<td>' + val.count + '</td>' +
                     '</tr>'
                 );
-            };
+            });
 
             $('#' + that.id + ' .table-body tr').on('click', function(event) {
                 $('#' + that.id + ' tr.active').removeClass('active');
                 $(this).addClass('active');
-                Radio('plotOnMap').broadcast();
+                Radio('plotOnMap').broadcast(that.data[$(this).data('index')]);
             });
         },
         postRender: function(grid) {

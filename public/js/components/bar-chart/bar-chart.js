@@ -38,8 +38,6 @@ define([
             this.$el = $(barChartViewHTML);
             options.parent.append(this.$el);
 
-            this.setNewData();
-
             Radio('plotOnMap').subscribe([this.setNewData, this]);
         },
         postRender: function(grid) {
@@ -86,22 +84,34 @@ define([
             }, 300);
         },
         addChart: function(id) {
-            var options = {};
+            if(this.data) {
+                var options = {};
 
-            var that = this;
+                var that = this;
 
-            var newHeight = $('#' + that.id + ' .chart-container').height() - 20;
-            var newWidth = $('#' + that.id + ' .chart-container').width() - 20;
+                var newHeight = $('#' + that.id + ' .chart-container').height() - 20;
+                var newWidth = $('#' + that.id + ' .chart-container').width() - 20;
 
-            $('#' + that.id + ' .chart-container').append('<canvas width="' + newWidth + '" height="' + newHeight + '"></canvas>');
+                $('#' + that.id + ' .chart-container').append('<canvas width="' + newWidth + '" height="' + newHeight + '"></canvas>');
 
-            var $canvas = $('#' + that.id + ' canvas');
-            var ctx = $canvas.get(0).getContext("2d");
-            var barChart = new Chart(ctx).Bar(that.data, options);
+                var $canvas = $('#' + that.id + ' canvas');
+                var ctx = $canvas.get(0).getContext("2d");
+                var barChart = new Chart(ctx).Bar(that.data, options);
+            }
         },
-        setNewData: function() {
+        setNewData: function(data) {
+            console.log(data);
+
+            var labels = [];
+            var dataCount = [];
+
+            $.each(data.data, function(index, obj){
+                labels.push(obj.key);
+                dataCount.push(obj.value);
+            });
+
             this.data = {
-                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                labels: labels,
                 datasets: [
                     {
                         label: "Dataset",
@@ -109,7 +119,7 @@ define([
                         strokeColor: "rgba(151,187,205,0.8)",
                         highlightFill: "rgba(151,187,205,0.75)",
                         highlightStroke: "rgba(151,187,205,1)",
-                        data: generateRandomData(1, 100)
+                        data: dataCount
                     }
                 ]
             };

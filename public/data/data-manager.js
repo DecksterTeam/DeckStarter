@@ -9,7 +9,8 @@ define([
         initialize: function() {
             // Set DataManager to be global
             window.DataManager = {
-                tiles: JSON.parse(Mock).tiles
+                tiles: JSON.parse(Mock).tiles,
+                rawData: JSON.parse(Mock).rawData
             };
 
             // Generate tiles
