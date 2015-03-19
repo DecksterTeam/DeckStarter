@@ -20,3 +20,10 @@
   color: #333;
   background-color: white;
 }
+
+.bar-chart .no-data-label {
+  position: absolute;
+  top: 48%;
+  left: 47%;
+  color: #333;
+}

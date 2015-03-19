@@ -52,7 +52,9 @@ define([
                     that.storedCol = that.$el.attr("data-col");
 
                     grid.resize_widget_mod($resizeBtn.parent(), that.fullWidth, that.fullHeight, 1, function() {
-                        $('#' + that.id + ' .chart-container').empty();
+                        if(this.data) {
+                            $('#' + that.id + ' .chart-container').empty();
+                        }
                         setTimeout(function() {
                             that.addChart(that.id);
                         }, 300);
@@ -63,7 +65,9 @@ define([
                     $resizeBtn.removeClass('glyphicon-resize-small');
 
                     grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, parseInt(that.storedCol), function() {
-                        $('#' + that.id + ' .chart-container').empty();
+                        if(this.data) {
+                            $('#' + that.id + ' .chart-container').empty();
+                        }
                         setTimeout(function() {
                             that.addChart(that.id);
                         }, 300);
@@ -73,7 +77,9 @@ define([
         },
         remove: function() {
             Radio('plotOnMap').unsubscribe(this.setNewData);
-            $('#' + this.id + ' .chart-container').empty();
+            if(this.data) {
+                $('#' + this.id + ' .chart-container').empty();
+            }
             this.$el.remove();
         },
         postResize: function() {
