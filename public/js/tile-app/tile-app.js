@@ -1,4 +1,4 @@
-define(['tile-app/deckster-config',
+define(['tile-app/routing-config',
   		'tile-app/controllers/mainController',
 		'jquery',
 		'gridster',

@@ -1,7 +1,7 @@
 define([
     'jquery',
     'text!tile-app/views/deckster-parent-container.hbs',
-	'tile-app/deckster-app', 
+	'tile-app/tile-app', 
 	'handlebars'],
   function ($, ParentContainerHBS, app, Handlebars) { 
         'use strict'; 
