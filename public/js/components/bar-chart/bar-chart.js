@@ -81,6 +81,7 @@ define([
                 $('#' + this.id + ' .chart-container').empty();
             }
             this.$el.remove();
+            this.data = undefined;
         },
         postResize: function() {
             var that = this;
