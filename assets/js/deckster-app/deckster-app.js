@@ -3,34 +3,61 @@ define(['deckster-app/deckster-config',
 		'jquery',
 		'gridster',
 		'deckster'],
-  function(config, mainController){
+  function(config, mainController, $, gridster, deckster){
     var app = angular.module('decksterApp', ['ngRoute']);
     app.config(config);
-    app.controller('mainController', mainController)
-	.directive('decksterDeck', function($parse) {
-	  var defaults = { 
+    app.controller('mainController', mainController).factory('Deckster', function () {
+	  return window.Deckster;
+	}).directive('decksterDeck', function ($rootScope) {
+	  var defaults = {
 	    gridsterOpts: {
-	      max_cols: 5,
 	      widget_margins: [10, 10],
-	      widget_base_dimensions: ['auto', 250],
-	      responsive_breakpoint: 850
+	      widget_base_dimensions: ['auto', 250]
 	    }
 	  };
 
 	  return {
-	    restrict: 'E',
-	    replace: true,
-	    template: '<div class="deck gridster"></div>', 
-	    link: function(scope, element, attrs) {
+	    restrict: 'A',
+	    scope: {
+	      deckOptions: '=',
+	      deckCards: '='
+	    },
+	    controller: function($scope) {
+	      this.initialized = false;
 
-	      var deckOptions = $.extend(true, {}, defaults, $parse(attrs.deckOptions || {})(scope));
-	       scope.deckster = $(element).deckster(deckOptions).data('deckster');
+	      this.addCard = function (card, callback) {
+	        $scope.deckster.addCard(card, callback);
+	      };
 
-	      attrs.$observe('deckCards', function(value) {
-	        var cards = $parse(value || [])(scope);
-	        scope.deckster.addCards(cards);
-	      });
+	      this.init = function (element, opts) {
+	        $scope.deckster = $(element).deckster(opts).data('deckster');
+	        this.initialized = true;
+	      };
+	    },
+	    link: function (scope, element, attrs, ctrl) {
+	      var deckOptions = $.extend(true, {}, defaults, (scope.deckOptions || {}));
+	      ctrl.init(element, deckOptions);
 	    }
 	  };
+	})
+	.directive('decksterCard', function ($parse) {
+	  return {
+	    restrict: 'E',
+	    require: '^decksterDeck',
+	    link: function (scope, element, attrs, deckCtrl) {
+
+	      scope.deckInitialized = deckCtrl.initialized;
+
+	      var cardOpts = $parse(attrs.cardOptions || {})(scope);
+
+	      scope.$watch('deckInitialized', function(initialized) {
+	        if(initialized) {
+	          deckCtrl.addCard(cardOpts, function(card) {
+	            scope.card = card;
+	          });
+	        }
+	      });
+	    }
+	  }
 	});
 });

@@ -12,16 +12,19 @@ define([], function(){
 
 	  var getSummaryTemplate = function(cardConfig, cb) {
 	    // Not using the cardConfig here but you could use it to make request
-	    $http.get('partials/testSummaryCard.html').success(function(html) {
-	      cb && cb($compile(html)($scope));
-	    });
+	    // $http.get('partials/testSummaryCard.html').success(function(html) {
+// 	      cb && cb($compile(html)($scope));
+// 	    });
+cb('<div>Test</div>');
 	  };
 
 	  var getDetailsTemplate = function(cardConfig, cb) {
 	    // Not using the cardConfig here but you could use it to make request
-	    $http.get('partials/testDetailsCard.html').success(function(html) {
-	      cb && cb($compile(html)($scope));
-	    });
+	    // $http.get('partials/testDetailsCard.html').success(function(html) {
+// 	      cb && cb($compile(html)($scope));
+// 	    });
+cb('<div>Test Goats</div>');
+
 	  };
 
 	  // Define a static array of card configurations or load them from a server (ex: user defined cards)
@@ -88,7 +91,6 @@ define([], function(){
 	      }
 	    }
 	  ];
-	  console.log('wtA');
 	}
 	
 	mainController.$inject=['$scope', '$http', '$compile'];

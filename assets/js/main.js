@@ -10,7 +10,7 @@
             'handlebars': '../../lib/vendor/handlebars/handlebars',
 			'gridster': '../../lib/vendor/gridster/jquery.gridster',
 			'radio': '../../lib/vendor/radio/radio.min',
-			'deckster': '../../lib/vendor/decksterjs/dist/jquery.deckster'
+			'deckster': '../../lib/vendor/decksterjs/jquery.deckster'
         },
         shim: {
             'bootstrap' : {
@@ -22,7 +22,7 @@
 			},
 			'deckster' : ['jquery']
         }, 
-        urlArgs: "bust=" + (new Date()).getTime()
+        urlArgs: "bust=2"// + (new Date()).getTime()
     });
 
     require( ['app', 'jquery', 'gridster', 'deckster'], 
