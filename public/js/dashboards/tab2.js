@@ -16,7 +16,7 @@ define([
 
     return {
         tiles: [],
-        populateTiles: function(grid) {
+        populateTiles: function(fullWidth, fullHeight) {
             var map = MapView;
             map.render({
                 "id": 1,
@@ -25,8 +25,8 @@ define([
                 "startRow": 1,
                 "smallWidth": 6,
                 "smallHeight": 4,
-                "fullWidth": 12,
-                "fullHeight": 4,
+                "fullWidth": fullWidth,
+                "fullHeight": fullHeight,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[7]
             });
@@ -40,8 +40,8 @@ define([
                 "startRow": 1,
                 "smallWidth": 6,
                 "smallHeight": 2,
-                "fullWidth": 12,
-                "fullHeight": 4,
+                "fullWidth": fullWidth,
+                "fullHeight": fullHeight,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[1]
             });
@@ -55,8 +55,8 @@ define([
                 "startRow": 1,
                 "smallWidth": 2,
                 "smallHeight": 2,
-                "fullWidth": 12,
-                "fullHeight": 4,
+                "fullWidth": fullWidth,
+                "fullHeight": fullHeight,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[0]
             });
@@ -70,8 +70,8 @@ define([
                 "startRow": 1,
                 "smallWidth": 2,
                 "smallHeight": 2,
-                "fullWidth": 12,
-                "fullHeight": 4,
+                "fullWidth": fullWidth,
+                "fullHeight": fullHeight,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[6]
             });
@@ -85,8 +85,8 @@ define([
                 "startRow": 1,
                 "smallWidth": 2,
                 "smallHeight": 2,
-                "fullWidth": 12,
-                "fullHeight": 4,
+                "fullWidth": fullWidth,
+                "fullHeight": fullHeight,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[2]
             });
@@ -101,8 +101,8 @@ define([
                 "startRow": 1,
                 "smallWidth": 12,
                 "smallHeight": 2,
-                "fullWidth": 12,
-                "fullHeight": 4,
+                "fullWidth": fullWidth,
+                "fullHeight": fullHeight,
                 "parent": $('.gridster ul'),
                 "params": DataManager.tiles[3]
             });

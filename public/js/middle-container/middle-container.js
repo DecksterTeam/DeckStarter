@@ -21,7 +21,7 @@ define([
             var middleContainerViewHTML = middleContainerViewTemplate();
             this.$el = $(middleContainerViewHTML);
             options.parent.append(this.$el);
-            this.dashboards[this.currentDashboard].populateTiles();
+            this.dashboards[this.currentDashboard].populateTiles(12, 6);
 
             var that = this;
 
