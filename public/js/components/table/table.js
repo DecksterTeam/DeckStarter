@@ -37,10 +37,75 @@ define([
             this.$el = $(tableViewHTML);
             options.parent.append(this.$el);
 
+            this.smallView();
+        },
+        postRender: function(grid) {
+            this.grid = grid;
+            var that = this;
+            var $resizeBtn = $('#' + this.id + ' .resize-btn');
+            $resizeBtn.on('click', function() {
+                if($resizeBtn.hasClass('glyphicon-resize-full')) {
+                    $resizeBtn.removeClass('glyphicon-resize-full');
+                    $resizeBtn.addClass('glyphicon-resize-small');
+
+                    that.storedCol = that.$el.attr("data-col");
+
+                    grid.resize_widget_mod($resizeBtn.parent(), that.fullWidth, that.fullHeight, 1);
+                    // that.fullView();
+
+                } else {
+                    $resizeBtn.addClass('glyphicon-resize-full');
+                    $resizeBtn.removeClass('glyphicon-resize-small');
+
+                    grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, parseInt(that.storedCol));
+                    // that.smallView();
+                }
+            });
+        },
+        fullView: function() {
             this.data = DataManager.rawData.tableData;
             this.headers = DataManager.rawData.tableHeaders;
 
             var that = this;
+
+            $('#' + that.id + ' .table-header tr').empty();
+            $('#' + that.id + ' .table-body').empty();
+
+
+            $.each(this.headers, function(index, header) {
+                $('#' + that.id + ' .table-header tr').append(
+                    '<th>' + header + '</th>'
+                );
+            });
+
+            $('#' + that.id + ' .table-header tr').append(
+                '<th>Name</th>'
+            );
+
+            $.each(this.data, function(index, val){
+                $('#' + that.id + ' .table-body').append(
+                    '<tr data-index="' + index + '">' +
+                        '<td>' + val.id + '</td>' +
+                        '<td>' + val.count + '</td>' +
+                        '<td>' + val.id + ' Item</td>' +
+                    '</tr>'
+                );
+            });
+
+            $('#' + that.id + ' .table-body tr').on('click', function(event) {
+                $('#' + that.id + ' tr.active').removeClass('active');
+                $(this).addClass('active');
+                Radio('plotOnMap').broadcast(that.data[$(this).data('index')]);
+            });
+        },
+        smallView: function() {
+            this.data = DataManager.rawData.tableData;
+            this.headers = DataManager.rawData.tableHeaders;
+
+            var that = this;
+
+            $('#' + that.id + ' .table-header tr').empty();
+            $('#' + that.id + ' .table-body').empty();
 
             $.each(this.headers, function(index, header) {
                 $('#' + that.id + ' .table-header tr').append(
@@ -61,31 +126,6 @@ define([
                 $('#' + that.id + ' tr.active').removeClass('active');
                 $(this).addClass('active');
                 Radio('plotOnMap').broadcast(that.data[$(this).data('index')]);
-            });
-        },
-        postRender: function(grid) {
-            this.grid = grid;
-            var that = this;
-            var $resizeBtn = $('#' + this.id + ' .resize-btn');
-            $resizeBtn.on('click', function() {
-                if($resizeBtn.hasClass('glyphicon-resize-full')) {
-                    $resizeBtn.removeClass('glyphicon-resize-full');
-                    $resizeBtn.addClass('glyphicon-resize-small');
-
-                    that.storedCol = that.$el.attr("data-col");
-
-                    grid.resize_widget_mod($resizeBtn.parent(), that.fullWidth, that.fullHeight, 1);
-
-                } else {
-                    $resizeBtn.addClass('glyphicon-resize-full');
-                    $resizeBtn.removeClass('glyphicon-resize-small');
-
-                    // if(parseInt(that.storedCol) > Math.floor($('.gridster').width()/300)) {
-                    //     grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, 1);
-                    // } else {
-                        grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, parseInt(that.storedCol));
-                    // }
-                }
             });
         },
         remove: function() {
