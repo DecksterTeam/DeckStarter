@@ -9,10 +9,19 @@
 
 .gridster ul {
   list-style-type: none;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .nvtooltip {
   z-index: 9000;
+}
+
+.tile h4 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 
@@ -21,7 +30,7 @@
 }*/
 
 .gridster ul {
-  background-color: #EFEFEF;
+  background-color: white;
 }
 
 .gridster li {
@@ -65,24 +74,44 @@ body {
   padding-top: 50px;
 }
 
-@media (min-width: 768px) {
-  .main-navbar .navbar-nav.navbar-right:last-child {
-    margin-right: 0;
-  }
-
-  .navbar-form {
-    width: calc(100% - 390px);
-  }
-
-  .navbar-form .form-group {
-    width: 100%;
-  }
-
-  .navbar-form .form-control {
-    width: 100%;
-  }
+.main-navbar {
+  background-color: #2b3643;
+  color: #b4bcc8;
 }
 
+.navbar-inverse .navbar-toggle,
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+  background-color: #2b3643;
+  border: none;
+}
+.navbar-inverse .navbar-toggle .icon-bar {
+  background-color: #b4bcc8;
+}
+
+.navbar-inverse .navbar-brand,
+.navbar-inverse .navbar-nav>li>a {
+  background-color: #2b3643;
+  color: #b4bcc8;
+}
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus,
+.navbar-inverse .navbar-nav>li>a:hover, 
+.navbar-inverse .navbar-nav>li>a:focus {
+  background-color: #364150;
+  color: #b4bcc8;
+}
+
+.navbar-inverse .navbar-nav>.active>a, 
+.navbar-inverse .navbar-nav>.active>a:hover, 
+.navbar-inverse .navbar-nav>.active>a:focus {
+  color: #fff;
+  background-color: #1caf9a;
+}
+
+.navbar-inverse .navbar-nav #profile {
+  margin-right: 15px;
+}
 
 .panel-group {
   border-top: 1px solid #ddd;
@@ -236,16 +265,19 @@ body {
  */
 .nav-sidebar {
   width: 180px;
+  background-color: #364150;
+  color: #b4bcc8;
 }
 .nav-sidebar > li > a {
   padding-right: 20px;
   padding-left: 20px;
+  color: #b4bcc8;
 }
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
   color: #fff;
-  background-color: #428bca;
+  background-color: #1caf9a;
 }
 
 .nav-menu {
@@ -278,47 +310,39 @@ body {
   margin-right: 5px;
 }
 
-/*.middle-container {
-  float: left;
-  display: inline-block;
+/*@media (max-width: 999px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
 }*/
 
-/*.tile-container {
-  margin-right: auto;
-  margin-left: auto;
-}*/
-
-/**
- * Responsive Style Overrides
- * Note - the width calc depends on the sidebar width.
- */
-/*@media (max-width: 499px) {
-  .middle-container {
-    margin-left: auto;
-    width: 100%;
-  }
-  .tile-container {
-      width: 250px;
-  }
-}
-@media (min-width: 600px) {
-  .middle-container {
-    margin-left: auto;
-    width: 100%;
-  }
-  .tile-container {
-      width: 600px;
-  }
-}*/
-@media (min-width: 768px) {
-  .middle-container {
-    /*margin-left: 180px;*/
-    width: 100%;
-  }
-/*  .tile-container {
-    width: 600px;
+@media (min-width: 1000px) {
+  /*.middle-container {
+    margin-left: 180px;
+    width: calc(100% - 180px);
   }*/
-  .sidebar {
+  /*.sidebar {
     position: fixed;
     width: 180px;
     top: 50px;
@@ -327,38 +351,8 @@ body {
     z-index: 1000;
     display: block;
     overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-    background-color: #f5f5f5;
+    overflow-y: auto;
+    background-color: #364150;
     border-right: 1px solid #ddd;
-  }
-}/*
-@media (min-width: 930px) {
-  .tile-container {
-    width: 750px;
-  }
+  }*/
 }
-@media (min-width: 1380px) {
-  .tile-container {
-    width: 1200px;
-  }
-}
-@media (min-width: 1430px) {
-  .tile-container {
-    width: 1250px;
-  }
-}
-@media (min-width: 1680px) {
-  .tile-container {
-    width: 1800px;
-  }
-}
-@media (min-width: 1930px) {
-  .tile-container {
-    width: 1750px;
-  }   
-}
-@media (min-width: 2180px) {
-  .tile-container {
-    width: calc(100% - 180px);
-  }
-}*/

@@ -9,7 +9,8 @@
             'bootstrap': '../lib/vendor/bootstrap-3.1.1-dist/js/bootstrap.min',
             'handlebars': '../lib/vendor/handlebars/handlebars',
             'gridster': '../lib/vendor/gridster/jquery.gridster',
-            'chart': '../lib/vendor/chartjs/chart.min'
+            'chart': '../lib/vendor/chartjs/chart.min',
+            'radio': '../lib/vendor/radio/radio'
         },
         shim: {
             'bootstrap': {

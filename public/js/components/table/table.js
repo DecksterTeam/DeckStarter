@@ -2,8 +2,9 @@ define([
     'jquery',
     'text!components/table/table.hbs',
     'handlebars',
+    'radio',
     'bootstrap'
-], function ($, TableHBS, Handlebars) {
+], function ($, TableHBS, Handlebars, Radio) {
 
     'use strict';
 
@@ -26,9 +27,8 @@ define([
             var tableViewTemplate = Handlebars.compile(TableHBS);
             var tableViewHTML = tableViewTemplate({
                 "id": this.id,
-                "title": params.title,
-                "description": params.description,
-                "color": options.color || params.color,
+                "title": options.title,
+                "color": options.color,
                 "col": this.smallCol,
                 "row": this.smallRow,
                 "sizex": this.smallWidth,
@@ -37,39 +37,60 @@ define([
             this.$el = $(tableViewHTML);
             options.parent.append(this.$el);
 
+            this.data = DataManager.rawData.tableData;
+            this.headers = DataManager.rawData.tableHeaders;
+
             var that = this;
 
-            $.each(params.data.headers, function(index, header) {
+            $.each(this.headers, function(index, header) {
                 $('#' + that.id + ' .table-header tr').append(
-                    '<th>' + header.alias + '</th>'
+                    '<th>' + header + '</th>'
                 );
             });
 
-            for(var index = 1; index <= 25; index++) {
+            $.each(this.data, function(index, val){
                 $('#' + that.id + ' .table-body').append(
-                    '<tr>' +
-                        '<td>' + index + '</td>' +
-                        '<td>Item ' + index + '</td>' +
-                        '<td>This is Item ' + index + '</td>' +
+                    '<tr data-index="' + index + '">' +
+                        '<td>' + val.id + '</td>' +
+                        '<td>' + val.count + '</td>' +
                     '</tr>'
                 );
-            };
+            });
+
+            $('#' + that.id + ' .table-body tr').on('click', function(event) {
+                $('#' + that.id + ' tr.active').removeClass('active');
+                $(this).addClass('active');
+                Radio('plotOnMap').broadcast(that.data[$(this).data('index')]);
+            });
         },
         postRender: function(grid) {
             this.grid = grid;
             var that = this;
-            var $resizeBtn = $('#' + that.id + ' .resize-btn');
+            var $resizeBtn = $('#' + this.id + ' .resize-btn');
             $resizeBtn.on('click', function() {
                 if($resizeBtn.hasClass('glyphicon-resize-full')) {
                     $resizeBtn.removeClass('glyphicon-resize-full');
                     $resizeBtn.addClass('glyphicon-resize-small');
-                    grid.resize_widget($resizeBtn.parent(), that.fullWidth, that.fullHeight);
+
+                    that.storedCol = that.$el.attr("data-col");
+
+                    grid.resize_widget_mod($resizeBtn.parent(), that.fullWidth, that.fullHeight, 1);
+
                 } else {
                     $resizeBtn.addClass('glyphicon-resize-full');
                     $resizeBtn.removeClass('glyphicon-resize-small');
-                    grid.resize_widget($resizeBtn.parent(), that.smallWidth, that.smallHeight);
+
+                    // if(parseInt(that.storedCol) > Math.floor($('.gridster').width()/300)) {
+                    //     grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, 1);
+                    // } else {
+                        grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, parseInt(that.storedCol));
+                    // }
                 }
             });
+        },
+        remove: function() {
+            $('#' + this.id + ' .table-body tr').remove();
+            this.$el.remove();
         }
     };
 });

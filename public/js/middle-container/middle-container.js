@@ -1,21 +1,19 @@
 define([
     'jquery',
     'text!middle-container/middle-container.hbs',
-    'components/percent-ring/percent-ring',
-    'components/info-block/info-block',
-    'components/pie-chart/pie-chart',
-    'components/line-chart/line-chart',
-    'components/bar-chart/bar-chart',
-    'components/table/table',
-    'components/map/map',
-    'handlebars',
-    'bootstrap'
-], function ($, MiddleContainerHBS, PercentRingView, InfoBlockView, PieChartView, LineChartView, BarChartView, TableView, MapView, Handlebars) {
+    'dashboards/tab1',
+    'dashboards/tab2',
+    'handlebars'
+], function ($, MiddleContainerHBS, Tab1View, Tab2View, Handlebars) {
 
     'use strict';
 
     return {
-        tiles: [],
+        dashboards: {
+            "tab1": Tab1View,
+            "tab2": Tab2View
+        },
+        currentDashboard: "tab1",
         render: function(options) {
             var serializedComponents = options.serializedComponents;
             this.options = options;
@@ -23,11 +21,11 @@ define([
             var middleContainerViewHTML = middleContainerViewTemplate();
             this.$el = $(middleContainerViewHTML);
             options.parent.append(this.$el);
-            this.populateTiles();
+            this.dashboards[this.currentDashboard].populateTiles();
 
             var that = this;
 
-            var phDimensions = ($('.gridster').width()/8) - 10;
+            var phDimensions = ($('.gridster').width()/12) - 5;
             var marginWidth = phDimensions * .03;
             var baseDimensions = phDimensions - (2*marginWidth);
 
@@ -39,129 +37,13 @@ define([
                 }
             }).data('gridster');
 
-            this.postRenderTiles(this.gridster);
-        },
-        populateTiles: function() {
-
-            var map = MapView;
-            map.render({
-                "id": 1,
-                "color": "green",
-                "startCol": 1,
-                "startRow": 1,
-                "smallWidth": 4,
-                "smallHeight": 2,
-                "fullWidth": 8,
-                "fullHeight": 4,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[7]
-            });
-            this.tiles.push(map);
-
-            var pie = PieChartView;
-            pie.render({
-                "id": 2,
-                "color": "orange",
-                "startCol": 1,
-                "startRow": 1,
-                "smallWidth": 2,
-                "smallHeight": 2,
-                "fullWidth": 8,
-                "fullHeight": 4,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[2]
-            });
-            this.tiles.push(pie);
-
-            var line = LineChartView;
-            line.render({
-                "id": 1,
-                "color": "purple",
-                "startCol": 1,
-                "startRow": 1,
-                "smallWidth": 4,
-                "smallHeight": 2,
-                "fullWidth": 8,
-                "fullHeight": 4,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[4]
-            });
-            this.tiles.push(line);
-
-            var bar = BarChartView;
-            bar.render({
-                "id": 1,
-                "color": "red",
-                "startCol": 1,
-                "startRow": 1,
-                "smallWidth": 4,
-                "smallHeight": 2,
-                "fullWidth": 8,
-                "fullHeight": 4,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[1]
-            });
-            this.tiles.push(bar);
-
-            var ring = PercentRingView;
-            ring.render({
-                "id": 4,
-                "color": "red",
-                "startCol": 1,
-                "startRow": 1,
-                "smallWidth": 2,
-                "smallHeight": 1,
-                "fullWidth": 8,
-                "fullHeight": 4,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[0]
-            });
-            this.tiles.push(ring);
-
-            var info = InfoBlockView;
-            info.render({
-                "id": 3,
-                "color": "purple",
-                "startCol": 1,
-                "startRow": 1,
-                "smallWidth": 2,
-                "smallHeight": 1,
-                "fullWidth": 8,
-                "fullHeight": 4,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[6]
-            });
-            this.tiles.push(info);
-
-            var table1 = TableView;
-            table1.render({
-                "id": 1,
-                "color": "blue",
-                "startCol": 1,
-                "startRow": 1,
-                "smallWidth": 8,
-                "smallHeight": 2,
-                "fullWidth": 8,
-                "fullHeight": 2,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[3]
-            });
-            this.tiles.push(table1);
-
-        },
-        postRenderTiles: function(grid) {
-            var that = this;
-            TableView.postRender(grid);
-            $.each(this.tiles, function(index, tile) {
-                if(tile.postRender) {
-                    tile.postRender(grid);
-                }
-            });
-            // this.resize();
+            this.dashboards[this.currentDashboard].postRenderTiles(this.gridster);
         },
         resize: function() {
+            var bodyWidth = $('body').width();
+            var fullTileWidth = 12;
 
-            var phDimensions = ($('.gridster').width()/8) - 10;
+            var phDimensions = ($('.gridster').width()/fullTileWidth) - 5;
             var marginWidth = phDimensions * .03;
             var baseDimensions = phDimensions - (2*marginWidth);
 
@@ -169,17 +51,23 @@ define([
                 widget_base_dimensions: [baseDimensions, baseDimensions],
                 widget_margins: [marginWidth, marginWidth]
             });
+
+            this.dashboards[this.currentDashboard].resize(fullTileWidth);
+
             this.gridster.generate_grid_and_stylesheet();
             this.gridster.get_widgets_from_DOM();
             this.gridster.set_dom_grid_height();
             this.gridster.set_dom_grid_width();
+        },
+        changeDashboard: function(newDash) {
+            $('.gridster').remove();
+            this.dashboards[this.currentDashboard].removeTiles();
 
-            $.each(this.tiles, function(index, tile) {
-                if(tile.postResize) {
-                    tile.postResize();
-                }
+            this.currentDashboard = newDash;
+
+            this.render({
+                "parent": $('body')
             });
-
         }
     };
 });

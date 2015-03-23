@@ -26,14 +26,25 @@ define([
                 "parent": $body
             });
 
-            // var sidebarLeftView = SidebarLeftView;
-            // sidebarLeftView.render({
-            //     "parent": $body
-            // });
+            var sidebarLeftView = SidebarLeftView;
+            sidebarLeftView.render({
+                "parent": $body
+            });
 
             var middleContainerView = MiddleContainerView;
             middleContainerView.render({
                 "parent": $body
+            });
+
+            $('#tabs a').on('click', function() {
+                var that = this;
+                $.each($('#tabs').children(), function(index, child) {
+                    if($(child).attr('id') !== $(that).attr('id')) {
+                        $(child).removeClass('active');
+                    }
+                });
+                $(this).parent().addClass('active');
+                middleContainerView.changeDashboard($(this).attr('id'));
             });
 
             // var footerView = FooterView;

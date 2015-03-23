@@ -1,69 +1,83 @@
 define([
     'jquery',
-    'text!components/line-chart/line-chart.hbs',
+    'text!components/info-and-pie/info-and-pie.hbs',
     'handlebars',
     'bootstrap'
-], function ($, LineChartHBS, Handlebars) {
+], function ($, InfoAndPieHBS, Handlebars) {
 
     'use strict';
 
     return {
-        "smallCol": 3,
-        "smallRow": 2,
-        "smallWidth": 2,
+        "smallCol": 1,
+        "smallRow": 1,
+    	"smallWidth": 1,
         "smallHeight": 1,
-        "fullWidth": 4,
+        "fullWidth": 2,
         "fullHeight": 2,
         render: function(options) {
             var params = options.params;
-            this.id = "line-chart-" + options.id;
+            this.id = "info-and-pie-" + options.id;
             this.smallCol = options.startCol;
             this.smallRow = options.startRow;
             this.smallWidth = options.smallWidth;
             this.smallHeight = options.smallHeight;
             this.fullWidth = options.fullWidth;
             this.fullHeight = options.fullHeight;
-            var lineChartViewTemplate = Handlebars.compile(LineChartHBS);
-            var lineChartViewHTML = lineChartViewTemplate({
+            var infoAndPieViewTemplate = Handlebars.compile(InfoAndPieHBS);
+            var infoAndPieViewHTML = infoAndPieViewTemplate({
                 "id": this.id,
-                "title": "Line Chart",
+                "title": params.title,
+                "info": params.data,
                 "description": params.description,
                 "color": options.color || params.color,
+                "percent": params.data,
                 "col": this.smallCol,
                 "row": this.smallRow,
                 "sizex": this.smallWidth,
                 "sizey": this.smallHeight
             });
-            this.$el = $(lineChartViewHTML);
+            this.$el = $(infoAndPieViewHTML);
             options.parent.append(this.$el);
 
             var that = this;
 
-            this.data = {
-                labels: ["January", "February", "March", "April", "May", "June", "July"],
-                datasets: [
-                    {
-                        label: "My First dataset",
-                        fillColor: "rgba(220,220,220,0.2)",
-                        strokeColor: "rgba(220,220,220,1)",
-                        pointColor: "rgba(220,220,220,1)",
-                        pointStrokeColor: "#fff",
-                        pointHighlightFill: "#fff",
-                        pointHighlightStroke: "rgba(220,220,220,1)",
-                        data: [65, 59, 80, 81, 56, 55, 40]
-                    },
-                    {
-                        label: "My Second dataset",
-                        fillColor: "rgba(151,187,205,0.2)",
-                        strokeColor: "rgba(151,187,205,1)",
-                        pointColor: "rgba(151,187,205,1)",
-                        pointStrokeColor: "#fff",
-                        pointHighlightFill: "#fff",
-                        pointHighlightStroke: "rgba(151,187,205,1)",
-                        data: [28, 48, 40, 19, 86, 27, 90]
-                    }
-                ]
-            };
+            this.data = [
+                {
+                    value: 100,
+                    color:"#F7464A",
+                    highlight: "#FF5A5E",
+                    label: "01"
+                },
+                {
+                    value: 50,
+                    color: "#46BFBD",
+                    highlight: "#5AD3D1",
+                    label: "02"
+                },
+                {
+                    value: 30,
+                    color: "#862B59",
+                    highlight: "#924069",
+                    label: "03"
+                },
+                {
+                    value: 130,
+                    color:"#7c699f",
+                    highlight: "#8a79a9",
+                    label: "04"
+                },
+                {
+                    value: 30,
+                    color: "#FFA14F",
+                    highlight: "#ffaf69",
+                    label: "05"
+                }
+            ];
+
+            var $legend = $('#' + that.id + ' .pie-chart-legend');
+            $.each(that.data, function(index, elem) {
+                $legend.append('<span style="background-color:' + elem.color + ';">' + elem.label + '</span>');
+            });
 
             setTimeout(function() {
                 that.addChart(that.id);
@@ -91,6 +105,10 @@ define([
                     $resizeBtn.addClass('glyphicon-resize-full');
                     $resizeBtn.removeClass('glyphicon-resize-small');
 
+                    // if(parseInt(that.storedCol) > Math.floor($('.gridster').width()/300)) {
+                    //     that.storedCol = 1;
+                    // }
+
                     grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, parseInt(that.storedCol), function() {
                         $('#' + that.id + ' .chart-container').empty();
                         setTimeout(function() {
@@ -108,18 +126,22 @@ define([
             }, 300);
         },
         addChart: function(id) {
-            var options = {};
+            var options = {
+                segmentStrokeWidth : 1,
+                animationEasing : "easeOutCirc",
+                animationSteps : 30
+            };
 
             var that = this;
 
-            var newHeight = $('#' + that.id + ' .chart-container').height() - 20;
-            var newWidth = $('#' + that.id + ' .chart-container').width() - 20;
+            var newHeight = $('#' + that.id + ' .pie-chart-container').height() - $('#' + that.id + ' .pie-chart-legend').height() - 25;
+            var newWidth = newHeight;
 
             $('#' + that.id + ' .chart-container').append('<canvas width="' + newWidth + '" height="' + newHeight + '"></canvas>');
 
             var $canvas = $('#' + that.id + ' canvas');
             var ctx = $canvas.get(0).getContext("2d");
-            var lineChart = new Chart(ctx).Line(that.data, options);
+            var pieChart = new Chart(ctx).Pie(that.data, options);
         }
     };
 });

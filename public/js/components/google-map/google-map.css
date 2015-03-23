@@ -7,18 +7,15 @@
 	-webkit-border-radius: 3px;
 }
 
-.map-container iframe {
+.map-container #map-canvas {
 	width: calc(100% - 20px);
 	height: calc(100% - 30px);
-	border-radius: 3px;
-	border: solid white 1px;
+	margin-left: 10px;
+	border-radius: 6px;
 	overflow: hidden;
-	-webkit-border-radius: 3px;
+	-webkit-border-radius: 6px;
 }
 
-.map .loading-label {
-	position: absolute;
-	top: 48%;
-	left: 47%;
+.map-container #map-canvas #content {
 	color: #333;
 }

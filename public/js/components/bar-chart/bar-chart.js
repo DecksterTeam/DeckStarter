@@ -2,8 +2,9 @@ define([
     'jquery',
     'text!components/bar-chart/bar-chart.hbs',
     'handlebars',
+    'radio',
     'bootstrap'
-], function ($, BarChartHBS, Handlebars) {
+], function ($, BarChartHBS, Handlebars, Radio) {
 
     'use strict';
 
@@ -37,33 +38,7 @@ define([
             this.$el = $(barChartViewHTML);
             options.parent.append(this.$el);
 
-            var that = this;
-
-            this.data = {
-                labels: ["January", "February", "March", "April", "May", "June", "July"],
-                datasets: [
-                    {
-                        label: "My First dataset",
-                        fillColor: "rgba(220,220,220,0.5)",
-                        strokeColor: "rgba(220,220,220,0.8)",
-                        highlightFill: "rgba(220,220,220,0.75)",
-                        highlightStroke: "rgba(220,220,220,1)",
-                        data: [65, 59, 80, 81, 56, 55, 40]
-                    },
-                    {
-                        label: "My Second dataset",
-                        fillColor: "rgba(151,187,205,0.5)",
-                        strokeColor: "rgba(151,187,205,0.8)",
-                        highlightFill: "rgba(151,187,205,0.75)",
-                        highlightStroke: "rgba(151,187,205,1)",
-                        data: [28, 48, 40, 19, 86, 27, 90]
-                    }
-                ]
-            };
-
-            setTimeout(function() {
-                that.addChart(that.id);
-            }, 300);
+            Radio('plotOnMap').subscribe([this.setNewData, this]);
         },
         postRender: function(grid) {
             this.grid = grid;
@@ -77,7 +52,9 @@ define([
                     that.storedCol = that.$el.attr("data-col");
 
                     grid.resize_widget_mod($resizeBtn.parent(), that.fullWidth, that.fullHeight, 1, function() {
-                        $('#' + that.id + ' .chart-container').empty();
+                        if(this.data) {
+                            $('#' + that.id + ' .chart-container').empty();
+                        }
                         setTimeout(function() {
                             that.addChart(that.id);
                         }, 300);
@@ -88,13 +65,22 @@ define([
                     $resizeBtn.removeClass('glyphicon-resize-small');
 
                     grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, parseInt(that.storedCol), function() {
-                        $('#' + that.id + ' .chart-container').empty();
+                        if(this.data) {
+                            $('#' + that.id + ' .chart-container').empty();
+                        }
                         setTimeout(function() {
                             that.addChart(that.id);
                         }, 300);
                     });
                 }
             });
+        },
+        remove: function() {
+            Radio('plotOnMap').unsubscribe(this.setNewData);
+            if(this.data) {
+                $('#' + this.id + ' .chart-container').empty();
+            }
+            this.$el.remove();
         },
         postResize: function() {
             var that = this;
@@ -104,18 +90,57 @@ define([
             }, 300);
         },
         addChart: function(id) {
-            var options = {};
+            if(this.data) {
+                var options = {};
+
+                var that = this;
+
+                var newHeight = $('#' + that.id + ' .chart-container').height() - 20;
+                var newWidth = $('#' + that.id + ' .chart-container').width() - 20;
+
+                $('#' + that.id + ' .chart-container').append('<canvas width="' + newWidth + '" height="' + newHeight + '"></canvas>');
+
+                var $canvas = $('#' + that.id + ' canvas');
+                var ctx = $canvas.get(0).getContext("2d");
+                var barChart = new Chart(ctx).Bar(that.data, options);
+            }
+        },
+        setNewData: function(data) {
+            var labels = [];
+            var dataCount = [];
+
+            $.each(data.data, function(index, obj){
+                labels.push(obj.key);
+                dataCount.push(obj.values.length);
+            });
+
+            this.data = {
+                labels: labels,
+                datasets: [
+                    {
+                        label: "Dataset",
+                        fillColor: "rgba(151,187,205,0.5)",
+                        strokeColor: "rgba(151,187,205,0.8)",
+                        highlightFill: "rgba(151,187,205,0.75)",
+                        highlightStroke: "rgba(151,187,205,1)",
+                        data: dataCount
+                    }
+                ]
+            };
 
             var that = this;
-
-            var newHeight = $('#' + that.id + ' .chart-container').height() - 20;
-            var newWidth = $('#' + that.id + ' .chart-container').width() - 20;
-
-            $('#' + that.id + ' .chart-container').append('<canvas width="' + newWidth + '" height="' + newHeight + '"></canvas>');
-
-            var $canvas = $('#' + that.id + ' canvas');
-            var ctx = $canvas.get(0).getContext("2d");
-            var barChart = new Chart(ctx).Bar(that.data, options);
+            $('#' + that.id + ' .chart-container').empty();
+            setTimeout(function() {
+                that.addChart(that.id);
+            }, 300);
         }
     };
+
+    function generateRandomData(x, y) {
+        var dataArray = [];
+        for(var i = 0; i < 7; i++) {
+            dataArray.push(Math.floor(Math.random() * ((y-x)+1) + x));
+        }
+        return dataArray;
+    }
 });

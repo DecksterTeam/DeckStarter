@@ -11,29 +11,17 @@
   </div>
 
   <div id="navbarCollapse" class="collapse navbar-collapse">
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Profile</a></li>
-      <li class="dropdown">
-        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-          Messages <b class="caret"></b>
-        </a>
-        <ul role="menu" class="dropdown-menu">
-          <li><a href="#">Inbox</a></li>
-          <li><a href="#">Drafts</a></li>
-          <li><a href="#">Sent Items</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Trash</a></li>
-        </ul>
-      </li>
+    <ul id="tabs" class="nav navbar-nav">
+      <li class="active"><a id="tab1" href="#">Dashboard 1</a></li>
+      <li><a id="tab2" href="#">Dashboard 2</a></li>
     </ul>
-    <form role="search" class="navbar-form navbar-left">
-      <div class="form-group">
-        <input type="text" placeholder="Search" class="form-control">
-      </div>
-    </form>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#">Login</a></li>
+      <li>
+        <a id="profile" href="#">
+          <span class="glyphicon glyphicon-user" style="padding-right:5px;" aria-hidden="true"></span>
+          Profile
+        </a>
+      </li>
     </ul>
   </div>
 
