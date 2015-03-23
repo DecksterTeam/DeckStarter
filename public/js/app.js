@@ -5,8 +5,9 @@ define([
     'navbar/navbar',
     'sidebar-left/sidebar-left',
     'middle-container/middle-container',
+	'tile-app/main',
     'footer/footer'
-], function ($, DataManager, HeaderView, NavbarView, SidebarLeftView, MiddleContainerView, FooterView) {
+], function ($, DataManager, HeaderView, NavbarView, SidebarLeftView, MiddleContainerView, TileApp, FooterView) {
 
     'use strict';
 
@@ -31,21 +32,26 @@ define([
                 "parent": $body
             });
 
-            var middleContainerView = MiddleContainerView;
-            middleContainerView.render({
+            var tileApp = TileApp;
+            tileApp.render({
                 "parent": $body
             });
 
-            $('#tabs a').on('click', function() {
-                var that = this;
-                $.each($('#tabs').children(), function(index, child) {
-                    if($(child).attr('id') !== $(that).attr('id')) {
-                        $(child).removeClass('active');
-                    }
-                });
-                $(this).parent().addClass('active');
-                middleContainerView.changeDashboard($(this).attr('id'));
-            });
+            // var middleContainerView = MiddleContainerView;
+//             middleContainerView.render({
+//                 "parent": $body
+//             });
+
+            // $('#tabs a').on('click', function() {
+//                 var that = this;
+//                 $.each($('#tabs').children(), function(index, child) {
+//                     if($(child).attr('id') !== $(that).attr('id')) {
+//                         $(child).removeClass('active');
+//                     }
+//                 });
+//                 $(this).parent().addClass('active');
+//                 middleContainerView.changeDashboard($(this).attr('id'));
+//             });
 
             // var footerView = FooterView;
             // footerView.render({
