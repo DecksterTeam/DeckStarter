@@ -22,7 +22,7 @@
 
 **Here is a sneak peek at the project:**
 
-[DeckStarter](http://dynamic-decksterdash.rhcloud.com/)
+[DeckStarter](http://scaling-decksterdash.rhcloud.com/)
 
 
 ## Installation
