@@ -10,19 +10,22 @@
             'handlebars': '../../lib/vendor/handlebars/handlebars',
 			'gridster': '../../lib/vendor/gridster/jquery.gridster',
 			'radio': '../../lib/vendor/radio/radio.min',
-			'angular': '../../lib/vendor/angular/angular.min.js',
-			'angular-route': '../../lib/vendor/angular-route/angular-route.min.js',
-			'deckster': '../../lib/vendor/decksterjs/dist/jquery.deckster.min'
+			'deckster': '../../lib/vendor/decksterjs/dist/jquery.deckster'
         },
         shim: {
             'bootstrap' : {
                 deps : ['jquery']
-            }
+            },
+			'gridster' : {
+				deps: ['jquery'],
+			    exports: 'gridster'	
+			},
+			'deckster' : ['jquery']
         }, 
         urlArgs: "bust=" + (new Date()).getTime()
     });
 
-    require( ['app', 'jquery', 'bootstrap', 'gridster'], 
+    require( ['app', 'jquery', 'gridster', 'deckster'], 
         function(App, $) {
             App.initialize();
     });
