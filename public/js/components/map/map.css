@@ -27,3 +27,7 @@
 	left: 47%;
 	color: #333;
 }
+
+.map #embed-map-full {
+	display: none;
+}

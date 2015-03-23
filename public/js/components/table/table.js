@@ -51,14 +51,14 @@ define([
                     that.storedCol = that.$el.attr("data-col");
 
                     grid.resize_widget_mod($resizeBtn.parent(), that.fullWidth, that.fullHeight, 1);
-                    // that.fullView();
+                    that.fullView();
 
                 } else {
                     $resizeBtn.addClass('glyphicon-resize-full');
                     $resizeBtn.removeClass('glyphicon-resize-small');
 
                     grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, parseInt(that.storedCol));
-                    // that.smallView();
+                    that.smallView();
                 }
             });
         },
@@ -87,7 +87,7 @@ define([
                     '<tr data-index="' + index + '">' +
                         '<td>' + val.id + '</td>' +
                         '<td>' + val.count + '</td>' +
-                        '<td>' + val.id + ' Item</td>' +
+                        '<td>Item ' + val.id + '</td>' +
                     '</tr>'
                 );
             });
