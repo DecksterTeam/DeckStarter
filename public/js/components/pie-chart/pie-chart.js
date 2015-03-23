@@ -105,10 +105,6 @@ define([
                     $resizeBtn.addClass('glyphicon-resize-full');
                     $resizeBtn.removeClass('glyphicon-resize-small');
 
-                    // if(parseInt(that.storedCol) > Math.floor($('.gridster').width()/300)) {
-                    //     that.storedCol = 1;
-                    // }
-
                     grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, parseInt(that.storedCol), function() {
                         $('#' + that.id + ' .chart-container').empty();
                         setTimeout(function() {
@@ -134,7 +130,7 @@ define([
 
             var that = this;
 
-            var newHeight = $('#' + that.id + ' .tile-content-container').height() - $('#' + that.id + ' .pie-chart-legend').height() - 25;
+            var newHeight = $('#' + that.id + ' .tile-content').height() - $('#' + that.id + ' .pie-chart-legend').height() - 25;
             var newWidth = newHeight;
 
             $('#' + that.id + ' .chart-container').append('<canvas width="' + newWidth + '" height="' + newHeight + '"></canvas>');

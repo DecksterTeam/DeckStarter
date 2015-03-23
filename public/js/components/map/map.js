@@ -73,6 +73,12 @@ define([
             window.removeEventListener("message", receiveMessage, false);
             Radio('plotOnMap').unsubscribe(plotOnMap);
             this.$el.remove();
+        },
+        fullView: function() {
+        
+        },
+        smallView: function() {
+
         }
     };
 

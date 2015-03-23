@@ -52,7 +52,7 @@ define([
                     that.storedCol = that.$el.attr("data-col");
 
                     grid.resize_widget_mod($resizeBtn.parent(), that.fullWidth, that.fullHeight, 1, function() {
-                        if(this.data) {
+                        if(that.data) {
                             $('#' + that.id + ' .chart-container').empty();
                         }
                         setTimeout(function() {
@@ -65,7 +65,7 @@ define([
                     $resizeBtn.removeClass('glyphicon-resize-small');
 
                     grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, parseInt(that.storedCol), function() {
-                        if(this.data) {
+                        if(that.data) {
                             $('#' + that.id + ' .chart-container').empty();
                         }
                         setTimeout(function() {
@@ -81,6 +81,7 @@ define([
                 $('#' + this.id + ' .chart-container').empty();
             }
             this.$el.remove();
+            this.data = undefined;
         },
         postResize: function() {
             var that = this;

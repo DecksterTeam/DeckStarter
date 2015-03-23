@@ -1,9 +1,11 @@
 <li id="{{id}}" class="map tile {{color}}" data-row="{{row}}" data-col="{{col}}" data-sizex="{{sizex}}" data-sizey="{{sizey}}">
 	<span class="resize-btn glyphicon glyphicon-resize-full" aria-hidden="true"></span>
 	<h4>{{title}}</h4>
-	<div class="map-container">
-		{{!-- <iframe id="embed-map" src="https://meridianjs.com:3000/modes/basic/"></iframe> --}}
-		<iframe id="embed-map" src="{{mapURL}}"></iframe>
-		<span class="loading-label">Loading...</span>
+	<div class="tile-content">
+		<div class="map-container">
+			<iframe id="embed-map" src="{{mapURL}}"></iframe>
+			<iframe id="embed-map-full" src="https://meridianjs.com:3000/"></iframe>
+			<span class="loading-label">Loading...</span>
+		</div>
 	</div>
 </li>

@@ -1,11 +1,17 @@
+.line-chart .tile-content {
+  text-align: center;
+  height: calc(100% - 50px);
+  width: calc(100% - 20px);
+  margin-left: 10px;
+}
+
 .line-chart canvas {
   margin: 10px;
 }
 
 .line-chart .chart-container {
-  margin: 0 auto;
-  height: calc(100% - 50px);
-  width: calc(100% - 20px);
+  height: 100%;
+  width: 100%;
   background-color: white;
   border-radius: 6px;
 }
