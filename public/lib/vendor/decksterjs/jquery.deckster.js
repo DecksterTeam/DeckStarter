@@ -1113,7 +1113,7 @@ __p += '\n<div class="deckster-card is-popout" id="' +
 ((__t = ( card.id )) == null ? '' : __t) +
 '">\n';
  } else { ;
-__p += '\n<div class="deckster-card" id="' +
+__p += '\n<div class="deckster-card ' + card.class + '" id="' +
 ((__t = ( card.id )) == null ? '' : __t) +
 '">\n';
  } ;

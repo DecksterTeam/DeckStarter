@@ -26,9 +26,9 @@ define([], function(){
 	  // Define a static array of card configurations or load them from a server (ex: user defined cards)
 	  $scope.cards = [
 	    {
-	      title: 'Photos',
-	      id: 'photoCard',
-	      hasPopout: true,
+	      title: 'Bar Chart',
+	      id: 'bar-chart',
+	      class: 'blue',
 	      summaryContentHtml: getSummaryTemplate,
 	      detailsContentHtml: getDetailsTemplate,
 	      position: {
@@ -39,8 +39,9 @@ define([], function(){
 	      }
 	    },
 	    {
-	      title: 'Alerts',
-	      id: 'alertsCard',
+	      title: 'Pie Chart',
+	      id: 'pie-chart',
+	      class: 'red',
 	      summaryContentHtml: getSummaryTemplate,
 	      detailsContentHtml: getDetailsTemplate,
 	      position: {
@@ -53,6 +54,7 @@ define([], function(){
 	    {
 	      title: 'Geospatial',
 	      id: 'mapCard',
+	      class: 'purple',
 	      summaryContentHtml: getSummaryTemplate,
 	      detailsContentHtml: getDetailsTemplate,
 	      position: {
@@ -64,7 +66,8 @@ define([], function(){
 	    },
 	    {
 	      title: 'Table Data',
-	      id: 'tableCard',
+	      id: 'table',
+	      class: 'orange',
 	      summaryContentHtml: getSummaryTemplate,
 	      detailsContentHtml: getDetailsTemplate,
 	      position: {

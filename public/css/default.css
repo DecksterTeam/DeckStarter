@@ -155,6 +155,27 @@ body {
   text-align: center;
 }
 
+.deckster-card.red .deckster-card-header,
+.deckster-card.red h2,
+.deckster-card.red .deckster-card-control,
+.deckster-card.green .deckster-card-header,
+.deckster-card.green h2,
+.deckster-card.green .deckster-card-control,
+.deckster-card.purple .deckster-card-header,
+.deckster-card.purple h2,
+.deckster-card.purple .deckster-card-control,
+.deckster-card.blue .deckster-card-header,
+.deckster-card.blue h2,
+.deckster-card.blue .deckster-card-control,
+.deckster-card.orange .deckster-card-header,
+.deckster-card.orange h2,
+.deckster-card.orange .deckster-card-control {
+	background: none;
+	border-bottom: none;
+	text-align: center;
+	color: white;
+}
+
 .green{
 	background-color: #0aa699;
 }
@@ -235,6 +256,8 @@ body {
 .red{
   background-color: #e04a49;
 }
+
+
 .fill-red{
   fill: #e04a49;
 }
