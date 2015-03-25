@@ -1,11 +1,4 @@
-.percent-ring .tile-content {
-	text-align: center;
-	margin-left: 10px;
-	width: calc(100% - 20px);
-	height: calc(100% - 50px);
-}
-
-.percent-ring .percent-ring-container {
+.percent-ring-container {
 	margin-left: auto;
 	margin-right: auto;
 	height: calc(100% - 30px);
@@ -13,7 +6,7 @@
 	margin-bottom: 10px;
 }
 
-.percent-ring .percent-ring-container svg {
+.percent-ring-container svg {
 	margin-left: auto;
 	margin-right: auto;
 	width: 100%;
@@ -21,14 +14,6 @@
 	text-align: center;
 }
 
-.percent-ring .dark {
+.dark {
 	fill: white;
-}
-
-.resize-btn {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	height: 25px;
-	width: 20px;
 }

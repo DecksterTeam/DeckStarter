@@ -33,8 +33,8 @@ define([
 			if(options.parent)
             	options.parent.append(this.$el);
 
-            this.addMap();
-            Radio('plotOnMap').subscribe([this.plot, this]);
+            // this.addMap();
+            // Radio('plotOnMap').subscribe([this.plot, this]);
         },
         postRender: function(grid) {
             this.grid = grid;
