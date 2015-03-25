@@ -5,9 +5,8 @@ define([
     'navbar/navbar',
     'sidebar-left/sidebar-left',
     'middle-container/middle-container',
-	'tile-app/main',
     'footer/footer'
-], function ($, DataManager, HeaderView, NavbarView, SidebarLeftView, MiddleContainerView, TileApp, FooterView) {
+], function ($, DataManager, HeaderView, NavbarView, SidebarLeftView, MiddleContainerView, FooterView) {
 
     'use strict';
 
@@ -32,26 +31,31 @@ define([
                 "parent": $body
             });
 
-            var tileApp = TileApp;
-            tileApp.render({
+      	  	//             var tileApp = TileApp;
+      	  	//             tileApp.render({
+      	  	//                 "parent": $body
+      	  	// });
+
+            var middleContainerView = MiddleContainerView;
+            middleContainerView.render({
                 "parent": $body
             });
 
-            // var middleContainerView = MiddleContainerView;
-//             middleContainerView.render({
-//                 "parent": $body
-//             });
-
-            // $('#tabs a').on('click', function() {
-//                 var that = this;
-//                 $.each($('#tabs').children(), function(index, child) {
-//                     if($(child).attr('id') !== $(that).attr('id')) {
-//                         $(child).removeClass('active');
-//                     }
-//                 });
-//                 $(this).parent().addClass('active');
-//                 middleContainerView.changeDashboard($(this).attr('id'));
-//             });
+            $('#tabs a').on('click', function() {
+                var that = this;
+                $.each($('#tabs').children(), function(index, child) {
+                    if($(child).attr('id') !== $(that).attr('id')) {
+                        $(child).removeClass('active');
+                    }
+                });
+                $(this).parent().addClass('active');
+                
+                
+	            middleContainerView.render({
+	                "parent": $body
+        		});
+				middleContainerView.changeDashboard($(this).attr('id'));
+            });
 
             // var footerView = FooterView;
             // footerView.render({
