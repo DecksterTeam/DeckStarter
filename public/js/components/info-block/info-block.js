@@ -26,16 +26,8 @@ define([
 			this.options = options;
             var infoBlockViewTemplate = Handlebars.compile(InfoBlockHBS);
             var infoBlockViewHTML = infoBlockViewTemplate({
-                "id": this.id,
-                "title": params.title,
                 "info": params.data,
-                "description": params.description,
-                "color": options.color || params.color,
-                "percent": params.data,
-                "col": this.smallCol,
-                "row": this.smallRow,
-                "sizex": this.smallWidth,
-                "sizey": this.smallHeight
+                "description": params.description
             });
             this.$el = $(infoBlockViewHTML);
 			

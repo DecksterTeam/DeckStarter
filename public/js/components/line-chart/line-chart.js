@@ -25,16 +25,7 @@ define([
             this.fullWidth = options.fullWidth;
             this.fullHeight = options.fullHeight;
             var lineChartViewTemplate = Handlebars.compile(LineChartHBS);
-            var lineChartViewHTML = lineChartViewTemplate({
-                "id": this.id,
-                "title": "Line Chart",
-                "description": params.description,
-                "color": options.color || params.color,
-                "col": this.smallCol,
-                "row": this.smallRow,
-                "sizex": this.smallWidth,
-                "sizey": this.smallHeight
-            });
+            var lineChartViewHTML = lineChartViewTemplate();
             this.$el = $(lineChartViewHTML);
 			
 			if(options.parent)

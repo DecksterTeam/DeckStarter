@@ -26,15 +26,9 @@ define([
             this.fullHeight = options.fullHeight;
             var percentRingViewTemplate = Handlebars.compile(PercentRingHBS);
             var barChartViewHTML = percentRingViewTemplate({
-                "id": this.id,
-                "title": params.title,
                 "description": params.description,
                 "color": options.color || params.color,
-                "percent": params.data,
-                "col": this.smallCol,
-                "row": this.smallRow,
-                "sizex": this.smallWidth,
-                "sizey": this.smallHeight
+                "percent": params.data                
             });
             this.$el = $(barChartViewHTML);
 			

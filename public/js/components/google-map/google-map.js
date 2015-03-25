@@ -27,19 +27,7 @@ define([
             this.fullWidth = options.fullWidth;
             this.fullHeight = options.fullHeight;
             var mapViewTemplate = Handlebars.compile(MapHBS);
-            var mapViewHTML = mapViewTemplate({
-                "id": this.id,
-                "title": params.title,
-                "info": params.data,
-                "description": params.description,
-                "color": options.color || params.color,
-                "percent": params.data,
-                "col": this.smallCol,
-                "row": this.smallRow,
-                "sizex": this.smallWidth,
-                "sizey": this.smallHeight,
-                "mapURL": mapURL
-            });
+            var mapViewHTML = mapViewTemplate();
             this.$el = $(mapViewHTML);
 			
 			if(options.parent)

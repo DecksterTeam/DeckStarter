@@ -48,6 +48,7 @@ define([
 			var opts = _getDecksterSetup()
 			
 			var cards = this.dashboards[this.currentDashboard].tiles.map(function(card){
+			console.log(card.$el.html());
 				return {
 		  	      title: card.options.id,
 		  	      id: card.options.id,
@@ -62,7 +63,6 @@ define([
 		  	      }
 	  	    }
 			});
-			console.log(this.dashboards[this.currentDashboard].tiles);
 			var deck = $('.gridster ul').deckster(opts.options).data('deckster');
 			
 			deck.addCards(cards);

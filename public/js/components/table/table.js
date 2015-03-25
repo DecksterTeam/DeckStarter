@@ -27,13 +27,7 @@ define([
             this.fullHeight = options.fullHeight;
             var tableViewTemplate = Handlebars.compile(TableHBS);
             var tableViewHTML = tableViewTemplate({
-                "id": this.id,
-                "title": options.title,
-                "color": options.color,
-                "col": this.smallCol,
-                "row": this.smallRow,
-                "sizex": this.smallWidth,
-                "sizey": this.smallHeight
+                "color": options.color
             });
             this.$el = $(tableViewHTML);
 			

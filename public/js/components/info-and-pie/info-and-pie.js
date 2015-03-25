@@ -26,16 +26,7 @@ define([
 			this.options = options;
             var infoAndPieViewTemplate = Handlebars.compile(InfoAndPieHBS);
             var infoAndPieViewHTML = infoAndPieViewTemplate({
-                "id": this.id,
-                "title": params.title,
-                "info": params.data,
-                "description": params.description,
-                "color": options.color || params.color,
-                "percent": params.data,
-                "col": this.smallCol,
-                "row": this.smallRow,
-                "sizex": this.smallWidth,
-                "sizey": this.smallHeight
+                "info": params.data
             });
             this.$el = $(infoAndPieViewHTML);
 			

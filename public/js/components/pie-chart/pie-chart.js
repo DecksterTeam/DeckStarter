@@ -27,16 +27,7 @@ define([
             this.fullWidth = options.fullWidth;
             this.fullHeight = options.fullHeight;
             var pieChartViewTemplate = Handlebars.compile(PieChartHBS);
-            var pieChartViewHTML = pieChartViewTemplate({
-                "id": this.id,
-                "title": params.title,
-                "description": params.description,
-                "color": options.color || params.color,
-                "col": this.smallCol,
-                "row": this.smallRow,
-                "sizex": this.smallWidth,
-                "sizey": this.smallHeight
-            });
+            var pieChartViewHTML = pieChartViewTemplate();
             this.$el = $(pieChartViewHTML);
 			
 			if(options.parent)
