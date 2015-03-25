@@ -346,6 +346,8 @@
   Card.extendDefaults = function(options) {
     var fields = options.fieldsToSerialize;
 
+    console.log(options);
+
     var opts = $.extend(true, {}, defaults, options);
 
     if(fields) {

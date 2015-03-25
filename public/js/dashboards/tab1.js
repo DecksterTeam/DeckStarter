@@ -18,25 +18,27 @@ define([
     return {
         tiles: [],
         populateTiles: function(grid) {
-            // var map = MapView;
-            // map.render({
-            //     "id": 1,
-            //     "color": "green",
-            //     "startCol": 1,
-            //     "startRow": 1,
-            //     "smallWidth": 8,
-            //     "smallHeight": 4,
-            //     "fullWidth": 12,
-            //     "fullHeight": 4,
-            //     "params": DataManager.tiles[7]
-            // });
-            // this.tiles.push(map);
+            var map = MapView;
+            map.render({
+                "id": 1,
+                "title": "Map",
+                "color": "green",
+                "startCol": 1,
+                "startRow": 1,
+                "smallWidth": 8,
+                "smallHeight": 4,
+                "fullWidth": 12,
+                "fullHeight": 4,
+                "params": DataManager.tiles[7]
+            });
+            this.tiles.push(map);
 			
             var info = InfoBlockView;
             var iopts = {
                 "id": 3,
+                "title": "Information",
                 "color": "purple",
-                "startCol": 1,
+                "startCol": 9,
                 "startRow": 1,
                 "smallWidth": 2,
                 "smallHeight": 2,
@@ -50,8 +52,9 @@ define([
             var ring = PercentRingView;
 			var ropts = {
                 "id": 4,
+                "title": "Percent Ring",
                 "color": "orange",
-                "startCol": 3,
+                "startCol": 11,
                 "startRow": 1,
                 "smallWidth": 2,
                 "smallHeight": 2,
@@ -67,10 +70,10 @@ define([
                 "id": 1,
                 "title": "Table",
                 "color": "blue",
-                "startCol": 5,
-                "startRow": 1,
+                "startCol": 9,
+                "startRow": 3,
                 "smallWidth": 4,
-                "smallHeight": 2,
+                "smallHeight": 4,
                 "fullWidth": 12,
                 "fullHeight": 4,
                 "params": DataManager.tiles[3]
@@ -81,6 +84,7 @@ define([
             var bar = BarChartView;
             var bopts = {
                 "id": 1,
+                "title": "Bar Chart",
                 "color": "red",
                 "startCol": 1,
                 "startRow": 9,
@@ -94,11 +98,11 @@ define([
             this.tiles.push(bar);
         },
         postRenderTiles: function(grid) {
-            // $.each(this.tiles, function(index, tile) {
-            //     if(tile.postRender) {
-            //         tile.postRender(grid);
-            //     }
-            // });
+            $.each(this.tiles, function(index, tile) {
+                if(tile.postRender) {
+                    tile.postRender(grid);
+                }
+            });
         },
         removeTiles: function() {
             $.each(this.tiles, function(index, tile) {

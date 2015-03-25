@@ -11,16 +11,17 @@ define([
 	
 	var getDetailsTemplate = function(){return "<div></div>"};
 	
-	var _getDecksterSetup = function(){
-	  	  var mainDeckOptions = {
-	  	    rootUrl: '#/',
-	  	    gridsterOpts: {
-	  	      max_cols: 8,
-	  	      widget_margins: [10, 10],
-	  	      widget_base_dimensions: ['auto', 250],
-	  	      responsive_breakpoint: 850
-	  	    }
-	  	  };
+	var _getDecksterSetup = function() {
+        var mainDeckOptions = {
+            rootUrl: '#/',
+            gridsterOpts: {
+                max_cols: 12,
+                widget_margins: [10, 10],
+                widget_base_dimensions: ['auto', 100],
+                columns: 12,
+                responsive_breakpoint: 850
+            }
+	  	};
 		
 		return {
 			options: mainDeckOptions
@@ -50,7 +51,7 @@ define([
 			var cards = this.dashboards[this.currentDashboard].tiles.map(function(card){
 			console.log(card.$el.html());
 				return {
-		  	      title: card.options.id,
+		  	      title: card.options.title,
 		  	      id: card.options.id,
 		  	      class: card.options.color,
 		  	      summaryContentHtml: card.$el.html(),
@@ -60,7 +61,8 @@ define([
 		  	        size_y: card.options.smallHeight,
 		  	        col: card.options.startCol,
 					row: card.options.startRow
-		  	      }
+		  	      },
+                  resizable: false
 	  	    }
 			});
 			var deck = $('.gridster ul').deckster(opts.options).data('deckster');
@@ -68,26 +70,26 @@ define([
 			deck.addCards(cards);
             // this.dashboards[this.currentDashboard].postRenderTiles(this.gridster);
         },
-        resize: function() {
-            var bodyWidth = $('body').width();
-            var fullTileWidth = 12;
+        // resize: function() {
+        //     var bodyWidth = $('body').width();
+        //     var fullTileWidth = 12;
 
-            var phDimensions = ($('.gridster').width()/fullTileWidth) - 5;
-            var marginWidth = phDimensions * .03;
-            var baseDimensions = phDimensions - (2*marginWidth);
+        //     var phDimensions = ($('.gridster').width()/fullTileWidth) - 5;
+        //     var marginWidth = phDimensions * .03;
+        //     var baseDimensions = phDimensions - (2*marginWidth);
 
-            this.gridster.resize_widget_dimensions({
-                widget_base_dimensions: [baseDimensions, baseDimensions],
-                widget_margins: [marginWidth, marginWidth]
-            });
+        //     this.gridster.resize_widget_dimensions({
+        //         widget_base_dimensions: [baseDimensions, baseDimensions],
+        //         widget_margins: [marginWidth, marginWidth]
+        //     });
 
-            this.dashboards[this.currentDashboard].resize(fullTileWidth);
+        //     this.dashboards[this.currentDashboard].resize(fullTileWidth);
 
-            this.gridster.generate_grid_and_stylesheet();
-            this.gridster.get_widgets_from_DOM();
-            this.gridster.set_dom_grid_height();
-            this.gridster.set_dom_grid_width();
-        },
+        //     this.gridster.generate_grid_and_stylesheet();
+        //     this.gridster.get_widgets_from_DOM();
+        //     this.gridster.set_dom_grid_height();
+        //     this.gridster.set_dom_grid_width();
+        // },
         changeDashboard: function(newDash) {
             $('.gridster').remove();
             this.dashboards[this.currentDashboard].removeTiles();
