@@ -50,7 +50,7 @@ define([
 			var cards = this.dashboards[this.currentDashboard].tiles.map(function(card){
 			console.log(card.$el.html());
 				return {
-		  	      title: card.options.id,
+		  	      title: "sdflgkjwdkfjghkjwdfhgsdfgsdfgfgsh",
 		  	      id: card.options.id,
 		  	      class: card.options.color,
 		  	      summaryContentHtml: card.$el.html(),

@@ -155,24 +155,38 @@ body {
   text-align: center;
 }
 
-.deckster-card.red .deckster-card-header,
 .deckster-card.red h2,
 .deckster-card.red .deckster-card-control,
-.deckster-card.green .deckster-card-header,
 .deckster-card.green h2,
 .deckster-card.green .deckster-card-control,
-.deckster-card.purple .deckster-card-header,
 .deckster-card.purple h2,
 .deckster-card.purple .deckster-card-control,
-.deckster-card.blue .deckster-card-header,
 .deckster-card.blue h2,
 .deckster-card.blue .deckster-card-control,
-.deckster-card.orange .deckster-card-header,
 .deckster-card.orange h2,
 .deckster-card.orange .deckster-card-control {
 	background: none;
 	border-bottom: none;
+	color: white;
+	text-align:center;
+}
+
+.deckster-card.red .deckster-card-title ,
+.deckster-card.green .deckster-card-title ,
+.deckster-card.purple .deckster-card-title ,
+.deckster-card.blue .deckster-card-title ,
+.deckster-card.orange .deckster-card-title{
 	text-align: center;
+	left: -5px;
+}
+
+.deckster-card.red .deckster-card-header,
+.deckster-card.green .deckster-card-header,
+.deckster-card.purple .deckster-card-header,
+.deckster-card.blue .deckster-card-header,
+.deckster-card.orange .deckster-card-header {
+	background: none;
+	border-bottom: none;
 	color: white;
 }
 
