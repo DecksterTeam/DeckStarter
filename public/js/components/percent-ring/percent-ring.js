@@ -36,11 +36,13 @@ define([
                 "sizey": this.smallHeight
             });
             this.$el = $(barChartViewHTML);
-            options.parent.append(this.$el);
+			
+			if(options.parent)
+            	options.parent.append(this.$el);
 
-            this.fillRing();
         },
         postRender: function(grid) {
+            this.fillRing();
             this.grid = grid;
             var that = this;
             var $resizeBtn = $('#' + this.id + ' .resize-btn');

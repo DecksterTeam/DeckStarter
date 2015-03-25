@@ -18,21 +18,20 @@ define([
     return {
         tiles: [],
         populateTiles: function(grid) {
-            var map = MapView;
-            map.render({
-                "id": 1,
-                "color": "green",
-                "startCol": 1,
-                "startRow": 1,
-                "smallWidth": 8,
-                "smallHeight": 4,
-                "fullWidth": 12,
-                "fullHeight": 4,
-                "parent": $('.gridster ul'),
-                "params": DataManager.tiles[7]
-            });
-            this.tiles.push(map);
-
+            // var map = MapView;
+            // map.render({
+            //     "id": 1,
+            //     "color": "green",
+            //     "startCol": 1,
+            //     "startRow": 1,
+            //     "smallWidth": 8,
+            //     "smallHeight": 4,
+            //     "fullWidth": 12,
+            //     "fullHeight": 4,
+            //     "params": DataManager.tiles[7]
+            // });
+            // this.tiles.push(map);
+			
             var info = InfoBlockView;
             info.render({
                 "id": 3,
@@ -43,7 +42,6 @@ define([
                 "smallHeight": 2,
                 "fullWidth": 12,
                 "fullHeight": 4,
-                "parent": $('.gridster ul'),
                 "params": DataManager.tiles[6]
             });
             this.tiles.push(info);
@@ -58,7 +56,6 @@ define([
                 "smallHeight": 2,
                 "fullWidth": 12,
                 "fullHeight": 4,
-                "parent": $('.gridster ul'),
                 "params": DataManager.tiles[0]
             });
             this.tiles.push(ring);
@@ -74,7 +71,6 @@ define([
                 "smallHeight": 4,
                 "fullWidth": 12,
                 "fullHeight": 4,
-                "parent": $('.gridster ul'),
                 "params": DataManager.tiles[3]
             });
             this.tiles.push(table);
@@ -89,17 +85,16 @@ define([
                 "smallHeight": 2,
                 "fullWidth": 12,
                 "fullHeight": 4,
-                "parent": $('.gridster ul'),
                 "params": DataManager.tiles[1]
             });
             this.tiles.push(bar);
         },
         postRenderTiles: function(grid) {
-            $.each(this.tiles, function(index, tile) {
-                if(tile.postRender) {
-                    tile.postRender(grid);
-                }
-            });
+            // $.each(this.tiles, function(index, tile) {
+            //     if(tile.postRender) {
+            //         tile.postRender(grid);
+            //     }
+            // });
         },
         removeTiles: function() {
             $.each(this.tiles, function(index, tile) {
@@ -112,11 +107,11 @@ define([
             this.tiles = [];
         },
         resize: function(newFullWidth) {
-            $.each(this.tiles, function(index, tile) {
-                if(tile.postResize) {
-                    tile.postResize();
-                }
-            });
+            // $.each(this.tiles, function(index, tile) {
+            //     if(tile.postResize) {
+            //         tile.postResize();
+            //     }
+            // });
         }
     };
 });

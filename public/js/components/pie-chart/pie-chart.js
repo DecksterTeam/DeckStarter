@@ -37,7 +37,9 @@ define([
                 "sizey": this.smallHeight
             });
             this.$el = $(pieChartViewHTML);
-            options.parent.append(this.$el);
+			
+			if(options.parent)
+            	options.parent.append(this.$el);
 
             var that = this;
 

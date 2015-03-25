@@ -36,9 +36,11 @@ define([
                 "sizey": this.smallHeight
             });
             this.$el = $(barChartViewHTML);
-            options.parent.append(this.$el);
-
-            Radio('plotOnMap').subscribe([this.setNewData, this]);
+			
+			if(options.parent){
+	            options.parent.append(this.$el);
+	            Radio('plotOnMap').subscribe([this.setNewData, this]);
+			}
         },
         postRender: function(grid) {
             this.grid = grid;

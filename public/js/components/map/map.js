@@ -40,7 +40,9 @@ define([
                 "mapURL": mapURL
             });
             this.$el = $(mapViewHTML);
-            options.parent.append(this.$el);
+			
+			if(options.parent)
+            	options.parent.append(this.$el);
 
             window.addEventListener("message", receiveMessage, false);
         },

@@ -35,7 +35,9 @@ define([
                 "sizey": this.smallHeight
             });
             this.$el = $(tableViewHTML);
-            options.parent.append(this.$el);
+			
+			if(options.parent)
+            	options.parent.append(this.$el);
 
             this.smallView();
         },

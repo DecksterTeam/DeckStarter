@@ -40,7 +40,9 @@ define([
                 "mapURL": mapURL
             });
             this.$el = $(mapViewHTML);
-            options.parent.append(this.$el);
+			
+			if(options.parent)
+            	options.parent.append(this.$el);
 
             this.addMap();
             Radio('plotOnMap').subscribe([this.plot, this]);
