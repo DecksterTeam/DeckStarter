@@ -23,6 +23,7 @@ define([
             this.smallHeight = options.smallHeight;
             this.fullWidth = options.fullWidth;
             this.fullHeight = options.fullHeight;
+			this.options = options;
             var infoBlockViewTemplate = Handlebars.compile(InfoBlockHBS);
             var infoBlockViewHTML = infoBlockViewTemplate({
                 "id": this.id,

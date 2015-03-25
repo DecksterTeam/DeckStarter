@@ -15,7 +15,7 @@ define([
 	  	  var mainDeckOptions = {
 	  	    rootUrl: '#/',
 	  	    gridsterOpts: {
-	  	      max_cols: 12,
+	  	      max_cols: 8,
 	  	      widget_margins: [10, 10],
 	  	      widget_base_dimensions: ['auto', 250],
 	  	      responsive_breakpoint: 850
@@ -49,20 +49,20 @@ define([
 			
 			var cards = this.dashboards[this.currentDashboard].tiles.map(function(card){
 				return {
-		  	      title: card.id,
-		  	      id: card.id,
-		  	      class: card.color,
+		  	      title: card.options.id,
+		  	      id: card.options.id,
+		  	      class: card.options.color,
 		  	      summaryContentHtml: card.$el.html(),
 		  	      detailsContentHtml: card.$el.html(),
 		  	      position: {
-		  	        size_x: card.smallWidth,
-		  	        size_y: card.smallHeight,
-		  	        col: card.startCol,
-					row: card.startRow
+		  	        size_x: card.options.smallWidth,
+		  	        size_y: card.options.smallHeight,
+		  	        col: card.options.startCol,
+					row: card.options.startRow
 		  	      }
 	  	    }
 			});
-			
+			console.log(this.dashboards[this.currentDashboard].tiles);
 			var deck = $('.gridster ul').deckster(opts.options).data('deckster');
 			
 			deck.addCards(cards);

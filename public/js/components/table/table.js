@@ -22,6 +22,7 @@ define([
             this.smallRow = options.startRow;
             this.smallWidth = options.smallWidth;
             this.smallHeight = options.smallHeight;
+			this.options = options;
             this.fullWidth = options.fullWidth;
             this.fullHeight = options.fullHeight;
             var tableViewTemplate = Handlebars.compile(TableHBS);

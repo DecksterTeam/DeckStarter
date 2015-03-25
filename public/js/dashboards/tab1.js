@@ -33,7 +33,7 @@ define([
             // this.tiles.push(map);
 			
             var info = InfoBlockView;
-            info.render({
+            var iopts = {
                 "id": 3,
                 "color": "purple",
                 "startCol": 1,
@@ -43,40 +43,43 @@ define([
                 "fullWidth": 12,
                 "fullHeight": 4,
                 "params": DataManager.tiles[6]
-            });
+            };
+			info.render(iopts);
             this.tiles.push(info);
 
             var ring = PercentRingView;
-            ring.render({
+			var ropts = {
                 "id": 4,
                 "color": "orange",
-                "startCol": 1,
+                "startCol": 3,
                 "startRow": 1,
                 "smallWidth": 2,
                 "smallHeight": 2,
                 "fullWidth": 12,
                 "fullHeight": 4,
                 "params": DataManager.tiles[0]
-            });
+            }
+            ring.render(ropts);
             this.tiles.push(ring);
 
             var table = TableView;
-            table.render({
+			var topts = {
                 "id": 1,
                 "title": "Table",
                 "color": "blue",
-                "startCol": 1,
+                "startCol": 5,
                 "startRow": 1,
                 "smallWidth": 4,
-                "smallHeight": 4,
+                "smallHeight": 2,
                 "fullWidth": 12,
                 "fullHeight": 4,
                 "params": DataManager.tiles[3]
-            });
+            };
+            table.render(topts);
             this.tiles.push(table);
 
             var bar = BarChartView;
-            bar.render({
+            var bopts = {
                 "id": 1,
                 "color": "red",
                 "startCol": 1,
@@ -86,7 +89,8 @@ define([
                 "fullWidth": 12,
                 "fullHeight": 4,
                 "params": DataManager.tiles[1]
-            });
+            };
+			bar.render(bopts);
             this.tiles.push(bar);
         },
         postRenderTiles: function(grid) {
