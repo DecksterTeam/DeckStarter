@@ -97,10 +97,10 @@ define([
 			bar.render(bopts);
             this.tiles.push(bar);
         },
-        postRenderTiles: function(grid) {
+        postRenderTiles: function() {
             $.each(this.tiles, function(index, tile) {
                 if(tile.postRender) {
-                    tile.postRender(grid);
+                    tile.postRender();
                 }
             });
         },

@@ -27,37 +27,15 @@ define([
             this.fullHeight = options.fullHeight;
             var tableViewTemplate = Handlebars.compile(TableHBS);
             var tableViewHTML = tableViewTemplate({
+                "id": this.id,
                 "color": options.color
             });
             this.$el = $(tableViewHTML);
-			
-			if(options.parent)
-            	options.parent.append(this.$el);
 
-            this.smallView();
+            return this.$el;
         },
-        postRender: function(grid) {
-            this.grid = grid;
-            var that = this;
-            var $resizeBtn = $('#' + this.id + ' .resize-btn');
-            $resizeBtn.on('click', function() {
-                if($resizeBtn.hasClass('glyphicon-resize-full')) {
-                    $resizeBtn.removeClass('glyphicon-resize-full');
-                    $resizeBtn.addClass('glyphicon-resize-small');
-
-                    that.storedCol = that.$el.attr("data-col");
-
-                    grid.resize_widget_mod($resizeBtn.parent(), that.fullWidth, that.fullHeight, 1);
-                    that.fullView();
-
-                } else {
-                    $resizeBtn.addClass('glyphicon-resize-full');
-                    $resizeBtn.removeClass('glyphicon-resize-small');
-
-                    grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, parseInt(that.storedCol));
-                    that.smallView();
-                }
-            });
+        postRender: function() {
+            this.smallView();
         },
         fullView: function() {
             this.data = DataManager.rawData.tableData;

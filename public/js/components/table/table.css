@@ -1,47 +1,40 @@
-.table-tile .tile-content {
-	text-align: center;
-	margin-left: 10px;
-	width: calc(100% - 20px);
-	height: calc(100% - 50px);
-}
-
-.table-tile .table-container {
+.table-container {
 	width: 100%;
 	height: 100%;
 	border-radius: 6px;
 	overflow: hidden;
 }
 
-.table-tile .table-body-container {
+.table-container .table-body-container {
 	width: 100%;
 	height: calc(100% - 36px);
 	overflow: auto;
 	border-radius: 0px 0px 6px 6px;
 }
 
-.table-tile .table>tbody>tr>th {
+.table-container .table>tbody>tr>th {
 	border-top: 0px;
 	color: white;
 }
 
-.table-tile .table.table-header{
+.table-container .table.table-header{
 	margin: 0px;
 	width: 100%;
 	background-color: #333;
 	color: white;
 }
 
-.table-tile .table.table-body{
+.table-container .table.table-body{
 	margin: 0px;
 	width: 100%;
 	background-color: white;
 }
 
-.table-tile th, .table-tile td  {
+.table-container th, .table-container td  {
 	text-align: left;
 	width: 150px;
 }
 
-.table-tile tbody {
+.table-container tbody {
 	color: #333;
 }

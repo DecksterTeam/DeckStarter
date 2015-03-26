@@ -34,36 +34,6 @@ define([
 			if(options.parent)
             	options.parent.append(this.$el);
         },
-        postRender: function(grid) {
-            this.grid = grid;
-            var that = this;
-            var $resizeBtn = $('#' + this.id + ' .resize-btn');
-            $resizeBtn.on('click', function() {
-                if($resizeBtn.hasClass('glyphicon-resize-full')) {
-                    $resizeBtn.removeClass('glyphicon-resize-full');
-                    $resizeBtn.addClass('glyphicon-resize-small');
-
-                    that.storedCol = that.$el.attr("data-col");
-
-                    grid.resize_widget_mod($resizeBtn.parent(), that.fullWidth, that.fullHeight, 1);
-
-                } else {
-                    $resizeBtn.addClass('glyphicon-resize-full');
-                    $resizeBtn.removeClass('glyphicon-resize-small');
-
-                    // if(parseInt(that.storedCol) > Math.floor($('.gridster').width()/300)) {
-                    //     grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, 1);
-                    // } else {
-                        grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, parseInt(that.storedCol));
-                    // }
-                }
-            });
-        },
-        // postResize: function() {
-        //     var that = this;
-        //     setTimeout(function() {
-        //     }, 300);
-        // },
         updateWidth: function() {
             var that = this;
             var gridWidth = Math.floor($('.gridster').width()/300);

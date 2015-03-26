@@ -49,7 +49,6 @@ define([
 			var opts = _getDecksterSetup()
 			
 			var cards = this.dashboards[this.currentDashboard].tiles.map(function(card){
-			console.log(card.$el.html());
 				return {
 		  	      title: card.options.title,
 		  	      id: card.options.id,
@@ -68,7 +67,9 @@ define([
 			var deck = $('.gridster ul').deckster(opts.options).data('deckster');
 			
 			deck.addCards(cards);
-            // this.dashboards[this.currentDashboard].postRenderTiles(this.gridster);
+            setTimeout(function() {
+                that.dashboards[that.currentDashboard].postRenderTiles();
+            }, 500);
         },
         // resize: function() {
         //     var bodyWidth = $('body').width();

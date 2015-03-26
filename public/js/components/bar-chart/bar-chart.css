@@ -1,18 +1,10 @@
-.bar-chart .tile-content {
-  text-align: center;
-  margin-left: 10px; 
-  width: calc(100% - 20px);
-  height: calc(100% - 50px);
-}
-
-.bar-chart canvas {
+.bar-chart.chart-container canvas {
   margin: 10px;
 }
 
-.bar-chart .chart-container {
-  margin: 0 auto;
-  height: calc(100% - 50px);
-  width: calc(100% - 20px);
+.bar-chart.chart-container {
+  height: 100%;
+  width: 100%;
   background-color: white;
   border-radius: 6px;
 }

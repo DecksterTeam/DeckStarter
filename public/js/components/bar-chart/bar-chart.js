@@ -26,60 +26,35 @@ define([
             this.fullWidth = options.fullWidth;
             this.fullHeight = options.fullHeight;
             var barChartViewTemplate = Handlebars.compile(BarChartHBS);
-            var barChartViewHTML = barChartViewTemplate();
+            var barChartViewHTML = barChartViewTemplate({
+                "id": this.id
+            });
             this.$el = $(barChartViewHTML);
 			
-			if(options.parent){
-	            options.parent.append(this.$el);
-	            Radio('plotOnMap').subscribe([this.setNewData, this]);
-			}
+            return this.$el;
         },
-        postRender: function(grid) {
-            this.grid = grid;
+        postRender: function() {
             var that = this;
-            var $resizeBtn = $('#' + this.id + ' .resize-btn');
-            $resizeBtn.on('click', function() {
-                if($resizeBtn.hasClass('glyphicon-resize-full')) {
-                    $resizeBtn.removeClass('glyphicon-resize-full');
-                    $resizeBtn.addClass('glyphicon-resize-small');
+            if(that.data) {
+                $('#' + that.id + '.chart-container').empty();
+            }
+            setTimeout(function() {
+                that.addChart(that.id);
+            }, 300);
 
-                    that.storedCol = that.$el.attr("data-col");
-
-                    grid.resize_widget_mod($resizeBtn.parent(), that.fullWidth, that.fullHeight, 1, function() {
-                        if(that.data) {
-                            $('#' + that.id + ' .chart-container').empty();
-                        }
-                        setTimeout(function() {
-                            that.addChart(that.id);
-                        }, 300);
-                    });
-
-                } else {
-                    $resizeBtn.addClass('glyphicon-resize-full');
-                    $resizeBtn.removeClass('glyphicon-resize-small');
-
-                    grid.resize_widget_mod($resizeBtn.parent(), that.smallWidth, that.smallHeight, parseInt(that.storedCol), function() {
-                        if(that.data) {
-                            $('#' + that.id + ' .chart-container').empty();
-                        }
-                        setTimeout(function() {
-                            that.addChart(that.id);
-                        }, 300);
-                    });
-                }
-            });
+            Radio('plotOnMap').subscribe([this.setNewData, this]);
         },
         remove: function() {
             Radio('plotOnMap').unsubscribe(this.setNewData);
             if(this.data) {
-                $('#' + this.id + ' .chart-container').empty();
+                $('#' + this.id + '.chart-container').empty();
             }
             this.$el.remove();
             this.data = undefined;
         },
         postResize: function() {
             var that = this;
-            $('#' + that.id + ' .chart-container').empty();
+            $('#' + that.id + '.chart-container').empty();
             setTimeout(function() {
                 that.addChart(that.id);
             }, 300);
@@ -90,10 +65,10 @@ define([
 
                 var that = this;
 
-                var newHeight = $('#' + that.id + ' .chart-container').height() - 20;
-                var newWidth = $('#' + that.id + ' .chart-container').width() - 20;
+                var newHeight = $('#' + that.id + '.chart-container').height() - 20;
+                var newWidth = $('#' + that.id + '.chart-container').width() - 20;
 
-                $('#' + that.id + ' .chart-container').append('<canvas width="' + newWidth + '" height="' + newHeight + '"></canvas>');
+                $('#' + that.id + '.chart-container').append('<canvas width="' + newWidth + '" height="' + newHeight + '"></canvas>');
 
                 var $canvas = $('#' + that.id + ' canvas');
                 var ctx = $canvas.get(0).getContext("2d");
@@ -124,7 +99,7 @@ define([
             };
 
             var that = this;
-            $('#' + that.id + ' .chart-container').empty();
+            $('#' + that.id + '.chart-container').empty();
             setTimeout(function() {
                 that.addChart(that.id);
             }, 300);
