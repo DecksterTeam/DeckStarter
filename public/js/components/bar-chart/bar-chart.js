@@ -30,19 +30,30 @@ define([
                 "id": this.id
             });
             this.$el = $(barChartViewHTML);
+
+            var that = this;
+            var resizeTimeout;
+            $(window).resize(function(){
+                if(!!resizeTimeout){ clearTimeout(resizeTimeout); }
+                resizeTimeout = setTimeout(function() {
+                    that.onSummaryDisplayed();
+                },500);
+            });
+
+            Radio('plotOnMap').subscribe([this.setNewData, this]);
 			
             return this.$el;
         },
-        postRender: function() {
+        onSummaryDisplayed: function() {
             var that = this;
-            if(that.data) {
-                $('#' + that.id + '.chart-container').empty();
-            }
+
             setTimeout(function() {
+                console.log('hi');
+                if(that.data) {
+                    $('#' + that.id + '.chart-container').empty();
+                }
                 that.addChart(that.id);
             }, 300);
-
-            Radio('plotOnMap').subscribe([this.setNewData, this]);
         },
         remove: function() {
             Radio('plotOnMap').unsubscribe(this.setNewData);

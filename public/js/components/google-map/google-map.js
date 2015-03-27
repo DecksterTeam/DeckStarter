@@ -29,12 +29,17 @@ define([
             var mapViewTemplate = Handlebars.compile(MapHBS);
             var mapViewHTML = mapViewTemplate();
             this.$el = $(mapViewHTML);
+
+            Radio('plotOnMap').subscribe([this.plot, this]);
 			
             return this.$el;
         },
-        postRender: function() {
-            this.addMap();
-            Radio('plotOnMap').subscribe([this.plot, this]);
+        onSummaryDisplayed: function() {
+            var that = this;
+
+            setTimeout(function() {
+                that.addMap();
+            }, 500);
         },
         remove: function() {
             Radio('plotOnMap').unsubscribe(this.plot);

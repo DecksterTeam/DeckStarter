@@ -34,22 +34,12 @@ define([
 			if(options.parent)
             	options.parent.append(this.$el);
         },
-        updateWidth: function() {
+        onSummaryDisplayed: function() {
             var that = this;
-            var gridWidth = Math.floor($('.gridster').width()/300);
-            var $widget = $(this.$el);
-            $widget.attr("data-col",1).attr("data-row",1);
 
-            var $resizeBtn = $('#' + this.id + ' .resize-btn');
-            if($resizeBtn.hasClass('glyphicon-resize-full')) {
-                if($widget.attr("data-sizex") > gridWidth) {
-                    $widget.attr("data-sizex", gridWidth);
-                } else {
-                    $widget.attr("data-sizex", that.smallWidth);
-                }
-            } else {
-                $widget.attr("data-sizex", gridWidth);
-            }
+            setTimeout(function() {
+                //Post Render Activity Goes Here
+            }, 500);
         }
     };
 });

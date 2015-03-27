@@ -7,9 +7,6 @@ define([
 ], function ($, MiddleContainerHBS, Tab1View, Tab2View, Handlebars) {
 
     'use strict';
-	var getSummaryTemplate = function(){return "<div></div>"};
-	
-	var getDetailsTemplate = function(){return "<div></div>"};
 	
 	var _getDecksterSetup = function() {
         var mainDeckOptions = {
@@ -54,7 +51,7 @@ define([
 		  	      id: card.options.id,
 		  	      class: card.options.color,
 		  	      summaryContentHtml: card.$el.html(),
-		  	      detailsContentHtml: card.$el.html(),
+                  onSummaryDisplayed: card.onSummaryDisplayed(),
 		  	      position: {
 		  	        size_x: card.options.smallWidth,
 		  	        size_y: card.options.smallHeight,
@@ -67,30 +64,7 @@ define([
 			var deck = $('.gridster ul').deckster(opts.options).data('deckster');
 			
 			deck.addCards(cards);
-            setTimeout(function() {
-                that.dashboards[that.currentDashboard].postRenderTiles();
-            }, 500);
         },
-        // resize: function() {
-        //     var bodyWidth = $('body').width();
-        //     var fullTileWidth = 12;
-
-        //     var phDimensions = ($('.gridster').width()/fullTileWidth) - 5;
-        //     var marginWidth = phDimensions * .03;
-        //     var baseDimensions = phDimensions - (2*marginWidth);
-
-        //     this.gridster.resize_widget_dimensions({
-        //         widget_base_dimensions: [baseDimensions, baseDimensions],
-        //         widget_margins: [marginWidth, marginWidth]
-        //     });
-
-        //     this.dashboards[this.currentDashboard].resize(fullTileWidth);
-
-        //     this.gridster.generate_grid_and_stylesheet();
-        //     this.gridster.get_widgets_from_DOM();
-        //     this.gridster.set_dom_grid_height();
-        //     this.gridster.set_dom_grid_width();
-        // },
         changeDashboard: function(newDash) {
             $('.gridster').remove();
             this.dashboards[this.currentDashboard].removeTiles();

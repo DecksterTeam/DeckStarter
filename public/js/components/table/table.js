@@ -34,74 +34,36 @@ define([
 
             return this.$el;
         },
-        postRender: function() {
-            this.smallView();
-        },
-        fullView: function() {
-            this.data = DataManager.rawData.tableData;
-            this.headers = DataManager.rawData.tableHeaders;
-
+        onSummaryDisplayed: function() {
             var that = this;
 
-            $('#' + that.id + ' .table-header tr').empty();
-            $('#' + that.id + ' .table-body').empty();
+            setTimeout(function() {
 
+                that.data = DataManager.rawData.tableData;
+                that.headers = DataManager.rawData.tableHeaders;
 
-            $.each(this.headers, function(index, header) {
-                $('#' + that.id + ' .table-header tr').append(
-                    '<th>' + header + '</th>'
-                );
-            });
+                $.each(that.headers, function(index, header) {
+                    $('#' + that.id + ' .table-header tr').append(
+                        '<th>' + header + '</th>'
+                    );
+                });
 
-            $('#' + that.id + ' .table-header tr').append(
-                '<th>Name</th>'
-            );
+                $.each(that.data, function(index, val){
+                    $('#' + that.id + ' .table-body').append(
+                        '<tr data-index="' + index + '">' +
+                            '<td>' + val.id + '</td>' +
+                            '<td>' + val.count + '</td>' +
+                        '</tr>'
+                    );
+                });
 
-            $.each(this.data, function(index, val){
-                $('#' + that.id + ' .table-body').append(
-                    '<tr data-index="' + index + '">' +
-                        '<td>' + val.id + '</td>' +
-                        '<td>' + val.count + '</td>' +
-                        '<td>Item ' + val.id + '</td>' +
-                    '</tr>'
-                );
-            });
+                $('#' + that.id + ' .table-body tr').on('click', function(event) {
+                    $('#' + that.id + ' tr.active').removeClass('active');
+                    $(this).addClass('active');
+                    Radio('plotOnMap').broadcast(that.data[$(this).data('index')]);
+                });
 
-            $('#' + that.id + ' .table-body tr').on('click', function(event) {
-                $('#' + that.id + ' tr.active').removeClass('active');
-                $(this).addClass('active');
-                Radio('plotOnMap').broadcast(that.data[$(this).data('index')]);
-            });
-        },
-        smallView: function() {
-            this.data = DataManager.rawData.tableData;
-            this.headers = DataManager.rawData.tableHeaders;
-
-            var that = this;
-
-            $('#' + that.id + ' .table-header tr').empty();
-            $('#' + that.id + ' .table-body').empty();
-
-            $.each(this.headers, function(index, header) {
-                $('#' + that.id + ' .table-header tr').append(
-                    '<th>' + header + '</th>'
-                );
-            });
-
-            $.each(this.data, function(index, val){
-                $('#' + that.id + ' .table-body').append(
-                    '<tr data-index="' + index + '">' +
-                        '<td>' + val.id + '</td>' +
-                        '<td>' + val.count + '</td>' +
-                    '</tr>'
-                );
-            });
-
-            $('#' + that.id + ' .table-body tr').on('click', function(event) {
-                $('#' + that.id + ' tr.active').removeClass('active');
-                $(this).addClass('active');
-                Radio('plotOnMap').broadcast(that.data[$(this).data('index')]);
-            });
+            }, 500);
         },
         remove: function() {
             $('#' + this.id + ' .table-body tr').remove();
