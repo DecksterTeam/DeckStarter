@@ -51,8 +51,8 @@ define([
                     class: card.color,
                     summaryContentHtml: card.$el.html(),
                     onSummaryLoad: card.onSummaryLoad,
-                    // onExpand: card.onExpand,
-                    // onCollapse: card.onCollapse,
+                    onExpand: card.onExpand,
+                    onCollapse: card.onCollapse,
                     position: {
                         size_x: card.smallWidth,
                         size_y: card.smallHeight,
