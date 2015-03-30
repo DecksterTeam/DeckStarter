@@ -8,38 +8,17 @@ define([
     'use strict';
 
     return {
-        "smallCol": 1,
-        "smallRow": 1,
-    	"smallWidth": 1,
-        "smallHeight": 1,
-        "fullWidth": 2,
-        "fullHeight": 2,
+        "id": "info-block",
         render: function(options) {
-            var params = options.params;
-            this.id = "info-block-" + options.id;
-            this.smallCol = options.startCol;
-            this.smallRow = options.startRow;
-            this.smallWidth = options.smallWidth;
-            this.smallHeight = options.smallHeight;
-            this.fullWidth = options.fullWidth;
-            this.fullHeight = options.fullHeight;
-			this.options = options;
+            $.extend(true, this, options);
             var infoBlockViewTemplate = Handlebars.compile(InfoBlockHBS);
             var infoBlockViewHTML = infoBlockViewTemplate({
-                "info": params.data,
-                "description": params.description
+                "info": 700,
+                "description": "Data about Something"
             });
             this.$el = $(infoBlockViewHTML);
 			
-			if(options.parent)
-            	options.parent.append(this.$el);
-        },
-        onSummaryDisplayed: function() {
-            var that = this;
-
-            setTimeout(function() {
-                //Post Render Activity Goes Here
-            }, 500);
+			return this.$el;
         }
     };
 });

@@ -25,7 +25,6 @@ define([
 		};
 	};
 
-
     return {
         dashboards: {
             "tab1": Tab1View,
@@ -47,19 +46,23 @@ define([
 			
 			var cards = this.dashboards[this.currentDashboard].tiles.map(function(card){
 				return {
-		  	      title: card.options.title,
-		  	      id: card.options.id,
-		  	      class: card.options.color,
-		  	      summaryContentHtml: card.$el.html(),
-                  onSummaryDisplayed: card.onSummaryDisplayed(),
-		  	      position: {
-		  	        size_x: card.options.smallWidth,
-		  	        size_y: card.options.smallHeight,
-		  	        col: card.options.startCol,
-					row: card.options.startRow
-		  	      },
-                  resizable: false
-	  	    }
+                    id: card.id,
+                    title: card.title,
+                    class: card.color,
+                    summaryContentHtml: card.$el.html(),
+                    onSummaryLoad: card.onSummaryLoad,
+                    // onExpand: card.onExpand,
+                    // onCollapse: card.onCollapse,
+                    position: {
+                        size_x: card.smallWidth,
+                        size_y: card.smallHeight,
+                        col: card.startCol,
+                        row: card.startRow,
+                        expanded_x: card.fullWidth,
+                        expanded_y: card.fullHeight
+                    },
+                    resizable: false
+	  	        }
 			});
 			var deck = $('.gridster ul').deckster(opts.options).data('deckster');
 			

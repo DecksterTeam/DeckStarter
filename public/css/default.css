@@ -47,6 +47,10 @@
   text-transform: uppercase;
 }
 
+.deckster-card .deckster-card-control {
+  display: none;
+}
+
 
 /*.controls {
   margin-bottom: 20px;

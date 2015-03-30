@@ -20,7 +20,6 @@ define([
         populateTiles: function(grid) {
             var map = MapView;
             map.render({
-                "id": 1,
                 "title": "Map",
                 "color": "green",
                 "startCol": 1,
@@ -28,14 +27,12 @@ define([
                 "smallWidth": 8,
                 "smallHeight": 4,
                 "fullWidth": 12,
-                "fullHeight": 4,
-                "params": DataManager.tiles[7]
+                "fullHeight": 5
             });
             this.tiles.push(map);
 			
             var info = InfoBlockView;
             var iopts = {
-                "id": 3,
                 "title": "Information",
                 "color": "purple",
                 "startCol": 9,
@@ -43,15 +40,14 @@ define([
                 "smallWidth": 2,
                 "smallHeight": 2,
                 "fullWidth": 12,
-                "fullHeight": 4,
+                "fullHeight": 5,
                 "params": DataManager.tiles[6]
             };
-			info.render(iopts);
+            info.render(iopts);
             this.tiles.push(info);
 
             var ring = PercentRingView;
-			var ropts = {
-                "id": 4,
+            var ropts = {
                 "title": "Percent Ring",
                 "color": "orange",
                 "startCol": 11,
@@ -59,15 +55,13 @@ define([
                 "smallWidth": 2,
                 "smallHeight": 2,
                 "fullWidth": 12,
-                "fullHeight": 4,
-                "params": DataManager.tiles[0]
+                "fullHeight": 5
             }
             ring.render(ropts);
             this.tiles.push(ring);
 
             var table = TableView;
-			var topts = {
-                "id": 1,
+            var topts = {
                 "title": "Table",
                 "color": "blue",
                 "startCol": 9,
@@ -75,15 +69,13 @@ define([
                 "smallWidth": 4,
                 "smallHeight": 4,
                 "fullWidth": 12,
-                "fullHeight": 4,
-                "params": DataManager.tiles[3]
+                "fullHeight": 5
             };
             table.render(topts);
             this.tiles.push(table);
 
             var bar = BarChartView;
             var bopts = {
-                "id": 1,
                 "title": "Bar Chart",
                 "color": "red",
                 "startCol": 1,
@@ -91,10 +83,9 @@ define([
                 "smallWidth": 8,
                 "smallHeight": 2,
                 "fullWidth": 12,
-                "fullHeight": 4,
-                "params": DataManager.tiles[1]
+                "fullHeight": 5
             };
-			bar.render(bopts);
+            bar.render(bopts);
             this.tiles.push(bar);
         },
         postRenderTiles: function() {

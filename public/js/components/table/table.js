@@ -8,65 +8,49 @@ define([
 
     'use strict';
 
+    var tableData, 
+        tableHeaders;
+
     return {
-        "smallCol": 1,
-        "smallRow": 1,
-        "smallWidth": 4,
-        "smallHeight": 2,
-        "fullWidth": 4,
-        "fullHeight": 3,
+        "id": "table-tile",
         render: function(options) {
-            var params = options.params;
-            this.id = "table-" + options.id;
-            this.smallCol = options.startCol;
-            this.smallRow = options.startRow;
-            this.smallWidth = options.smallWidth;
-            this.smallHeight = options.smallHeight;
-			this.options = options;
-            this.fullWidth = options.fullWidth;
-            this.fullHeight = options.fullHeight;
+            $.extend(true, this, options);
             var tableViewTemplate = Handlebars.compile(TableHBS);
             var tableViewHTML = tableViewTemplate({
                 "id": this.id,
-                "color": options.color
+                "color": this.color
             });
             this.$el = $(tableViewHTML);
 
             return this.$el;
         },
-        onSummaryDisplayed: function() {
-            var that = this;
+        onSummaryLoad: function() {
+            tableData = DataManager.rawData.tableData;
+            tableHeaders = DataManager.rawData.tableHeaders;
 
-            setTimeout(function() {
+            $.each(tableHeaders, function(index, header) {
+                $('#table-tile .table-header tr').append(
+                    '<th>' + header + '</th>'
+                );
+            });
 
-                that.data = DataManager.rawData.tableData;
-                that.headers = DataManager.rawData.tableHeaders;
+            $.each(tableData, function(index, val){
+                $('#table-tile .table-body').append(
+                    '<tr data-index="' + index + '">' +
+                        '<td>' + val.id + '</td>' +
+                        '<td>' + val.count + '</td>' +
+                    '</tr>'
+                );
+            });
 
-                $.each(that.headers, function(index, header) {
-                    $('#' + that.id + ' .table-header tr').append(
-                        '<th>' + header + '</th>'
-                    );
-                });
-
-                $.each(that.data, function(index, val){
-                    $('#' + that.id + ' .table-body').append(
-                        '<tr data-index="' + index + '">' +
-                            '<td>' + val.id + '</td>' +
-                            '<td>' + val.count + '</td>' +
-                        '</tr>'
-                    );
-                });
-
-                $('#' + that.id + ' .table-body tr').on('click', function(event) {
-                    $('#' + that.id + ' tr.active').removeClass('active');
-                    $(this).addClass('active');
-                    Radio('plotOnMap').broadcast(that.data[$(this).data('index')]);
-                });
-
-            }, 500);
+            $('#table-tile .table-body tr').on('click', function(event) {
+                $('#table-tile tr.active').removeClass('active');
+                $(this).addClass('active');
+                Radio('plotOnMap').broadcast(tableData[$(this).data('index')]);
+            });
         },
         remove: function() {
-            $('#' + this.id + ' .table-body tr').remove();
+            $('#table-tile .table-body tr').remove();
             this.$el.remove();
         }
     };
