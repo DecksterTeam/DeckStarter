@@ -32,7 +32,6 @@ define([
         },
         currentDashboard: "tab1",
         render: function(options) {
-            var serializedComponents = options.serializedComponents;
             this.options = options;
             var middleContainerViewTemplate = Handlebars.compile(MiddleContainerHBS);
             var middleContainerViewHTML = middleContainerViewTemplate();
@@ -44,7 +43,7 @@ define([
             
 			var opts = _getDecksterSetup()
 			
-			var cards = this.dashboards[this.currentDashboard].tiles.map(function(card){
+			this.cards = this.dashboards[this.currentDashboard].tiles.map(function(card){
 				return {
                     id: card.id,
                     title: card.title,
@@ -64,11 +63,12 @@ define([
                     resizable: false
 	  	        }
 			});
-			var deck = $('.gridster ul').deckster(opts.options).data('deckster');
+			this.deck = $('.gridster ul').deckster(opts.options).data('deckster');
 			
-			deck.addCards(cards);
+			this.deck.addCards(this.cards);
         },
         changeDashboard: function(newDash) {
+            this.deck.destroy();
             $('.gridster').remove();
             this.dashboards[this.currentDashboard].removeTiles();
 
@@ -77,6 +77,9 @@ define([
             this.render({
                 "parent": $('body')
             });
+        },
+        onResize: function() {
+            this.dashboards[this.currentDashboard].onResize();
         }
     };
 });

@@ -21,18 +21,6 @@ define([
             this.$el = $(barChartViewHTML);
 
             Radio('plotOnMap').subscribe([this.setNewData, this]);
-
-            var that = this;
-            var resizeTimeout;
-            $(window).resize(function(){
-                if(barChartData) {
-                    $('#bar-chart.chart-container').empty();
-                }
-                if(!!resizeTimeout){ clearTimeout(resizeTimeout); }
-                resizeTimeout = setTimeout(function() {
-                    that.onResize();
-                },500);
-            });
 			
             return this.$el;
         },
@@ -53,16 +41,16 @@ define([
             }
         },
         remove: function() {
-            Radio('plotOnMap').unsubscribe(this.setNewData);
+            Radio('plotOnMap').unsubscribe([this.setNewData, this]);
             if(this.data) {
                 $('#' + this.id + '.chart-container').empty();
             }
             this.$el.remove();
-            this.data = undefined;
+            barChartData = undefined;
         },
         onResize: function() {
             if(barChartData) {
-                // $('#bar-chart.chart-container').empty();
+                $('#bar-chart.chart-container').empty();
                 setTimeout(function() {
                     addChart();
                 }, 500);

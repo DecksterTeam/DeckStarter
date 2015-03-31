@@ -62,13 +62,13 @@ define([
             //     "parent": $body
             // });
 
-            // var resizeTimeout;
-            // $(window).resize(function(){
-            //     if(!!resizeTimeout){ clearTimeout(resizeTimeout); }
-            //     resizeTimeout = setTimeout(function() {
-            //         middleContainerView.resize();
-            //     },500);
-            // });
+            var resizeTimeout;
+            $(window).resize(function(){
+                if(!!resizeTimeout){ clearTimeout(resizeTimeout); }
+                resizeTimeout = setTimeout(function() {
+                    middleContainerView.onResize();
+                },500);
+            });
         }
     };
 });

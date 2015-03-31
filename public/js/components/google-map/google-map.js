@@ -34,17 +34,23 @@ define([
             markers = [];
         },
         onExpand: function() {
-            google.maps.event.trigger(googleMap, "resize");
+            setTimeout(function() {
+                google.maps.event.trigger(googleMap, "resize");
+            }, 500);
         },
         onCollapse: function() {
-            google.maps.event.trigger(googleMap, "resize");
+            setTimeout(function() {
+                google.maps.event.trigger(googleMap, "resize");
+            }, 500);
         },
         remove: function() {
             Radio('plotOnMap').unsubscribe(this.plot);
             this.$el.remove();
         },
         onResize: function() {
-            google.maps.event.trigger(googleMap, "resize");
+            setTimeout(function() {
+                google.maps.event.trigger(googleMap, "resize");
+            }, 500);
         },
         plot: function(data) {
             for (var i = 0; i < markers.length; i++) {

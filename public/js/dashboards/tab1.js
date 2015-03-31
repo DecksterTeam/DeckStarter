@@ -17,7 +17,7 @@ define([
 
     return {
         tiles: [],
-        populateTiles: function(grid) {
+        populateTiles: function() {
             var map = MapView;
             map.render({
                 "title": "Map",
@@ -88,13 +88,6 @@ define([
             bar.render(bopts);
             this.tiles.push(bar);
         },
-        postRenderTiles: function() {
-            $.each(this.tiles, function(index, tile) {
-                if(tile.postRender) {
-                    tile.postRender();
-                }
-            });
-        },
         removeTiles: function() {
             $.each(this.tiles, function(index, tile) {
                 if(tile.remove) {
@@ -105,12 +98,12 @@ define([
             });
             this.tiles = [];
         },
-        resize: function(newFullWidth) {
-            // $.each(this.tiles, function(index, tile) {
-            //     if(tile.postResize) {
-            //         tile.postResize();
-            //     }
-            // });
+        onResize: function() {
+            $.each(this.tiles, function(index, tile) {
+                if(tile.onResize) {
+                    tile.onResize();
+                }
+            });
         }
     };
 });
