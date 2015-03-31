@@ -66,7 +66,7 @@ define([
                 "startCol": 1,
                 "startRow": 1,
                 "smallWidth": 12,
-                "smallHeight": 4,
+                "smallHeight": 3,
                 "fullWidth": 12,
                 "fullHeight": 5
             };
@@ -78,7 +78,7 @@ define([
                 "title": "Bar Chart",
                 "color": "red",
                 "startCol": 1,
-                "startRow": 5,
+                "startRow": 4,
                 "smallWidth": 12,
                 "smallHeight": 3,
                 "fullWidth": 12,

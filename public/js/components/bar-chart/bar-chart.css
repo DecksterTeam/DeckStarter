@@ -22,7 +22,7 @@
 
 .bar-chart .no-data-label {
   position: absolute;
-  top: 48%;
-  left: 47%;
+  top: calc(50% - 10px);
+  left: calc(50% - 25.5px);
   color: #333;
 }
