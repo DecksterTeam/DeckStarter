@@ -1,25 +1,22 @@
 define([
     'jquery',
     'text!middle-container/middle-container.hbs',
-    'components/info-and-pie/info-and-pie',
     'components/percent-ring/percent-ring',
     'components/info-block/info-block',
-    'components/pie-chart/pie-chart',
-    'components/line-chart/line-chart',
     'components/bar-chart/bar-chart',
     'components/table/table',
     'components/google-map/google-map',
     'handlebars',
     'bootstrap'
-], function ($, MiddleContainerHBS, InfoAndPieView, PercentRingView, InfoBlockView, PieChartView, LineChartView, BarChartView, TableView, MapView, Handlebars) {
+], function ($, MiddleContainerHBS, PercentRingView, InfoBlockView, BarChartView, TableView, GoogleMapView, Handlebars) {
 
     'use strict';
 
     return {
         tiles: [],
         populateTiles: function() {
-            var map = MapView;
-            map.render({
+            var gMap = GoogleMapView;
+            gMap.render({
                 "title": "Map",
                 "color": "green",
                 "startCol": 1,
@@ -29,7 +26,7 @@ define([
                 "fullWidth": 12,
                 "fullHeight": 5
             });
-            this.tiles.push(map);
+            this.tiles.push(gMap);
 			
             var info = InfoBlockView;
             var iopts = {

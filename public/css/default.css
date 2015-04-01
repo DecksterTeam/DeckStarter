@@ -51,6 +51,9 @@
   display: none;
 }
 
+.deckster-card .deckster-card-footer {
+  display: none;
+}
 
 /*.controls {
   margin-bottom: 20px;

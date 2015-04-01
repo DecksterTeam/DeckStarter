@@ -1,15 +1,8 @@
-.line-chart .tile-content {
-  text-align: center;
-  height: calc(100% - 50px);
-  width: calc(100% - 20px);
-  margin-left: 10px;
-}
-
-.line-chart canvas {
+.line-chart.chart-container canvas {
   margin: 10px;
 }
 
-.line-chart .chart-container {
+.line-chart.chart-container {
   height: 100%;
   width: 100%;
   background-color: white;
@@ -25,4 +18,11 @@
 .line-chart p {
   color: #333;
   background-color: white;
+}
+
+.line-chart .no-data-label {
+  position: absolute;
+  top: calc(50% - 10px);
+  left: calc(50% - 25.5px);
+  color: #333;
 }

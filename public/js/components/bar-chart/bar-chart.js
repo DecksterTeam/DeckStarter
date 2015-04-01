@@ -41,7 +41,7 @@ define([
             }
         },
         remove: function() {
-            Radio('plotOnMap').unsubscribe([this.setNewData, this]);
+            Radio('plotOnMap').unsubscribe(this.setNewData);
             if(this.data) {
                 $('#' + this.id + '.chart-container').empty();
             }
