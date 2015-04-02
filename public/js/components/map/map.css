@@ -15,7 +15,7 @@
 
 .map-container .loading-label {
 	position: absolute;
-	top: 48%;
-	left: 47%;
+	top: calc(50% - 10px);
+	left: calc(50% - 31px);
 	color: #333;
 }
