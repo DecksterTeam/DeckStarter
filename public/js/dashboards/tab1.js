@@ -14,6 +14,7 @@ define([
 
     return {
         tiles: [],
+        serialization: [],
         populateTiles: function() {
             var gMap = GoogleMapView;
             gMap.render({

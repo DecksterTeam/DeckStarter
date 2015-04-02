@@ -51,9 +51,9 @@ define([
                 $(this).parent().addClass('active');
                 
                 
-	            middleContainerView.render({
-	                "parent": $body
-        		});
+	         //    middleContainerView.render({
+	         //        "parent": $body
+        		// });
 				middleContainerView.changeDashboard($(this).attr('id'));
             });
 

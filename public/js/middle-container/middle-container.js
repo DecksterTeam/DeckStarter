@@ -44,7 +44,7 @@ define([
 			var opts = _getDecksterSetup()
 			
 			this.cards = this.dashboards[this.currentDashboard].tiles.map(function(card){
-				return {
+				var obj = {
                     id: card.id,
                     title: card.title,
                     class: card.color,
@@ -60,14 +60,34 @@ define([
                         expanded_x: card.fullWidth,
                         expanded_y: card.fullHeight
                     },
-                    resizable: false
-	  	        }
+                    resizable: false,
+                    fieldsToSerialize: ["id", "position"]
+	  	        };
+
+                var serialization = that.dashboards[that.currentDashboard].serialization;
+                if(serialization.length != 0) {
+                    $.each(serialization, function(index, cardData) {
+                        if(obj.id === cardData.id) {
+                            obj.position = cardData.position;
+                        }
+                    });
+                }
+
+                return obj;
 			});
+
 			this.deck = $('.gridster ul').deckster(opts.options).data('deckster');
 			
 			this.deck.addCards(this.cards);
+
+            $('.navbar-brand').on('click', function(){
+                console.log(that.deck.serializeDeck());
+            });
         },
         changeDashboard: function(newDash) {
+            var serializedDeckData = this.deck.serializeDeck();
+            this.dashboards[this.currentDashboard].serialization = serializedDeckData.cards;
+
             this.deck.destroy();
             $('.gridster').remove();
             this.dashboards[this.currentDashboard].removeTiles();

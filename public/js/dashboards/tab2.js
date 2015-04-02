@@ -16,6 +16,7 @@ define([
 
     return {
         tiles: [],
+        serialization: [],
         populateTiles: function() {
             var map = MapView;
             map.render({
