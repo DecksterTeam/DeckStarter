@@ -77,6 +77,14 @@ define([
 			});
 
 			this.deck = $('.gridster ul').deckster(opts.options).data('deckster');
+
+            this.cards.sort(function (x, y) {
+                var n = x.position.row - y.position.row;
+                if (n != 0) {
+                    return n;
+                }
+                return x.position.col - y.position.col;
+            });
 			
 			this.deck.addCards(this.cards);
 
