@@ -24,6 +24,9 @@ define([
 
             return this.$el;
         },
+        getSummaryContentHtml: function() {
+            return this.$el.html();
+        },
         onSummaryLoad: function() {
             tableData = DataManager.rawData.tableData;
             tableHeaders = DataManager.rawData.tableHeaders;

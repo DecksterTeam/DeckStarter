@@ -8,21 +8,37 @@ define([
 
     'use strict';
 
+    var mapData = [];
+
     return {
         "id": "map",
         render: function(options) {
             $.extend(true, this, options);
-            var mapURL = 'https://meridianjs.com:3000/modes/embedded/';
             var mapViewTemplate = Handlebars.compile(MapHBS);
+
             var mapViewHTML = mapViewTemplate({
                 "id": this.id,
-                "mapURL": mapURL
+                "iframeId": "embed-map",
+                "mapURL": 'https://meridianjs.com:3000/modes/embedded/'
             });
             this.$el = $(mapViewHTML);
+
+            var detailsMapViewHTML = mapViewTemplate({
+                "id": this.id,
+                "iframeId": "details-embed-map",
+                "mapURL": 'https://meridianjs.com:3000/'
+            });
+            this.$detailsEl = $(detailsMapViewHTML);
 
             Radio('plotOnMap').subscribe(plotOnMap);
 
             window.addEventListener("message", receiveMessage, false);
+        },
+        getSummaryContentHtml: function() {
+            return this.$el.html();
+        },
+        getDetailsContentHtml: function() {
+            return this.$detailsEl.html();
         },
         remove: function() {
             window.removeEventListener("message", receiveMessage, false);
@@ -36,20 +52,27 @@ define([
             channel: channel,
             message: message
         };
-        document.getElementById('embed-map').contentWindow.postMessage(toSend, 
-            'https://meridianjs.com:3000/modes/embedded/');
+        if(document.getElementById('embed-map')) {
+            document.getElementById('embed-map').contentWindow.postMessage(toSend, 
+                'https://meridianjs.com:3000/modes/embedded/');
+        }
+        if(document.getElementById('details-embed-map')) {
+            document.getElementById('details-embed-map').contentWindow.postMessage(toSend, 
+                'https://meridianjs.com:3000/');
+        }
     }
 
     function receiveMessage(event) {
         if(event.data.channel === 'map.status.ready') {
             $('#map .loading-label').css('display', 'none');
 
-            Radio('plotOnMap').subscribe(plotOnMap);
+            if(mapData.length > 0) {
+                plotOnMap(mapData);
+            }
         }
     }
 
     function plotOnMap(data) {
-        console.log(data);
         sendMessage("map.clear", {});
 
         var features = [];
@@ -82,9 +105,11 @@ define([
                 "features":features
             },
             "zoom":false,
-            "dataZoom": false,
+            "dataZoom": true,
             "readOnly":false
         });
+
+        mapData = data;
     }
 
 

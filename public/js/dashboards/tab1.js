@@ -38,8 +38,7 @@ define([
                 "smallWidth": 2,
                 "smallHeight": 2,
                 "fullWidth": 12,
-                "fullHeight": 5,
-                "params": DataManager.tiles[6]
+                "fullHeight": 5
             };
             info.render(iopts);
             this.tiles.push(info);
@@ -77,7 +76,7 @@ define([
                 "title": "Bar Chart",
                 "color": "red",
                 "startCol": 1,
-                "startRow": 9,
+                "startRow": 5,
                 "smallWidth": 8,
                 "smallHeight": 2,
                 "fullWidth": 12,

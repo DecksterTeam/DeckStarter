@@ -24,6 +24,9 @@ define([
 			
             return this.$el;
         },
+        getSummaryContentHtml: function() {
+            return this.$el.html();
+        },
         onExpand: function() {
             if(barChartData) {
                 $('#bar-chart.chart-container').empty();

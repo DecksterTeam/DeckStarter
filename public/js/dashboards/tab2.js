@@ -45,9 +45,9 @@ define([
             table.render(topts);
             this.tiles.push(table);
 
-            var line = LineChartView;
-            var lopts = {
-                "title": "Line Chart",
+            var bar = BarChartView;
+            var bopts = {
+                "title": "Bar Chart",
                 "color": "red",
                 "startCol": 7,
                 "startRow": 4,
@@ -56,8 +56,8 @@ define([
                 "fullWidth": 12,
                 "fullHeight": 5
             };
-            line.render(lopts);
-            this.tiles.push(line);
+            bar.render(bopts);
+            this.tiles.push(bar);
         },
         removeTiles: function() {
             $.each(this.tiles, function(index, tile) {

@@ -16,7 +16,7 @@ define([
                 widget_margins: [10, 10],
                 widget_base_dimensions: ['auto', 100],
                 columns: 12,
-                responsive_breakpoint: 850
+                responsive_breakpoint: 768
             }
 	  	};
 		
@@ -30,7 +30,7 @@ define([
             "tab1": Tab1View,
             "tab2": Tab2View
         },
-        currentDashboard: "tab1",
+        currentDashboard: "tab2",
         render: function(options) {
             this.options = options;
             var middleContainerViewTemplate = Handlebars.compile(MiddleContainerHBS);
@@ -44,11 +44,12 @@ define([
 			var opts = _getDecksterSetup()
 			
 			this.cards = this.dashboards[this.currentDashboard].tiles.map(function(card){
+
 				var obj = {
                     id: card.id,
                     title: card.title,
                     class: card.color,
-                    summaryContentHtml: card.$el.html(),
+                    summaryContentHtml: card.getSummaryContentHtml(),
                     onSummaryLoad: card.onSummaryLoad,
                     onExpand: card.onExpand,
                     onCollapse: card.onCollapse,
@@ -63,6 +64,14 @@ define([
                     resizable: false,
                     fieldsToSerialize: ["id", "position"]
 	  	        };
+
+                if (typeof card.getDetailsContentHtml == 'function') { 
+                    obj.detailsContentHtml = card.getDetailsContentHtml();
+                }
+
+                if (typeof card.onDetailsLoad == 'function') { 
+                    obj.onDetailsLoad = card.onDetailsLoad;
+                }
 
                 var serialization = that.dashboards[that.currentDashboard].serialization;
                 if(serialization.length != 0) {
@@ -87,10 +96,6 @@ define([
             });
 			
 			this.deck.addCards(this.cards);
-
-            $('.navbar-brand').on('click', function(){
-                console.log(that.deck.serializeDeck());
-            });
         },
         changeDashboard: function(newDash) {
             var serializedDeckData = this.deck.serializeDeck();
