@@ -66,7 +66,7 @@ define([
         if(event.data.channel === 'map.status.ready') {
             $('#map .loading-label').css('display', 'none');
 
-            if(mapData.length > 0) {
+            if(mapData.data.length > 0) {
                 plotOnMap(mapData);
             }
         }
@@ -110,6 +110,8 @@ define([
         });
 
         mapData = data;
+
+        console.log(mapData);
     }
 
 

@@ -30,7 +30,7 @@ define([
             "tab1": Tab1View,
             "tab2": Tab2View
         },
-        currentDashboard: "tab2",
+        currentDashboard: "tab1",
         render: function(options) {
             this.options = options;
             var middleContainerViewTemplate = Handlebars.compile(MiddleContainerHBS);
@@ -49,7 +49,7 @@ define([
                     id: card.id,
                     title: card.title,
                     class: card.color,
-                    summaryContentHtml: card.getSummaryContentHtml(),
+                    summaryContentHtml: card.$el.html(),
                     onSummaryLoad: card.onSummaryLoad,
                     onExpand: card.onExpand,
                     onCollapse: card.onCollapse,
@@ -64,6 +64,10 @@ define([
                     resizable: false,
                     fieldsToSerialize: ["id", "position"]
 	  	        };
+
+                if (typeof card.getSummaryContentHtml == 'function') { 
+                    obj.getSummaryContentHtml = card.getSummaryContentHtml();
+                }
 
                 if (typeof card.getDetailsContentHtml == 'function') { 
                     obj.detailsContentHtml = card.getDetailsContentHtml();
