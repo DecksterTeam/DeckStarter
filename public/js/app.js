@@ -57,6 +57,18 @@ define([
 				middleContainerView.changeDashboard($(this).attr('id'));
             });
 
+            $('.sidebar-control').on('click', function() {
+                if($('.middle-container').hasClass('margin-left')) {
+                    $('.middle-container').removeClass('margin-left');
+                    $('.sidebar').removeClass('active');   
+                } else {
+                    $('.middle-container').addClass('margin-left');
+                    $('.sidebar').addClass('active');
+                }
+                middleContainerView.resizeDeck();
+                middleContainerView.onResize();
+            });
+
             // var footerView = FooterView;
             // footerView.render({
             //     "parent": $body

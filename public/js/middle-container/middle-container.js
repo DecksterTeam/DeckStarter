@@ -117,6 +117,9 @@ define([
         },
         onResize: function() {
             this.dashboards[this.currentDashboard].onResize();
+        },
+        resizeDeck: function() {
+            this.deck.$gridster.resize_responsive_layout();
         }
     };
 });

@@ -11,6 +11,7 @@
   list-style-type: none;
   margin-top: 0px;
   margin-bottom: 0px;
+  padding-left: 0px;
   -webkit-padding-start: 0px;
 }
 
@@ -104,9 +105,39 @@ body {
   padding-top: 50px;
 }
 
+.navbar-header .sidebar-control {
+  display: inline-block;
+  float: left;
+  padding-right: 14px;
+  padding-left: 12px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  background-color: transparent;
+  background-image: none;
+  /*border: 1px solid transparent;*/
+  border-right: 1px solid #b4bcc8;
+  /*border-radius: 4px;*/
+}
+
+.navbar-header .sidebar-control .hamburger-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 1px;
+  background-color: #b4bcc8;
+}
+.navbar-header .sidebar-control .hamburger-bar + .hamburger-bar {
+  margin-top: 4px;
+}
+
 .main-navbar {
   background-color: #2b3643;
   color: #b4bcc8;
+}
+
+.navbar-brand { 
+  padding-right: 25px;
+  padding-left: 25px;
 }
 
 .navbar-inverse .navbar-toggle,
@@ -332,19 +363,30 @@ body {
  */
 .nav-sidebar {
   width: 180px;
-  background-color: #364150;
+  background-color: #2b3643;
   color: #b4bcc8;
 }
 .nav-sidebar > li > a {
-  padding-right: 20px;
-  padding-left: 20px;
+  padding-right: 10px;
+  padding-left: 10px;
   color: #b4bcc8;
 }
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
-  color: #fff;
-  background-color: #1caf9a;
+  color: #364150;
+  background-color: #364150;
+}
+
+.nav-sidebar>li>a:hover, .nav-sidebar>li>a:focus {
+  background-color: #364150;
+  cursor: pointer;
+}
+
+.nav-sidebar input {
+  margin-right: 5px;
+  position:relative;
+  bottom: 1.5px;
 }
 
 .nav-menu {
@@ -352,14 +394,22 @@ body {
 }
 
 .sub-filter > li > a {
-  padding-right: 20px;
-  padding-left: 55px;
+  padding-right: 10px;
+  padding-left: 20px;
+}
+
+.sub-filter {
+  display: none;
+}
+
+.sub-filter.active {
+  display: inline-block;
 }
 
 .sidebar .caret {
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-top: 4px solid #000000;
+  border-top: 4px solid #b4bcc8;
   display: inline-block;
   height: 0;
   opacity: 0.3;
@@ -371,55 +421,28 @@ body {
 .sidebar .right-caret {
   border-bottom: 4px solid transparent;
   border-top: 4px solid transparent;
-  border-left: 4px solid #000000;
+  border-left: 4px solid #b4bcc8;
   display: inline-block;
   height: 0;
   margin-right: 5px;
 }
 
-/*@media (max-width: 999px) {
-    .navbar-header {
-        float: none;
-    }
-    .navbar-toggle {
-        display: block;
-    }
-    .navbar-collapse {
-        border-top: 1px solid transparent;
-        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-    }
-    .navbar-collapse.collapse {
-        display: none!important;
-    }
-    .navbar-nav {
-        float: none!important;
-        margin: 7.5px -15px;
-    }
-    .navbar-nav>li {
-        float: none;
-    }
-    .navbar-nav>li>a {
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-}*/
-
-@media (min-width: 1000px) {
-  /*.middle-container {
-    margin-left: 180px;
-    width: calc(100% - 180px);
-  }*/
-  /*.sidebar {
-    position: fixed;
-    width: 180px;
-    top: 50px;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
-    display: block;
-    overflow-x: hidden;
-    overflow-y: auto;
-    background-color: #364150;
-    border-right: 1px solid #ddd;
-  }*/
+.middle-container.margin-left {
+  margin-left: 180px;
+  width: calc(100% - 180px);
+}
+.sidebar.active {
+  position: fixed;
+  width: 180px;
+  top: 50px;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  display: block;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: #2b3643;
+  color: #b4bcc8;
+  border-top: 1px solid #b4bcc8;
+  border-right: 1px solid #b4bcc8;
 }
