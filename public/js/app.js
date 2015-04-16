@@ -59,10 +59,10 @@ define([
 
             $('.sidebar-control').on('click', function() {
                 if($('.middle-container').hasClass('margin-left')) {
-                    $('.middle-container').removeClass('margin-left');
+                    middleContainerView.setMarginClass('');
                     $('.sidebar').removeClass('active');   
                 } else {
-                    $('.middle-container').addClass('margin-left');
+                    middleContainerView.setMarginClass('margin-left');
                     $('.sidebar').addClass('active');
                 }
                 middleContainerView.resizeDeck();

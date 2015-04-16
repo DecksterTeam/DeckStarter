@@ -31,10 +31,13 @@ define([
             "tab2": Tab2View
         },
         currentDashboard: "tab1",
+        marginLeft: "",
         render: function(options) {
             this.options = options;
             var middleContainerViewTemplate = Handlebars.compile(MiddleContainerHBS);
-            var middleContainerViewHTML = middleContainerViewTemplate();
+            var middleContainerViewHTML = middleContainerViewTemplate({
+                "marginLeft": this.marginLeft
+            });
             this.$el = $(middleContainerViewHTML);
             options.parent.append(this.$el);
 			this.dashboards[this.currentDashboard].populateTiles();
@@ -120,6 +123,14 @@ define([
         },
         resizeDeck: function() {
             this.deck.$gridster.resize_responsive_layout();
+        },
+        setMarginClass: function(marginClass) {
+            this.marginLeft = marginClass;
+            if(marginClass === 'margin-left') {
+                $('.middle-container').addClass('margin-left');
+            } else {
+                $('.middle-container').removeClass('margin-left');
+            }
         }
     };
 });

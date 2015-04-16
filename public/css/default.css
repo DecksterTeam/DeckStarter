@@ -398,6 +398,18 @@ body {
   padding-left: 20px;
 }
 
+.nav-sidebar > li > a.filter-reset {
+  text-decoration: underline;
+  padding-left: 30px;
+}
+
+/*.sidebar hr {
+  border-top: 0px solid #b4bcc8;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  width: 90%;
+}*/
+
 .sub-filter {
   display: none;
 }

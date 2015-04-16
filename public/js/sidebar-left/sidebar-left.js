@@ -67,6 +67,8 @@ define([
 
                 // publish filter updates here
             });
+
+            
         }
     };
 });
