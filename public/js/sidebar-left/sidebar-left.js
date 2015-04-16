@@ -68,7 +68,19 @@ define([
                 // publish filter updates here
             });
 
-            
+            $('.filter-reset').on('click', function() {
+                $.each(that.filters, function(i, category) {
+                    $.each(category, function(j, filter) {
+                        that.filters[i][j] = true;
+                    });
+                });
+
+                $.each($('input'), function(index, input){
+                    $(input).prop("checked", true);
+                });
+
+                console.log(that.filters);
+            });
         }
     };
 });
