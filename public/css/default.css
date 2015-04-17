@@ -115,8 +115,24 @@ body {
   background-color: transparent;
   background-image: none;
   /*border: 1px solid transparent;*/
-  border-right: 1px solid #b4bcc8;
+  /*border-right: 1px solid #b4bcc8;*/
   /*border-radius: 4px;*/
+}
+.navbar-inverse .sidebar-control:hover {
+  background-color: #364150;
+  color: #b4bcc8;
+}
+
+.navbar-inverse a.navbar-brand,
+.navbar-inverse a.navbar-brand:focus {
+  background-color: transparent;
+  color: #b4bcc8;
+}
+
+.navbar-inverse a.navbar-brand:hover {
+  /*background-color: #364150;*/
+  background-color: transparent;
+  color: #b4bcc8;
 }
 
 .navbar-header .sidebar-control .hamburger-bar {
@@ -137,7 +153,8 @@ body {
 
 .navbar-brand { 
   padding-right: 25px;
-  padding-left: 25px;
+  padding-left: 10px;
+  cursor: default;
 }
 
 .navbar-inverse .navbar-toggle,
@@ -155,8 +172,6 @@ body {
   background-color: #2b3643;
   color: #b4bcc8;
 }
-.navbar-inverse .navbar-brand:hover,
-.navbar-inverse .navbar-brand:focus,
 .navbar-inverse .navbar-nav>li>a:hover, 
 .navbar-inverse .navbar-nav>li>a:focus {
   background-color: #364150;
@@ -170,8 +185,16 @@ body {
   background-color: #6193ba;
 }
 
-.navbar-inverse .navbar-nav #profile {
+.navbar-inverse #profile,
+.navbar-inverse #profile:focus {
   margin-right: 15px;
+  background-color: transparent;
+  color: #b4bcc8;
+}
+.navbar-inverse #profile:hover {
+  margin-right: 15px;
+  background-color: #364150;
+  color: #b4bcc8;
 }
 
 .panel-group {

@@ -10,16 +10,22 @@ define([
     return {
         "filters": {
             "category1": {
-                "filter1": true,
-                "filter2": true,
-                "filter3": true,
-                "filter4": true
+                "alias": "Filter Category 1",
+                "filters": {
+                    "filter1": true,
+                    "filter2": true,
+                    "filter3": true,
+                    "filter4": true
+                }
             },
             "category2": {
-                "filter1": true,
-                "filter2": true,
-                "filter3": true,
-                "filter4": true
+                "alias": "Filter Category 1",
+                "filters": {
+                    "filter1": true,
+                    "filter2": true,
+                    "filter3": true,
+                    "filter4": true
+                }
             }
         },
         render: function(options) {
@@ -59,10 +65,10 @@ define([
 
                 if(input.is(':checked')) {
                     input.prop("checked", false);
-                    that.filters[category][filter] = false;
+                    that.filters[category].filters[filter] = false;
                 } else {
                     input.prop("checked", true);
-                    that.filters[category][filter] = true;
+                    that.filters[category].filters[filter] = true;
                 }
 
                 // publish filter updates here
@@ -70,8 +76,8 @@ define([
 
             $('.filter-reset').on('click', function() {
                 $.each(that.filters, function(i, category) {
-                    $.each(category, function(j, filter) {
-                        that.filters[i][j] = true;
+                    $.each(category.filters, function(j, filter) {
+                        that.filters[i].filters[j] = true;
                     });
                 });
 
@@ -79,7 +85,7 @@ define([
                     $(input).prop("checked", true);
                 });
 
-                console.log(that.filters);
+                // publish filter updates here
             });
         }
     };
