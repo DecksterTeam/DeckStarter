@@ -1,7 +1,8 @@
 define([
     'jquery',
-    'text!../data/mock.json'
-], function ($, Mock) {
+    'text!../data/mock.json',
+    'text!../data/countries.geo.json'
+], function ($, Mock, Geo) {
 
     'use strict';
 
@@ -11,6 +12,10 @@ define([
             window.DataManager = {
                 tiles: JSON.parse(Mock).tiles,
                 rawData: JSON.parse(Mock).rawData
+            };
+
+            window.Countries = {
+                json: JSON.parse(Geo).json
             };
 
             // Generate tiles

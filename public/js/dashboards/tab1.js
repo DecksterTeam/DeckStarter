@@ -5,10 +5,10 @@ define([
     'components/info-block/info-block',
     'components/bar-chart/bar-chart',
     'components/table/table',
-    'components/google-map/google-map',
+    'components/choropleth-map/map',
     'handlebars',
     'bootstrap'
-], function ($, MiddleContainerHBS, PercentRingView, InfoBlockView, BarChartView, TableView, GoogleMapView, Handlebars) {
+], function ($, MiddleContainerHBS, PercentRingView, InfoBlockView, BarChartView, TableView, MapView, Handlebars) {
 
     'use strict';
 
@@ -16,18 +16,18 @@ define([
         tiles: [],
         serialization: [],
         populateTiles: function() {
-            var gMap = GoogleMapView;
-            gMap.render({
+            var map = MapView;
+            map.render({
                 "title": "Map",
                 "color": "green",
                 "startCol": 1,
                 "startRow": 1,
                 "smallWidth": 8,
-                "smallHeight": 4,
+                "smallHeight": 6,
                 "fullWidth": 12,
                 "fullHeight": 5
             });
-            this.tiles.push(gMap);
+            this.tiles.push(map);
 			
             var info = InfoBlockView;
             var iopts = {
@@ -71,19 +71,19 @@ define([
             table.render(topts);
             this.tiles.push(table);
 
-            var bar = BarChartView;
-            var bopts = {
-                "title": "Bar Chart",
-                "color": "red",
-                "startCol": 1,
-                "startRow": 5,
-                "smallWidth": 8,
-                "smallHeight": 2,
-                "fullWidth": 12,
-                "fullHeight": 5
-            };
-            bar.render(bopts);
-            this.tiles.push(bar);
+            // var bar = BarChartView;
+            // var bopts = {
+            //     "title": "Bar Chart",
+            //     "color": "red",
+            //     "startCol": 1,
+            //     "startRow": 5,
+            //     "smallWidth": 8,
+            //     "smallHeight": 2,
+            //     "fullWidth": 12,
+            //     "fullHeight": 5
+            // };
+            // bar.render(bopts);
+            // this.tiles.push(bar);
         },
         removeTiles: function() {
             $.each(this.tiles, function(index, tile) {

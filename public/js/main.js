@@ -11,7 +11,8 @@
             'gridster': '../lib/vendor/gridster/jquery.gridster',
             'chart': '../lib/vendor/chartjs/chart.min',
             'radio': '../lib/vendor/radio/radio',
-			'deckster': '../lib/vendor/decksterjs/jquery.deckster'
+			'deckster': '../lib/vendor/decksterjs/jquery.deckster',
+            'leaflet': '../lib/vendor/leaflet/leaflet'
         },
         shim: {
             'bootstrap': {
@@ -24,7 +25,7 @@
         }
     });
 
-    require(['app', 'jquery', 'bootstrap', 'gridster', 'deckster'], 
+    require(['app', 'jquery', 'bootstrap', 'gridster', 'deckster', 'leaflet'], 
         function(App, $) {
             App.initialize();
     });
