@@ -12,6 +12,13 @@ define([
     var map,
         geojson;
 
+    var colors = [
+        '163,221,216',
+        '101,199,191',
+        '10,166,153',
+        '7,124,114'
+    ];
+
     return {
         "id": "map",
         render: function(options) {
@@ -43,6 +50,10 @@ define([
             map.addLayer(osm);
 
             plotOnMap();
+
+            $('#map .map-legend .color-box').each(function(index){
+                $(this).css('background-color', 'rgba('+colors[index]+',0.8)');
+            });
         },
         remove: function() {
             window.removeEventListener("message", receiveMessage, false);
@@ -68,15 +79,25 @@ define([
     }
 
     function plotOnMap() {
+        var count = 0;
+        map.eachLayer(function (layer) {
+            if(count != 0) {
+                map.removeLayer(layer);
+            }
+            count++;
+        });
+
         var features = [];
 
         $.each(Countries.json, function(key, obj){
             $.extend(true, obj.properties, {
                 "code": key,
-                "count": 1000
+                "count": Math.pow(10,generateRandomData(1, 6))
             });
             features.push(obj);
         });
+
+        features.splice(0,50);
 
         var geo = {
             "type":"FeatureCollection",
@@ -84,23 +105,19 @@ define([
         };
 
         function getColor(d) {
-            return d > 1000 ? '#800026' :
-                   d > 500  ? '#BD0026' :
-                   d > 200  ? '#E31A1C' :
-                   d > 100  ? '#FC4E2A' :
-                   d > 50   ? '#FD8D3C' :
-                   d > 20   ? '#FEB24C' :
-                   d > 10   ? '#FED976' :
-                              '#FFEDA0';
+            return d > 100000 ? colors[3] :
+                    d > 1000  ? colors[2] :
+                    d > 10  ? colors[1] :
+                            colors[0];
         }
 
         function style(feature) {
             return {
-                fillColor: getColor(feature.properties.count),
-                weight: 1,
-                opacity: 1,
-                color: 'white',
-                fillOpacity: 0.5
+                fillColor: 'rgb('+getColor(feature.properties.count)+')',
+                weight: 0.8,
+                opacity: 0.6,
+                color: 'rgb('+getColor(feature.properties.count)+')',
+                fillOpacity: 0.6
             };
         }
 
@@ -119,25 +136,25 @@ define([
     }
 
     function mouseover(e) {
+        update(e.target.feature.properties);
         highlightFeature(e);
     }
 
     function mouseout(e) {
+        $('.featureInfo .properties').html('Hover over a country');
         resetHighlight(e);
     }
 
     function click(e) {
-        console.log(e);
-        var popup = L.popup()
-            .setLatLng(e.latlng)
-            .setContent('<p>' + 
-                        e.target.feature.properties.name +
-                        ' (' + e.target.feature.properties.code + ')' +
-                        ' - ' + 
-                        e.target.feature.properties.count + 
-                        '</p>')
-            .openOn(map);
+        zoomToFeature(e);
     }
+
+    function update(props) {
+        console.log($('.featureInfo'));
+        $('.featureInfo .properties').html(
+            '<b>'+props.name+' ('+props.code+')</b><br>'+props.count
+        );
+    };
 
     function zoomToFeature(e) {
         map.fitBounds(e.target.getBounds());
@@ -147,9 +164,6 @@ define([
         var layer = e.target;
 
         layer.setStyle({
-            weight: 1,
-            color: 'white',
-            dashArray: '',
             fillOpacity: 0.8
         });
 
@@ -162,5 +176,7 @@ define([
         geojson.resetStyle(e.target);
     }
 
-
+    function generateRandomData(x, y) {
+        return Math.floor(Math.random() * ((y-x)+1) + x);
+    }
 });

@@ -46,7 +46,7 @@ define([
             var ring = PercentRingView;
             var ropts = {
                 "title": "Percent Ring",
-                "color": "orange",
+                "color": "red",
                 "startCol": 11,
                 "startRow": 1,
                 "smallWidth": 2,
