@@ -1,0 +1,17 @@
+@import '/lib/vendor/bootstrap-3.1.1-dist/css/bootstrap.min.css';
+@import url('/lib/vendor/gridster/jquery.gridster.css');
+@import url('/lib/vendor/decksterjs/jquery.deckster.css');
+@import url('/lib/vendor/leaflet/leaflet.css');
+
+@import '/css/default.css';
+
+@import url('/js/components/bar-chart/bar-chart.css');
+@import url('/js/components/line-chart/line-chart.css');
+@import url('/js/components/pie-chart/pie-chart.css');
+@import url('/js/components/percent-ring/percent-ring.css');
+@import url('/js/components/info-block/info-block.css');
+@import url('/js/components/table/table.css');
+@import url('/js/components/map/map.css');
+@import url('/js/components/google-map/google-map.css');
+@import url('/js/components/info-and-pie/info-and-pie.css');
+@import url('/js/components/choropleth-map/map.css');
