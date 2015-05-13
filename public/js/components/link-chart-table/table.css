@@ -1,0 +1,53 @@
+#link-chart-table .table-container {
+	width: 100%;
+	height: 100%;
+	border-radius: 2px;
+	overflow: hidden;
+	background-color: white;
+}
+
+#link-chart-table .table-container .table-body-container {
+	width: 100%;
+	height: calc(100% - 36px);
+	overflow: auto;
+	border-radius: 0px 0px 2px 2px;
+}
+
+#link-chart-table .table-container .table>tbody>tr>th {
+	border-top: 0px;
+	color: white;
+}
+
+#link-chart-table .table-container .table.table-header{
+	margin: 0px;
+	width: 100%;
+	background-color: #333;
+	color: white;
+}
+
+#link-chart-table .table-container .table.table-body{
+	margin: 0px;
+	width: 100%;
+	background-color: white;
+}
+
+#link-chart-table .table-container th, 
+#link-chart-table .table-container td  {
+	text-align: left;
+	width: 50%;
+}
+
+#link-chart-table .table-container tbody {
+	color: #333;
+}
+
+#link-chart-table .table-body tr:last-child {
+	border-bottom: 1px solid #ddd; 
+}
+
+#link-chart-table .no-data-label {
+	position: absolute;
+	top: calc(50% - 10px);
+	left: calc(50% - 25px);
+	color: #333;
+}

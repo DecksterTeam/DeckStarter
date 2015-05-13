@@ -3,8 +3,9 @@ define([
     'text!middle-container/middle-container.hbs',
     'dashboards/tab1',
     'dashboards/tab2',
+    'dashboards/tab3',
     'handlebars'
-], function ($, MiddleContainerHBS, Tab1View, Tab2View, Handlebars) {
+], function ($, MiddleContainerHBS, Tab1View, Tab2View, Tab3View, Handlebars) {
 
     'use strict';
 	
@@ -28,7 +29,8 @@ define([
     return {
         dashboards: {
             "tab1": Tab1View,
-            "tab2": Tab2View
+            "tab2": Tab2View,
+            "tab3": Tab3View
         },
         currentDashboard: "tab1",
         marginLeft: "",
@@ -65,6 +67,7 @@ define([
                         expanded_y: card.fullHeight
                     },
                     resizable: false,
+                    expandable: card.expandable || false,
                     fieldsToSerialize: ["id", "position"]
 	  	        };
 

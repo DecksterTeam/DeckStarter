@@ -31,11 +31,6 @@ define([
                 "parent": $body
             });
 
-      	  	//             var tileApp = TileApp;
-      	  	//             tileApp.render({
-      	  	//                 "parent": $body
-      	  	// });
-
             var middleContainerView = MiddleContainerView;
             middleContainerView.render({
                 "parent": $body
@@ -50,10 +45,6 @@ define([
                 });
                 $(this).parent().addClass('active');
                 
-                
-	         //    middleContainerView.render({
-	         //        "parent": $body
-        		// });
 				middleContainerView.changeDashboard($(this).attr('id'));
             });
 

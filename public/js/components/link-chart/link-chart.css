@@ -1,0 +1,21 @@
+#cy {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  border-radius: 2px;
+}
+
+#cy canvas {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+
+#link-chart .no-data-label {
+	position: absolute;
+	top: calc(50% - 10px);
+	left: calc(50% - 25px);
+	color: #333;
+}

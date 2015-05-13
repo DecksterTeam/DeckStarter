@@ -12,7 +12,8 @@
             'chart': '../lib/vendor/chartjs/chart.min',
             'radio': '../lib/vendor/radio/radio',
 			'deckster': '../lib/vendor/decksterjs/jquery.deckster',
-            'leaflet': '../lib/vendor/leaflet/leaflet'
+            'leaflet': '../lib/vendor/leaflet/leaflet',
+            'cytoscape': '../lib/vendor/cytoscape/build/cytoscape'
         },
         shim: {
             'bootstrap': {
@@ -25,7 +26,7 @@
         }
     });
 
-    require(['app', 'jquery', 'bootstrap', 'gridster', 'deckster', 'leaflet'], 
+    require(['app', 'jquery', 'bootstrap', 'gridster', 'deckster', 'leaflet', 'cytoscape'], 
         function(App, $) {
             App.initialize();
     });

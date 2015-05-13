@@ -1,14 +1,12 @@
 define([
     'jquery',
     'text!middle-container/middle-container.hbs',
-    'components/percent-ring/percent-ring',
-    'components/info-block/info-block',
-    'components/bar-chart/bar-chart',
-    'components/table/table',
-    'components/choropleth-map/map',
+    'components/link-chart/link-chart',
+    'components/search-bar/search-bar',
+    'components/link-chart-table/table',
     'handlebars',
     'bootstrap'
-], function ($, MiddleContainerHBS, PercentRingView, InfoBlockView, BarChartView, TableView, MapView, Handlebars) {
+], function ($, MiddleContainerHBS, LinkChartView, SearchBarView, LinkChartTableView, Handlebars) {
 
     'use strict';
 
@@ -16,74 +14,44 @@ define([
         tiles: [],
         serialization: [],
         populateTiles: function() {
-            var map = MapView;
-            map.render({
-                "title": "Map",
+            var linkChart = LinkChartView;
+            linkChart.render({
+                "title": "Link Chart",
                 "color": "green",
-                "startCol": 1,
+                "startCol": 5,
                 "startRow": 1,
                 "smallWidth": 8,
                 "smallHeight": 6,
                 "fullWidth": 12,
                 "fullHeight": 5
             });
-            this.tiles.push(map);
-			
-            var info = InfoBlockView;
-            var iopts = {
-                "title": "Information",
-                "color": "purple",
-                "startCol": 9,
-                "startRow": 1,
-                "smallWidth": 2,
-                "smallHeight": 2,
-                "fullWidth": 12,
-                "fullHeight": 5
-            };
-            info.render(iopts);
-            this.tiles.push(info);
+            this.tiles.push(linkChart);
 
-            var ring = PercentRingView;
-            var ropts = {
-                "title": "Percent Ring",
+            var searchBar = SearchBarView;
+            searchBar.render({
+                "title": "Search for Selector",
                 "color": "red",
-                "startCol": 11,
+                "startCol": 1,
                 "startRow": 1,
-                "smallWidth": 2,
-                "smallHeight": 2,
-                "fullWidth": 12,
-                "fullHeight": 5
-            }
-            ring.render(ropts);
-            this.tiles.push(ring);
-
-            var table = TableView;
-            var topts = {
-                "title": "Table",
-                "color": "blue",
-                "startCol": 9,
-                "startRow": 3,
                 "smallWidth": 4,
-                "smallHeight": 4,
+                "smallHeight": 1,
                 "fullWidth": 12,
                 "fullHeight": 5
-            };
-            table.render(topts);
-            this.tiles.push(table);
+            });
+            this.tiles.push(searchBar);
 
-            // var bar = BarChartView;
-            // var bopts = {
-            //     "title": "Bar Chart",
-            //     "color": "red",
-            //     "startCol": 1,
-            //     "startRow": 5,
-            //     "smallWidth": 8,
-            //     "smallHeight": 2,
-            //     "fullWidth": 12,
-            //     "fullHeight": 5
-            // };
-            // bar.render(bopts);
-            // this.tiles.push(bar);
+            var table = LinkChartTableView;
+            table.render({
+                "title": "No Selector",
+                "color": "blue",
+                "startCol": 1,
+                "startRow": 2,
+                "smallWidth": 4,
+                "smallHeight": 5,
+                "fullWidth": 12,
+                "fullHeight": 5
+            });
+            this.tiles.push(table);
         },
         removeTiles: function() {
             $.each(this.tiles, function(index, tile) {
