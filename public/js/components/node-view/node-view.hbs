@@ -1,0 +1,30 @@
+<div id="node-view">
+	<span class="no-data-label">No Data</span>
+	<div id="cy" class="link-chart-container"></div>
+	<div class="btn-container">
+		<div class="btn-group" role="group" aria-label="...">
+			<button type="button" class="btn btn-default" data-toggle="modal" data-target="#searchModal">
+				<span class="search glyphicon glyphicon-search"></span>Search
+			</button>
+			{{!-- <button type="button" class="btn btn-default">
+				<span class="glyphicon glyphicon-filter"></span>
+			</button> --}}
+		</div>
+	</div>
+	<div class="top-right-container">
+		{{!-- <span class="default-select">Select a node</span> --}}
+		<div class="table-container">
+			<table class="table table-header">
+		        <tr class="dark-{{color}}">
+		        	<th>Key</th>
+		        	<th>Value</th>
+		        </tr>
+		    </table>
+			<div class="table-body-container">
+			    <table class="table table-body">
+			    	<span class="no-data-label">No Data</span>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

@@ -69,6 +69,7 @@ define([
             $(window).resize(function(){
                 if(!!resizeTimeout){ clearTimeout(resizeTimeout); }
                 resizeTimeout = setTimeout(function() {
+                    $('.middle-container').height($(window).height()-50);
                     middleContainerView.onResize();
                 },500);
             });

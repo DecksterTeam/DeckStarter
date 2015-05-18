@@ -13,7 +13,9 @@
             'radio': '../lib/vendor/radio/radio',
 			'deckster': '../lib/vendor/decksterjs/jquery.deckster',
             'leaflet': '../lib/vendor/leaflet/leaflet',
-            'cytoscape': '../lib/vendor/cytoscape/build/cytoscape'
+            'cytoscape': '../lib/vendor/cytoscape/build/cytoscape',
+            'cytoscapeQtip': '../lib/vendor/qtip/cytoscape-qtip',
+            'qtip': '../lib/vendor/qtip/qtip.min'
         },
         shim: {
             'bootstrap': {
@@ -22,11 +24,29 @@
             'gridster': {
                 deps: ['jquery']
             },
+            'qtip': {
+                deps: ['jquery']
+            },
+            'cytoscape': {
+                deps: ['jquery']
+            },
+            'cytoscapeQtip': {
+                deps: ['jquery', 'cytoscape']
+            },
 			'deckster' : ['jquery']
         }
     });
 
-    require(['app', 'jquery', 'bootstrap', 'gridster', 'deckster', 'leaflet', 'cytoscape'], 
+    require([
+        'app',
+        'jquery',
+        'bootstrap',
+        'gridster',
+        'deckster',
+        'leaflet',
+        'cytoscape',
+        'qtip',
+        'cytoscapeQtip'], 
         function(App, $) {
             App.initialize();
     });

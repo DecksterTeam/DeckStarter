@@ -2,6 +2,7 @@
 @import url('/lib/vendor/gridster/jquery.gridster.css');
 @import url('/lib/vendor/decksterjs/jquery.deckster.css');
 @import url('/lib/vendor/leaflet/leaflet.css');
+@import url('/lib/vendor/qtip/qtip.min.css');
 
 @import '/css/default.css';
 
@@ -17,3 +18,4 @@
 @import url('/js/components/choropleth-map/map.css');
 @import url('/js/components/link-chart/link-chart.css');
 @import url('/js/components/link-chart-table/table.css');
+@import url('/js/components/node-view/node-view.css');

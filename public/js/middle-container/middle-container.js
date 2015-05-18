@@ -97,21 +97,24 @@ define([
 
 			this.deck = $('.gridster ul').deckster(opts.options).data('deckster');
 
-            this.cards.sort(function (x, y) {
-                var n = x.position.row - y.position.row;
-                if (n != 0) {
-                    return n;
-                }
-                return x.position.col - y.position.col;
-            });
-			
-			this.deck.addCards(this.cards);
+            if(this.deck) {
+                this.cards.sort(function (x, y) {
+                    var n = x.position.row - y.position.row;
+                    if (n != 0) {
+                        return n;
+                    }
+                    return x.position.col - y.position.col;
+                });
+    			
+    			this.deck.addCards(this.cards);
+            }
         },
         changeDashboard: function(newDash) {
-            var serializedDeckData = this.deck.serializeDeck();
-            this.dashboards[this.currentDashboard].serialization = serializedDeckData.cards;
-
-            this.deck.destroy();
+            if(this.deck) {
+                var serializedDeckData = this.deck.serializeDeck();
+                this.dashboards[this.currentDashboard].serialization = serializedDeckData.cards;
+                this.deck.destroy();
+            }
             $('.gridster').remove();
             this.dashboards[this.currentDashboard].removeTiles();
 

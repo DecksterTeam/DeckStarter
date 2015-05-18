@@ -3,12 +3,14 @@ define([
     'text!middle-container/middle-container.hbs',
     'components/percent-ring/percent-ring',
     'components/info-block/info-block',
+    'components/pie-chart/pie-chart',
+    'components/line-chart/line-chart',
     'components/bar-chart/bar-chart',
     'components/table/table',
-    'components/choropleth-map/map',
+    'components/map/map',
     'handlebars',
     'bootstrap'
-], function ($, MiddleContainerHBS, PercentRingView, InfoBlockView, BarChartView, TableView, MapView, Handlebars) {
+], function ($, MiddleContainerHBS, PercentRingView, InfoBlockView, PieChartView, LineChartView, BarChartView, TableView, MapView, Handlebars) {
 
     'use strict';
 
@@ -22,68 +24,40 @@ define([
                 "color": "green",
                 "startCol": 1,
                 "startRow": 1,
-                "smallWidth": 8,
+                "smallWidth": 6,
                 "smallHeight": 6,
                 "fullWidth": 12,
                 "fullHeight": 5
             });
             this.tiles.push(map);
-			
-            var info = InfoBlockView;
-            var iopts = {
-                "title": "Information",
-                "color": "purple",
-                "startCol": 9,
-                "startRow": 1,
-                "smallWidth": 2,
-                "smallHeight": 2,
-                "fullWidth": 12,
-                "fullHeight": 5
-            };
-            info.render(iopts);
-            this.tiles.push(info);
-
-            var ring = PercentRingView;
-            var ropts = {
-                "title": "Percent Ring",
-                "color": "red",
-                "startCol": 11,
-                "startRow": 1,
-                "smallWidth": 2,
-                "smallHeight": 2,
-                "fullWidth": 12,
-                "fullHeight": 5
-            }
-            ring.render(ropts);
-            this.tiles.push(ring);
 
             var table = TableView;
             var topts = {
                 "title": "Table",
                 "color": "blue",
-                "startCol": 9,
-                "startRow": 3,
-                "smallWidth": 4,
-                "smallHeight": 4,
+                "startCol": 7,
+                "startRow": 1,
+                "smallWidth": 6,
+                "smallHeight": 3,
                 "fullWidth": 12,
                 "fullHeight": 5
             };
             table.render(topts);
             this.tiles.push(table);
 
-            // var bar = BarChartView;
-            // var bopts = {
-            //     "title": "Bar Chart",
-            //     "color": "red",
-            //     "startCol": 1,
-            //     "startRow": 5,
-            //     "smallWidth": 8,
-            //     "smallHeight": 2,
-            //     "fullWidth": 12,
-            //     "fullHeight": 5
-            // };
-            // bar.render(bopts);
-            // this.tiles.push(bar);
+            var bar = BarChartView;
+            var bopts = {
+                "title": "Bar Chart",
+                "color": "red",
+                "startCol": 7,
+                "startRow": 4,
+                "smallWidth": 6,
+                "smallHeight": 3,
+                "fullWidth": 12,
+                "fullHeight": 5
+            };
+            bar.render(bopts);
+            this.tiles.push(bar);
         },
         removeTiles: function() {
             $.each(this.tiles, function(index, tile) {
