@@ -119,20 +119,20 @@ body {
   /*border-radius: 4px;*/
 }
 .navbar-inverse .sidebar-control:hover {
-  background-color: #364150;
+  background-color: white;
   color: #b4bcc8;
 }
 
 .navbar-inverse a.navbar-brand,
 .navbar-inverse a.navbar-brand:focus {
   background-color: transparent;
-  color: #b4bcc8;
+  color: white;
 }
 
 .navbar-inverse a.navbar-brand:hover {
   /*background-color: #364150;*/
   background-color: transparent;
-  color: #b4bcc8;
+  color: white;
 }
 
 .navbar-header .sidebar-control .hamburger-bar {
@@ -140,15 +140,15 @@ body {
   width: 22px;
   height: 2px;
   border-radius: 1px;
-  background-color: #b4bcc8;
+  background-color: white;
 }
 .navbar-header .sidebar-control .hamburger-bar + .hamburger-bar {
   margin-top: 4px;
 }
 
 .main-navbar {
-  background-color: #2b3643;
-  color: #b4bcc8;
+  background-color: #333;
+  color: white;
 }
 
 .navbar-brand { 
@@ -160,28 +160,28 @@ body {
 .navbar-inverse .navbar-toggle,
 .navbar-inverse .navbar-toggle:hover,
 .navbar-inverse .navbar-toggle:focus {
-  background-color: #2b3643;
+  background-color: #333;
   border: none;
 }
 .navbar-inverse .navbar-toggle .icon-bar {
-  background-color: #b4bcc8;
+  background-color: white;
 }
 
 .navbar-inverse .navbar-brand,
 .navbar-inverse .navbar-nav>li>a {
-  background-color: #2b3643;
-  color: #b4bcc8;
+  background-color: #333;
+  color: white;
 }
 .navbar-inverse .navbar-nav>li>a:hover, 
 .navbar-inverse .navbar-nav>li>a:focus {
   background-color: #364150;
-  color: #b4bcc8;
+  color: white;
 }
 
 .navbar-inverse .navbar-nav>.active>a, 
 .navbar-inverse .navbar-nav>.active>a:hover, 
 .navbar-inverse .navbar-nav>.active>a:focus {
-  color: #fff;
+  color: white;
   background-color: #6193ba;
 }
 
@@ -189,12 +189,12 @@ body {
 .navbar-inverse #profile:focus {
   margin-right: 15px;
   background-color: transparent;
-  color: #b4bcc8;
+  color: white;
 }
 .navbar-inverse #profile:hover {
   margin-right: 15px;
   background-color: #364150;
-  color: #b4bcc8;
+  color: white;
 }
 
 .panel-group {
@@ -384,22 +384,23 @@ body {
  */
 .nav-sidebar {
   width: 180px;
-  background-color: #2b3643;
-  color: #b4bcc8;
+  background-color: #333;
+  color: white;
 }
 .nav-sidebar > li > a {
   padding-right: 10px;
   padding-left: 10px;
-  color: #b4bcc8;
+  color: white;
 }
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
-  color: #364150;
+  color: white;
   background-color: #364150;
 }
 
-.nav-sidebar>li>a:hover, .nav-sidebar>li>a:focus {
+.nav-sidebar>li>a:hover, 
+.nav-sidebar>li>a:focus {
   background-color: #364150;
   cursor: pointer;
 }
@@ -475,7 +476,7 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   background-color: #2b3643;
-  color: #b4bcc8;
+  color: white;
   border-top: 1px solid #b4bcc8;
   border-right: 1px solid #b4bcc8;
 }

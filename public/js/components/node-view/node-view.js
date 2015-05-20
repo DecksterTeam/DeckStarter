@@ -190,22 +190,23 @@ define([
 				'text-outline-width': 0,
 				'text-outline-color': '#333',
 				'background-color': '#0aa699',
+				'background-opacity': 1,
 				'font-size': '10px'
 			})
 			.selector('edge')
 			.css({
 				'content': 'data(name)',
 				'text-valign': 'center',
-				'color': 'black',
+				'color': '#333',
 				'target-arrow-shape': 'triangle',
 				'font-size': '8px'
 			})
 			.selector(':selected')
 			.css({
-				'background-color': '#6cd8cf',
-				'line-color': '#6cd8cf',
-				'target-arrow-color': '#6cd8cf',
-				'source-arrow-color': '#6cd8cf'
+				'background-opacity': 0.6,
+				'line-color': '#bdbdbd',
+				'target-arrow-color': '#bdbdbd',
+				'source-arrow-color': '#bdbdbd'
 			})
 			.selector(':active')
 			.css({
