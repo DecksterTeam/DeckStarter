@@ -88,6 +88,20 @@ define([
 	    }
     ];
 
+    var eles = {
+	    	nodes: [
+				{ data: { id: 'b', name: 'b' } },
+				{ data: { id: 'e', name: 'e' } },
+				{ data: { id: 'k', name: 'k' } },
+				{ data: { id: 'g', name: 'g' } }
+			],
+			edges: [
+				{ data: { source: 'b', target: 'e', name: 'b to e' } },
+				{ data: { source: 'b', target: 'k', name: 'b to k' } },
+				{ data: { source: 'b', target: 'g', name: 'b to g' } }
+			]
+	    };
+
     var id;
 
     return {
@@ -127,6 +141,11 @@ define([
             	}
             });
 
+            // $('.addElems').on('click', function() {
+            // 	cy.add(elements[1]);
+            // 	cy.load(cy.elements('*').jsons());
+            // });
+
             $('#searchModal').modal('show');
         },
         onResize: function() {
@@ -146,6 +165,7 @@ define([
     };
 
     function searchSelector(selector) {
+    	populateTable();
     	if(selector === "a") {
     		addChart(0);
     	} else if (selector === "b") { 

@@ -7,7 +7,7 @@ define([
     'components/line-chart/line-chart',
     'components/bar-chart/bar-chart',
     'components/table/table',
-    'components/map/map',
+    'components/google-map/google-map',
     'handlebars',
     'bootstrap'
 ], function ($, MiddleContainerHBS, PercentRingView, InfoBlockView, PieChartView, LineChartView, BarChartView, TableView, MapView, Handlebars) {
