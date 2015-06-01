@@ -41,7 +41,11 @@
   left: 10px;
 }
 
-#node-view .search {
+#node-view .btn-container .btn {
+  width: 100px;
+}
+
+#node-view .btn-container span {
   margin-right: 8px;
 }
 
