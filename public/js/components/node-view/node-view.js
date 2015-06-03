@@ -17,7 +17,7 @@ define([
 				{ 
 					data: {
 						id: 'a',
-						name: 'apple',
+						name: 'appleappleappleappleappleappleappleappleapple',
 						metadata: {
 							'name': 'apple',
 							'name1': 'apple',
@@ -45,14 +45,14 @@ define([
 				{ 
 					data: { 
 						id: 'e', 
-						name: 'egg',
+						name: 'eggeggeggeggeggeggeggeggeggeggeggeggeggeggeggeggeggeggeggeggeggeggeggeggegg',
 						metadata: {
 							'count': 100
 						}
 					}
 				},
-				{ data: { id: 'k', name: 'kabob' } },
-				{ data: { id: 'g', name: 'grape' } }
+				{ data: { id: 'k', name: 'kabobkabobkabobkabobkabobkabobkabobkabobkabobkabobkabobkabobkabobkabobkabob' } },
+				{ data: { id: 'g', name: 'grapegrapegrapegrapegrapegrapegrapegrapegrapegrapegrapegrapegrapegrapegrape' } }
 			],
 			edges: [
 				{ data: { source: 'e', target: 'a', name: 'e to a' } },
@@ -102,7 +102,9 @@ define([
 			]
 	    };
 
-    var id;
+    var id,
+    	currentSelector,
+    	currentLayout = 'breadthfirst';
 
     return {
         "id": "node-view",
@@ -121,7 +123,6 @@ define([
 
             $('.middle-container').height($(window).height()-50);
             $('.middle-container').html(this.$el);
-            // searchSelector('a');
 
             $('#searchModal').on('hidden.bs.modal', function () {
             	$('#searchModal .param').each(function(index) {
@@ -147,6 +148,13 @@ define([
             // });
 
             $('#searchModal').modal('show');
+
+            $('#node-view .dropdown a').on('click', function() {
+            	var layoutChoice = $(this).html();
+            	$('#node-view .dropdown .layoutChoice').html(layoutChoice);
+            	currentLayout = layoutChoice;
+            	searchSelector(currentSelector);
+            });
         },
         onResize: function() {
         	if(cy && cy.resize) {
@@ -166,6 +174,7 @@ define([
 
     function searchSelector(selector) {
     	populateTable();
+    	currentSelector = selector;
     	if(selector === "a") {
     		addChart(0);
     	} else if (selector === "b") { 
@@ -184,7 +193,7 @@ define([
 			style: cytoscape.stylesheet()
 			.selector('node')
 			.css({
-				'content': 'data(id)',
+				'content': 'data(name)',
 				'text-valign': 'center',
 				'color': 'black',
 				'text-outline-width': 0,
@@ -220,7 +229,7 @@ define([
 			}),
 			elements: elements[index],
 			layout: {
-				name: 'breadthfirst',
+				name: currentLayout,
 				padding: 30
 			},
 			ready: function(){

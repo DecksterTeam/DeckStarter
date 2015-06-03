@@ -38,15 +38,30 @@
 #node-view .btn-container {
   position: absolute;
   top: 10px;
-  left: 10px;
+  left: calc(50% - 44px);
 }
 
 #node-view .btn-container .btn {
+  /*width: 10px;*/
+}
+
+#node-view .dropdown {
+  position: absolute;
+  top: 10px;
+  left: 10px;
   width: 100px;
 }
 
+#node-view .dropdown .btn {
+  width: 110px;
+}
+
+#node-view .dropdown .dropdown-menu {
+  min-width: 110px;
+}
+
 #node-view .btn-container span {
-  margin-right: 8px;
+  /*margin-right: 8px;*/
 }
 
 #node-view textarea { 

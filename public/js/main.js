@@ -13,9 +13,15 @@
             'radio': '../lib/vendor/radio/radio',
 			'deckster': '../lib/vendor/decksterjs/jquery.deckster',
             'leaflet': '../lib/vendor/leaflet/leaflet',
-            'cytoscape': '../lib/vendor/cytoscape/build/cytoscape',
+            'cytoscape': '../lib/vendor/cytoscape/build/cytoscape.min',
             'cytoscapeQtip': '../lib/vendor/qtip/cytoscape-qtip',
-            'qtip': '../lib/vendor/qtip/qtip.min'
+            'qtip': '../lib/vendor/qtip/qtip.min',
+            'dagre': '../lib/vendor/cytoscape/lib/dagre',
+            'voronoi': '../lib/vendor/cytoscape/lib/rhill-voronoi-core',
+            'cola': '../lib/vendor/cytoscape/lib/cola.v3.min',
+            'foograph': '../lib/vendor/cytoscape/lib/foograph',
+            'arbor': '../lib/vendor/cytoscape/lib/arbor',
+            'springy': '../lib/vendor/cytoscape/lib/springy'
         },
         shim: {
             'bootstrap': {
@@ -33,6 +39,18 @@
             'cytoscapeQtip': {
                 deps: ['jquery', 'cytoscape']
             },
+            'dagre': {
+                deps: ['jquery', 'cytoscape']
+            },
+            'cola': {
+                deps: ['jquery', 'cytoscape']
+            },
+            'arbor': {
+                deps: ['jquery', 'cytoscape']
+            },
+            'springy': {
+                deps: ['jquery', 'cytoscape']
+            },
 			'deckster' : ['jquery']
         }
     });
@@ -46,7 +64,12 @@
         'leaflet',
         'cytoscape',
         'qtip',
-        'cytoscapeQtip'], 
+        'cytoscapeQtip',
+        'dagre',
+        'cola',
+        'arbor',
+        'springy'
+        ], 
         function(App, $) {
             App.initialize();
     });

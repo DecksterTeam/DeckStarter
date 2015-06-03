@@ -1,15 +1,32 @@
 <div id="node-view">
 	<span class="no-data-label">No Data</span>
 	<div id="cy" class="link-chart-container"></div>
+	<div class="dropdown">
+	  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+	    <span class="layoutChoice">breadthfirst</span>
+	    <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+	    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">breadthfirst</a></li>
+	    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">grid</a></li>
+	    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">circle</a></li>
+	    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">concentric</a></li>
+	    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">dagre</a></li>
+	    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">cola</a></li>
+	    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">arbor</a></li>
+	    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">springy</a></li>
+	  </ul>
+	</div>
 	<div class="btn-container">
-		{{!-- <div class="btn-group" role="group" aria-label="..."> --}}
+		<div class="btn-group" role="group" aria-label="...">
 			<button type="button" class="btn btn-default" data-toggle="modal" data-target="#searchModal">
-				<span class="search glyphicon glyphicon-search"></span>Search
+				<span class="search glyphicon glyphicon-search"></span>
+				Search
 			</button>
-			<button type="button" class="btn btn-default">
-				<span class="glyphicon glyphicon-filter"></span>Filter
-			</button>
-		{{!-- </div> --}}
+			{{!-- <button type="button" class="btn btn-default">
+				<span class="glyphicon glyphicon-filter"></span>
+			</button> --}}
+		</div>
 	</div>
 	<div class="top-right-container">
 		{{!-- <span class="default-select">Select a node</span> --}}
