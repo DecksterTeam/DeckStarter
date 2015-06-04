@@ -67,7 +67,7 @@ define([
                         expanded_y: card.fullHeight
                     },
                     resizable: false,
-                    expandable: card.expandable || false,
+                    expandable: card.expandable || true,
                     fieldsToSerialize: ["id", "position"]
 	  	        };
 
