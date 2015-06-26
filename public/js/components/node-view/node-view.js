@@ -11,96 +11,33 @@ define([
 
     'use strict';
 
-    var elements = [
-	    {
-	    	nodes: [
-				{ 
-					data: {
-						id: 'a',
-						name: 'appleappleappleappleappleappleappleappleapple',
-						metadata: {
-							'name': 'apple',
-							'name1': 'apple',
-							'name2': 'apple',
-							'name3': 'apple',
-							'name4': 'apple',
-							'name5': 'apple',
-							'name6': 'apple',
-							'name7': 'apple',
-							'name8': 'apple',
-							'name9': 'apple',
-							'name10': 'apple',
-							'name11': 'apple',
-							'name12': 'apple',
-							'name13': 'apple',
-							'name14': 'apple',
-							'name15': 'apple',
-							'name16': 'apple',
-							'name17': 'apple',
-							'name18': 'apple',
-							'name19': 'apple'
-						}
-					} 
-				},
-				{ 
-					data: { 
-						id: 'e', 
-						name: 'eggeggeggeggeggeggeggeggeggeggeggeggeggeggeggeggeggeggeggeggeggeggeggeggegg',
-						metadata: {
-							'count': 100
-						}
-					}
-				},
-				{ data: { id: 'k', name: 'kabobkabobkabobkabobkabobkabobkabobkabobkabobkabobkabobkabobkabobkabobkabob' } },
-				{ data: { id: 'g', name: 'grapegrapegrapegrapegrapegrapegrapegrapegrapegrapegrapegrapegrapegrapegrape' } }
-			],
-			edges: [
-				{ data: { source: 'e', target: 'a', name: 'e to a' } },
-				{ data: { source: 'a', target: 'k', name: 'a to k' } },
-				{ data: { source: 'a', target: 'g', name: 'a to g' } }
-			]
-	    },
-	    {
-	    	nodes: [
-				{ data: { id: 'b', name: 'b' } },
-				{ data: { id: 'e', name: 'e' } },
-				{ data: { id: 'k', name: 'k' } },
-				{ data: { id: 'g', name: 'g' } }
-			],
-			edges: [
-				{ data: { source: 'b', target: 'e', name: 'b to e' } },
-				{ data: { source: 'b', target: 'k', name: 'b to k' } },
-				{ data: { source: 'b', target: 'g', name: 'b to g' } }
-			]
-	    },
-	    {
-	    	nodes: [
-				{ data: { id: 'c', name: 'c' } },
-				{ data: { id: 'e', name: 'e' } },
-				{ data: { id: 'k', name: 'k' } },
-				{ data: { id: 'g', name: 'g' } }
-			],
-			edges: [
-				{ data: { source: 'c', target: 'e', name: 'c to e' } },
-				{ data: { source: 'c', target: 'k', name: 'c to k' } },
-				{ data: { source: 'c', target: 'g', name: 'c to g' } }
-			]
-	    }
-    ];
-
-    var eles = {
-	    	nodes: [
-				{ data: { id: 'b', name: 'b' } },
-				{ data: { id: 'e', name: 'e' } },
-				{ data: { id: 'k', name: 'k' } },
-				{ data: { id: 'g', name: 'g' } }
-			],
-			edges: [
-				{ data: { source: 'b', target: 'e', name: 'b to e' } },
-				{ data: { source: 'b', target: 'k', name: 'b to k' } },
-				{ data: { source: 'b', target: 'g', name: 'b to g' } }
-			]
-	    };
+    var data = {
+    	nodes: [
+    		{ data: { id: 'a', name: 'a', textAlign: 'top', color:'purple' } },
+    		// { data: { id: 'a1', name: 'a1', parent: 'a', textAlign: 'bottom', color: '#0aa699' } },
+    		// { data: { id: 'a2', name: 'a2', parent: 'a', textAlign: 'bottom', color: '#0aa699' } },
+    		// { data: { id: 'a3', name: 'a3', parent: 'a', textAlign: 'bottom', color: '#0aa699' } },
+    		// { data: { id: 'a4', name: 'a4', parent: 'a', textAlign: 'bottom', color: '#0aa699' } },
+    		// { data: { id: 'a5', name: 'a5', parent: 'a', textAlign: 'bottom', color: '#0aa699' } },
+    		{ data: { id: 'b', name: 'b', textAlign: 'bottom', color: '#0aa699' } },
+			{ data: { id: 'c', name: 'c', textAlign: 'bottom', color: '#0aa699' } },
+			{ data: { id: 'd', name: 'd', textAlign: 'bottom', color: '#0aa699' } },
+			{ data: { id: 'e', name: 'e', textAlign: 'bottom', color: '#0aa699' } },
+			{ data: { id: 'f', name: 'f', textAlign: 'bottom', color: '#0aa699' } },
+			{ data: { id: 'g', name: 'g', textAlign: 'bottom', color: '#0aa699' } },
+			{ data: { id: 'h', name: 'h', textAlign: 'bottom', color: '#0aa699' } }
+		],
+		edges: [
+			{ data: { source: 'a', target: 'b' } },
+			{ data: { source: 'a', target: 'c' } },
+			{ data: { source: 'a', target: 'd' } },
+			{ data: { source: 'a', target: 'e' } },
+			{ data: { source: 'a', target: 'f' } },
+			{ data: { source: 'e', target: 'g' } },
+			{ data: { source: 'e', target: 'h' } },
+			{ data: { source: 'h', target: 'g' } }
+		]
+    };
 
     var id,
     	currentSelector,
@@ -147,7 +84,8 @@ define([
             // 	cy.load(cy.elements('*').jsons());
             // });
 
-            $('#searchModal').modal('show');
+            // $('#searchModal').modal('show');
+            searchSelector("a");
 
             $('#node-view .dropdown a').on('click', function() {
             	var layoutChoice = $(this).html();
@@ -176,30 +114,33 @@ define([
     	populateTable();
     	currentSelector = selector;
     	if(selector === "a") {
-    		addChart(0);
-    	} else if (selector === "b") { 
-    		addChart(1);
-    	} else if (selector === "c") { 
-    		addChart(2);
+    		addChart(selector);
     	} else {
     		$('#cy').empty();
     		$(id + ' .no-data-label').css('display', 'block');
     	}
     }
 
-    function addChart(index) {
+    function addChart() {
     	$(id + ' .no-data-label').css('display', 'none');
     	$('#cy').cytoscape({
 			style: cytoscape.stylesheet()
 			.selector('node')
 			.css({
 				'content': 'data(name)',
-				'text-valign': 'center',
+				'text-valign': 'data(textAlign)',
 				'color': 'black',
 				'text-outline-width': 0,
 				'text-outline-color': '#333',
-				'background-color': '#0aa699',
-				'background-opacity': 1,
+				'background-color': 'data(color)',
+                'background-opacity': 0.2,
+                'background-image': '/images/icons/smartphone.png',
+                'background-width': '70%',
+                'background-height': '70%',
+				'border-color': 'data(color)',
+                'border-opacity': 1,
+				// 'shape': 'roundrectangle',
+				'border-width': '3px',
 				'font-size': '10px'
 			})
 			.selector('edge')
@@ -212,10 +153,10 @@ define([
 			})
 			.selector(':selected')
 			.css({
-				'background-opacity': 0.6,
 				'line-color': '#bdbdbd',
 				'target-arrow-color': '#bdbdbd',
-				'source-arrow-color': '#bdbdbd'
+				'source-arrow-color': '#bdbdbd',
+                'border-opacity': 0.6
 			})
 			.selector(':active')
 			.css({
@@ -227,7 +168,7 @@ define([
 				'active-bg-opacity': 0,
 				'outside-texture-bg-opacity': 0
 			}),
-			elements: elements[index],
+			elements: data,
 			layout: {
 				name: currentLayout,
 				padding: 30

@@ -74,6 +74,18 @@ define([
                 // publish filter updates here
             });
 
+            $('.sub-views li').on('click', function() {
+                var view = $(this).data('view');
+
+                if(!$(this).hasClass('active')) {
+
+                    $('.sub-views li').removeClass('active');
+                    $(this).addClass('active');
+
+                    // publish new view here
+                }
+            });
+
             $('.filter-reset').on('click', function() {
                 $.each(that.filters, function(i, category) {
                     $.each(category.filters, function(j, filter) {
