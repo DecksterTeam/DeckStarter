@@ -465,8 +465,8 @@ body {
 
 .middle-container.margin-left {
   margin-left: 180px;
-  width: calc(100% - 180px);
 }
+
 .sidebar.active {
   position: fixed;
   width: 180px;

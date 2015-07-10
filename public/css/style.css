@@ -6,6 +6,8 @@
 
 @import '/css/default.css';
 
+@import url('/js/sidebar-right/sidebar-right.css');
+
 @import url('/js/components/bar-chart/bar-chart.css');
 @import url('/js/components/line-chart/line-chart.css');
 @import url('/js/components/pie-chart/pie-chart.css');

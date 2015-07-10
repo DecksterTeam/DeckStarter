@@ -4,9 +4,10 @@ define([
     'header/header',
     'navbar/navbar',
     'sidebar-left/sidebar-left',
+    'sidebar-right/sidebar-right',
     'middle-container/middle-container',
     'footer/footer'
-], function ($, DataManager, HeaderView, NavbarView, SidebarLeftView, MiddleContainerView, FooterView) {
+], function ($, DataManager, HeaderView, NavbarView, SidebarLeftView, SidebarRightView, MiddleContainerView, FooterView) {
 
     'use strict';
 
@@ -31,6 +32,11 @@ define([
                 "parent": $body
             });
 
+            var sidebarRightView = SidebarRightView;
+            sidebarRightView.render({
+                "parent": $body
+            });
+
             var middleContainerView = MiddleContainerView;
             middleContainerView.render({
                 "parent": $body
@@ -49,12 +55,12 @@ define([
             });
 
             $('.sidebar-control').on('click', function() {
-                if($('.middle-container').hasClass('margin-left')) {
+                if($('.middle-container').hasClass('margin-right')) {
                     middleContainerView.setMarginClass('');
-                    $('.sidebar').removeClass('active');   
+                    $('#sidebar-right').removeClass('active');   
                 } else {
-                    middleContainerView.setMarginClass('margin-left');
-                    $('.sidebar').addClass('active');
+                    middleContainerView.setMarginClass('margin-right');
+                    $('#sidebar-right').addClass('active');
                 }
                 middleContainerView.resizeDeck();
                 middleContainerView.onResize();

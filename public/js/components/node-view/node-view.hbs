@@ -23,13 +23,9 @@
 				<span class="search glyphicon glyphicon-search"></span>
 				Search
 			</button>
-			{{!-- <button type="button" class="btn btn-default">
-				<span class="glyphicon glyphicon-filter"></span>
-			</button> --}}
 		</div>
 	</div>
 	<div class="top-right-container">
-		{{!-- <span class="default-select">Select a node</span> --}}
 		<div class="table-container">
 			<table class="table table-header">
 		        <tr class="dark-{{color}}">
@@ -43,5 +39,22 @@
 				</table>
 			</div>
 		</div>
+	</div>
+	<div class="bottom-left-container">
+		{{#each nodeTypes}}
+			<div class="legend-row">
+				<div class="legend-node" style="border-color:{{this.color}}">
+				</div>
+				<span>{{this.type}}</span>
+			</div>
+		{{/each}}
+		<hr>
+		{{#each edgeTypes}}
+			<div class="legend-row">
+				<div class="legend-edge" style="color:{{this.color}}">&#10142;
+				</div>
+				<span>{{this.type}}</span>
+			</div>
+		{{/each}}
 	</div>
 </div>

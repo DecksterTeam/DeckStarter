@@ -132,10 +132,12 @@ define([
         },
         setMarginClass: function(marginClass) {
             this.marginLeft = marginClass;
-            if(marginClass === 'margin-left') {
-                $('.middle-container').addClass('margin-left');
+            if(marginClass === 'margin-right') {
+                $('.middle-container').addClass('margin-right');
+                $('.middle-container').addClass('single-sidebar');
             } else {
-                $('.middle-container').removeClass('margin-left');
+                $('.middle-container').removeClass('margin-right');
+                $('.middle-container').removeClass('single-sidebar');
             }
         }
     };
