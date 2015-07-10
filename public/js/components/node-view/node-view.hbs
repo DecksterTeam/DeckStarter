@@ -41,20 +41,25 @@
 		</div>
 	</div>
 	<div class="bottom-left-container">
-		{{#each nodeTypes}}
-			<div class="legend-row">
-				<div class="legend-node" style="border-color:{{this.color}}">
+		<div class="legend-label">
+			<span>Legend</span><span class="caret"></span>
+		</div>
+		<div class="legend-content">
+			{{#each nodeTypes}}
+				<div class="legend-row">
+					<div class="legend-node" style="border-color:{{this.color}}">
+					</div>
+					<span class="legend-node-label">{{this.type}}</span>
 				</div>
-				<span>{{this.type}}</span>
-			</div>
-		{{/each}}
-		<hr>
-		{{#each edgeTypes}}
-			<div class="legend-row">
-				<div class="legend-edge" style="color:{{this.color}}">&#10142;
+			{{/each}}
+			<hr>
+			{{#each edgeTypes}}
+				<div class="legend-row">
+					<div class="legend-edge" style="color:{{this.color}}">&#10142;
+					</div>
+					<span class="legend-edge-label">{{this.type}}</span>
 				</div>
-				<span>{{this.type}}</span>
-			</div>
-		{{/each}}
+			{{/each}}
+		</div>
 	</div>
 </div>

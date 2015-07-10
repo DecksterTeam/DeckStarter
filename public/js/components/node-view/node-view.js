@@ -96,6 +96,36 @@ define([
 				clearModal();
 			});
 
+            var autoHeight = $('#node-view .bottom-left-container').height();
+
+            $('#node-view .legend-label').on('click', function() {
+                if($('#node-view .bottom-left-container').hasClass('hide-legend')) {
+                    $('#node-view .bottom-left-container').animate({
+                        height: autoHeight
+                    }, {
+                        duration: 400,
+                        complete: function() {
+                            $('#node-view .bottom-left-container .caret').removeClass('caret-reversed');
+                        }
+                    });
+                    $(this).css('border-radius', '4px 4px 0px 0px').css('border-bottom', '1px solid #ccc');
+                    $('#node-view .bottom-left-container .legend-content').css('display', 'inline');
+                    $('#node-view .bottom-left-container').removeClass('hide-legend');
+                } else {
+                    $('#node-view .bottom-left-container').animate({
+                        height: '34px'
+                    }, {
+                        duration: 400,
+                        complete: function() {
+                            $('#node-view .bottom-left-container .legend-content').css('display', 'none');
+                            $('#node-view .bottom-left-container .caret').addClass('caret-reversed');
+                        }
+                    });
+                    $(this).css('border-radius', '4px').css('border-bottom', 'none');
+                    $('#node-view .bottom-left-container').addClass('hide-legend');
+                }
+            });
+
             $('#searchModal .go-btn').on('click', function() {
             	var param = $('#searchModal .paramInput').val();
             	var comment = $('#searchModal .commentInput').val();
@@ -176,6 +206,7 @@ define([
 				'text-valign': 'center',
 				'color': '#333',
 				'target-arrow-shape': 'triangle',
+                'source-arrow-shape': 'triangle',
 				'font-size': '8px',
                 'line-color': 'data(color)',
                 'target-arrow-color': 'data(color)',
