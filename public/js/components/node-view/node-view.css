@@ -132,7 +132,7 @@
 
 #node-view .bottom-left-container {
   position: absolute;
-  z-index: 1000;
+  z-index: 10;
   bottom: 10px;
   left: 10px;
   border-radius: 4px;
