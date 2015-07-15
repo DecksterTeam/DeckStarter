@@ -27,7 +27,7 @@ Install [GIT](https://git-scm.com/) and [Node](https://nodejs.org/)
 Install npm packages:
 
 ```bash
-  $ npm install
+  $ npm install express
 ```
 
 **Open the app in your browser:**
