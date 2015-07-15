@@ -7,9 +7,6 @@
 - [RequireJS](http://requirejs.org)
 - [Bootstrap](http://getbootstrap.com)
 
-#### Back-End
-- TBD
-
 
 <p align="center">
 <a href="http://jquery.com/"><img alt="jQuery logo" style="padding: 10px;" src="docs/images/logos/jquery.png" title="jQuery"/></a>&nbsp; &nbsp; &nbsp; &nbsp;
@@ -17,15 +14,9 @@
 <a href="http://getbootstrap.com/"><img alt="Bootstrap logo" style="padding: 10px;" src="docs/images/logos/bootstrap.png" title="Bootstrap"/></a>
 </p>
 
+**Prerequisites:**
 
-## Demonstration
-
-**Here is a sneak peek at the project:**
-
-[DeckStarter](http://scaling-decksterdash.rhcloud.com/)
-
-
-## Installation
+Install [GIT](https://git-scm.com/) and [Node](https://nodejs.org/)
 
 **Clone the repo:**
 
@@ -33,24 +24,18 @@
   $ git clone https://github.com/DecksterTeam/DeckStarter.git
 ```
 
+Install npm packages:
+
+```bash
+  $ npm install
+```
+
 **Open the app in your browser:**
 
-The simplest way to install `nano-server` is as a global install through **npm**:
+Start up the node server:
 
 ```bash
-  $ npm install -g nano-server
+  $ node server.js
 ```
 
-Then `nano-server` can be invoked as a command line executable:
-
-```bash
-  $ nano-server
-```
-
-By default, `nano-server` will run on port **5000** and use the current working directory as its document root. Optionally, a port number can be passed as first argument on the command line:
-
-```bash
-  $ nano-server 3000
-```
-
-For more information on nano-server, refer to their project page: [nano-server](https://github.com/tsherif/nano-server)
+App link when runnining locally: http://127.0.0.1:8080/
