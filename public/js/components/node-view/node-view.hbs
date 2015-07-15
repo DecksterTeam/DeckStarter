@@ -1,6 +1,9 @@
 <div id="node-view">
 	<span class="no-data-label">No Data</span>
 	<div id="cy" class="link-chart-container"></div>
+
+	{{!-- <button class="btn btn-default temp-remove-btn" style="position:absolute;top:10px;right:300px;">Remove Stuff</button> --}}
+
 	<div class="dropdown">
 	  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
 	    <span class="layoutChoice">breadthfirst</span>
@@ -45,6 +48,13 @@
 			<span>Legend</span><span class="caret"></span>
 		</div>
 		<div class="legend-content">
+			{{#each icons}}
+				<div class="legend-row">
+					<img class="legend-icon" src="{{this.path}}" style="margin-left:{{this.marginLeft}}" />
+					<span class="legend-icon-label">{{this.type}}</span>
+				</div>
+			{{/each}}
+			<hr>
 			{{#each nodeTypes}}
 				<div class="legend-row">
 					<div class="legend-node" style="border-color:{{this.color}}">

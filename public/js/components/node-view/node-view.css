@@ -140,7 +140,7 @@
   color: #333;
   border: 1px solid #ccc;
   /*height: 34px;*/
-  width: 120px;
+  /*width: 120px;*/
 }
 
 #node-view .bottom-left-container .legend-content {
@@ -156,6 +156,14 @@
 }
 #node-view .bottom-left-container .legend-row:last-child {
   margin-bottom: 8px;
+}
+
+#node-view .bottom-left-container .legend-icon {
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin-left: 4px;
+  margin-right: 10px;
 }
 
 #node-view .bottom-left-container .legend-edge {
@@ -179,6 +187,7 @@
   border: 4px solid gray;
 }
 
+#node-view .bottom-left-container .legend-icon-label,
 #node-view .bottom-left-container .legend-node-label,
 #node-view .bottom-left-container .legend-edge-label {
   float: left;

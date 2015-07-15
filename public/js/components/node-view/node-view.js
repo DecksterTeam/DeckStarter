@@ -11,7 +11,24 @@ define([
 
     'use strict';
 
+    var selectedNodes = [];
+
     var legend = {
+        "icons": [
+            {
+                "type": "Contact",
+                "path": "/images/icons/contact.png"
+            },
+            {
+                "type": "Smartphone",
+                "path": "/images/icons/smartphone.png",
+                "marginLeft": "3px"
+            },
+            {
+                "type": "Phone",
+                "path": "/images/icons/phone.png"
+            }
+        ],
         "nodeTypes": [
             {
                 "type": "Seed",
@@ -44,11 +61,11 @@ define([
 
     var data = {
     	nodes: [
-    		{ data: { id: 'a', name: 'a', textAlign: 'bottom', color: '#4884b8', icon: '/images/icons/contact.png' } },
+    		{ data: { id: 'a', name: 'a', textAlign: 'bottom', color: '#4884b8', icon: '/images/icons/smartphone.png' } },
     		{ data: { id: 'b', name: 'b', textAlign: 'bottom', color: 'gray', icon: '/images/icons/contact.png' } },
 			{ data: { id: 'c', name: 'c', textAlign: 'bottom', color: 'gray', icon: '/images/icons/contact.png' } },
 			{ data: { id: 'd', name: 'd', textAlign: 'bottom', color: 'gray', icon: '/images/icons/contact.png' } },
-			{ data: { id: 'e', name: 'e', textAlign: 'bottom', color: '#24cc53', icon: '/images/icons/contact.png' } },
+			{ data: { id: 'e', name: 'e', textAlign: 'bottom', color: '#24cc53', icon: '/images/icons/phone.png' } },
 			{ data: { id: 'f', name: 'f', textAlign: 'bottom', color: 'gray', icon: '/images/icons/contact.png' } },
 			{ data: { id: 'g', name: 'g', textAlign: 'bottom', color: 'gray', icon: '/images/icons/contact.png' } },
 			{ data: { id: 'h', name: 'h', textAlign: 'bottom', color: 'gray', icon: '/images/icons/contact.png' } }
@@ -65,6 +82,11 @@ define([
 		]
     };
 
+    var dataRemove = [
+        { group: "nodes", data: { id: 'a', name: 'a', textAlign: 'bottom', color: '#4884b8', icon: '/images/icons/smartphone.png' } },
+        { group: "edges", data: { source: 'a', target: 'b', color: '#4884b8' } }
+    ];
+
     var id,
     	currentSelector,
     	currentLayout = 'breadthfirst';
@@ -77,6 +99,7 @@ define([
             var template = Handlebars.compile(HBS);
             var html = template({
                 "id": this.id,
+                "icons": legend.icons,
                 "nodeTypes": legend.nodeTypes,
                 "edgeTypes": legend.edgeTypes
             });
@@ -97,6 +120,8 @@ define([
 			});
 
             var autoHeight = $('#node-view .bottom-left-container').height();
+            var autoWidth = $('#node-view .bottom-left-container').width();
+            $('#node-view .bottom-left-container').css('width', autoWidth + 5);
 
             $('#node-view .legend-label').on('click', function() {
                 if($('#node-view .bottom-left-container').hasClass('hide-legend')) {
@@ -137,11 +162,6 @@ define([
             	}
             });
 
-            // $('.addElems').on('click', function() {
-            // 	cy.add(elements[1]);
-            // 	cy.load(cy.elements('*').jsons());
-            // });
-
             // $('#searchModal').modal('show');
             searchSelector("a");
 
@@ -150,6 +170,11 @@ define([
             	$('#node-view .dropdown .layoutChoice').html(layoutChoice);
             	currentLayout = layoutChoice;
             	searchSelector(currentSelector);
+            });
+
+            $('.temp-remove-btn').on('click', function() {
+                // cy.remove(cy.$("#a")); // remove by id
+                cy.remove(cy.$(':selected'));
             });
         },
         onResize: function() {
@@ -236,10 +261,19 @@ define([
 			},
 			ready: function(){
 				window.cy = this;
-				cy.on('click', function(e){
+				cy.on('click', function(e) {
 					var target = e.cyTarget;
 					if(target != cy && target.isNode()) {
-						populateTable(target.data());
+                        if(cy.$(':selected').length === 0) {
+                            populateTable(target.data());
+                        } else {
+                            if(cy.$(':selected').length === 1 &&
+                                cy.$(':selected')[0] === target) {
+                                // do nothing
+                            } else {
+                                populateTable();
+                            }
+                        }
 					} else {
 						populateTable();
 					}
